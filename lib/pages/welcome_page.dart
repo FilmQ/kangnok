@@ -12,7 +12,6 @@ class WelcomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // โลโก้ / ไอคอน
               Icon(
                 Icons.travel_explore,
                 size: 120,
@@ -23,7 +22,7 @@ class WelcomePage extends StatelessWidget {
 
               // Title
               const Text(
-                'Welcome to Travel App',
+                'Welcome to Kangnok',
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -45,14 +44,13 @@ class WelcomePage extends StatelessWidget {
 
               const SizedBox(height: 40),
 
-              // ปุ่มไปหน้าถัดไป
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacementNamed(
+                    Navigator.pushNamed(
                       context,
-                      '/home',
+                      '/park',
                     );
                   },
                   style: ElevatedButton.styleFrom(
