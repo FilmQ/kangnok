@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kangnok/pages/park_page.dart';
+import 'package:kangnok/pages/signup_page.dart';
 import 'pages/welcome_page.dart';
+import 'pages/authentication_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,12 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Welcome App',
+      title: 'Kangnok',
       initialRoute: '/',
       routes: {
-        '/': (context) => WelcomePage(),
-        '/park': (context) => ParkPage(),
+        '/': (context) => const WelcomePage(),
+        '/authentication': (context) => const AuthenticationPage(),
+        '/signup': (context) => const SignupPage(),
       },
     );
   }
