@@ -11,5 +11,17 @@ class Achievement {
     required this.achieved,
   });
 
-  // TODO: add functions and methods later
+  Map<String, dynamic> toJson() => {
+    'title': title,
+    'description': description,
+    'thumbnail': thumbnail,
+    'achieved': achieved,
+  };
+
+  factory Achievement.fromJson(Map<String, dynamic> json) => Achievement(
+    title: json['title'] as String,
+    description: json['description'] as String,
+    thumbnail: json['thumbnail'] as String,
+    achieved: json['achieved'] as bool,
+  );
 }
