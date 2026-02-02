@@ -18,6 +18,8 @@ abstract class Criterion {
 
 /// Factory for deserializing Criterion subclasses from JSON.
 /// Add new cases here as more criterion types exist.
+/// Every type of criterion shall be here, avoid using direct criterion factory
+/// method
 class CriterionFactory {
   static Criterion fromJson(Map<String, dynamic> json) {
     switch (json['type']) {
@@ -26,6 +28,7 @@ class CriterionFactory {
         return VisitParksCriterion.fromJson(json);
       case 'review':
         return ReviewCriterion.fromJson(json);
+      // add more below...
       default:
         throw ArgumentError('Unknown criterion type: ${json['type']}');
     }

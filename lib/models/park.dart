@@ -1,7 +1,13 @@
 import 'package:kangnok/models/ranger.dart';
 
 /*
-  Note: 
+  Note: Pattern to remember for lists when serializing and deserializing:                                           
+  - List<String> → List<String>.from(json['key'] as List)                  
+  - List<YourClass> → (json['key'] as List).map((e) => YourClass.fromJson(e
+   as Map<String, dynamic>)).toList()                                      
+                                                                           
+  The key difference: primitive lists use .from() constructor, object lists
+   need .map() with explicit deserialization.  
 */
 
 class Park {
