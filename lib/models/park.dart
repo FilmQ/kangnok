@@ -18,12 +18,14 @@ class Park {
   Map<String, dynamic> toJson() => {
     'visitorCount': visitorCount,
     'landmarks': landmarks,
-    'rangers': rangers,
+    'rangers': rangers.map((r) => r.toJson()).toList(),
   };
 
   factory Park.fromJson(Map<String, dynamic> json) => Park(
     visitorCount: json['visitorCount'] as int,
-    landmarks: json['landmarks'] as Map<String, String>,
-    rangers: json['rangers'] as List<Ranger>,
+    landmarks: Map<String, String>.from(json['landmarks'] as Map),
+    rangers: (json['rangers'] as List)
+        .map((r) => Ranger.fromJson(r as Map<String, dynamic>))
+        .toList(), // map THIS to its Map<String, dynamic> counterpart as a list
   );
 }
