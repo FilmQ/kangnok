@@ -5,7 +5,7 @@
 
   This class must be extended and the child must implement its own criteria.
  */
-import 'package:kangnok/models/review_criterion.dart';
+import 'package:kangnok/models/review_criterion.dart' show ReviewCountCriterion, ReviewLikesCriterion;
 import 'package:kangnok/models/visit_parks_criterion.dart';
 
 abstract class Criterion {
@@ -26,8 +26,10 @@ class CriterionFactory {
       // Add cases here as you implement criterion subclasses:
       case 'visit_parks':
         return VisitParksCriterion.fromJson(json);
-      case 'review':
-        return ReviewCriterion.fromJson(json);
+      case 'review_count':
+        return ReviewCountCriterion.fromJson(json);
+      case 'review_likes':
+        return ReviewLikesCriterion.fromJson(json);
       // add more below...
       default:
         throw ArgumentError('Unknown criterion type: ${json['type']}');

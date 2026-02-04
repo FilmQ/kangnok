@@ -3,17 +3,20 @@ import 'package:kangnok/models/user.dart';
 class Explorer extends User {
   String _name;
   List<String> _parkVisited;
-  int _likeCount;
+  int _reviewCount;
+  int _reviewLikes;
 
   Explorer({
     required super.email,
     required super.passwordHash,
     required String name,
     required List<String> parkVisited,
-    required int likeCount
+    required int reviewCount,
+    required int reviewLikes,
   }) : _name = name,
        _parkVisited = parkVisited,
-       _likeCount = likeCount;
+       _reviewCount = reviewCount,
+       _reviewLikes = reviewLikes;
 
   String get name => _name;
   set name(String newName) => _name = newName;
@@ -21,8 +24,11 @@ class Explorer extends User {
   List<String> get parkVisited => _parkVisited;
   set parkVisited(List<String> newParkVisited) => _parkVisited = newParkVisited;
 
-  int get likeCount => _likeCount;
-  set likeCount(int newLikeCount) => _likeCount = newLikeCount;
+  int get reviewCount => _reviewCount;
+  set reviewCount(int newReviewCount) => _reviewCount = newReviewCount;
+
+  int get reviewLikes => _reviewLikes;
+  set reviewLikes(int newReviewLikes) => _reviewLikes = newReviewLikes;
 
   factory Explorer.fromJson(Map<String, dynamic> json) {
     return Explorer(
@@ -30,7 +36,8 @@ class Explorer extends User {
       passwordHash: json['passwordHash'] as String,
       name: json['name'] as String,
       parkVisited: List<String>.from(json['parkVisited'] as List),
-      likeCount: json['likeCount'] as int,
+      reviewCount: json['reviewCount'] as int,
+      reviewLikes: json['reviewLikes'] as int,
     );
   }
 
@@ -40,7 +47,8 @@ class Explorer extends User {
       'passwordHash': passwordHash,
       'name': name,
       'parkVisited': parkVisited,
-      'likeCount': likeCount,
+      'reviewCount': reviewCount,
+      'reviewLikes': reviewLikes,
     };
   }
 }

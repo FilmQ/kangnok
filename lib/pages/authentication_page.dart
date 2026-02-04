@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+@Deprecated("This will be replaced by a Firebase Authentication UI soon.")
 class AuthenticationPage extends StatelessWidget {
   const AuthenticationPage({super.key});
 
