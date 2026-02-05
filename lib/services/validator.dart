@@ -1,6 +1,4 @@
-
-
-/* A class for all your validation need, expand the utility if you wish so.*/
+/// A class for all your validation need, expand the utility if you wish so.
 class Validator {
   // Validate email using Email's normal regex form.
   static bool isValidEmail(String emailToValidate) {

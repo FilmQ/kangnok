@@ -1,15 +1,20 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kangnok/firebase_options.dart';
+import 'package:kangnok/pages/auth_gate.dart';
 import 'package:kangnok/pages/auth_page.dart';
+import 'package:kangnok/pages/explorer_home_page.dart';
 import 'package:kangnok/pages/park_page.dart';
+import 'package:kangnok/pages/ranger_auth_page.dart';
+import 'package:kangnok/pages/ranger_home_page.dart';
 import 'package:kangnok/pages/signup_page.dart';
 import 'pages/welcome_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -19,11 +24,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Kangnok',
-      initialRoute: '/',
+      home: const AuthGate(),
       routes: {
-        '/': (context) => WelcomePage(),
+        '/welcome': (context) => WelcomePage(),
         '/authentication': (context) => AuthenticationPage(),
+        '/ranger_auth': (context) => RangerAuthPage(),
         '/signup': (context) => SignupPage(),
+        '/explorer_home': (context) => ExplorerHomePage(),
+        '/ranger_home': (context) => RangerHomePage(),
         '/park': (context) => ParkPage(),
       },
     );

@@ -1,6 +1,9 @@
 import 'package:kangnok/models/user.dart';
 
 class Explorer extends User {
+  @override
+  String get type => 'explorer';
+
   String _name;
   List<String> _parkVisited;
   int _reviewCount;
@@ -8,7 +11,6 @@ class Explorer extends User {
 
   Explorer({
     required super.email,
-    required super.passwordHash,
     required String name,
     required List<String> parkVisited,
     required int reviewCount,
@@ -33,7 +35,6 @@ class Explorer extends User {
   factory Explorer.fromJson(Map<String, dynamic> json) {
     return Explorer(
       email: json['email'] as String,
-      passwordHash: json['passwordHash'] as String,
       name: json['name'] as String,
       parkVisited: List<String>.from(json['parkVisited'] as List),
       reviewCount: json['reviewCount'] as int,
@@ -41,10 +42,11 @@ class Explorer extends User {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
+      'type': 'explorer',
       'email': email,
-      'passwordHash': passwordHash,
       'name': name,
       'parkVisited': parkVisited,
       'reviewCount': reviewCount,

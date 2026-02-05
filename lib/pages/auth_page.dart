@@ -23,9 +23,31 @@ class AuthenticationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SignInScreen(
-      providers: providers,
-      
+    return Scaffold(
+      appBar: AppBar(title: Text("Welcome!"),),
+      body: SignInScreen(
+        providers: providers,
+        footerBuilder: (context, action) {
+          return Column(
+            children: [
+              SizedBox(height: 16,),
+              Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      '/ranger_auth'
+                    );
+                  },
+                  child: const Text('Sign in as ranger'),
+                ),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }
+
