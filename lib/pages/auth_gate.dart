@@ -5,8 +5,10 @@ import 'package:kangnok/models/explorer.dart';
 import 'package:kangnok/models/ranger.dart';
 import 'package:kangnok/pages/explorer_home_page.dart';
 import 'package:kangnok/pages/ranger_home_page.dart';
+import 'package:kangnok/pages/signup_page.dart';
 import 'package:kangnok/pages/welcome_page.dart';
 import 'package:kangnok/providers/user_provider.dart';
+import 'package:kangnok/services/validator.dart';
 
 /// Routes users to the appropriate home page based on auth state and role.
 ///
@@ -34,18 +36,18 @@ class AuthGate extends ConsumerWidget {
       return WelcomePage();
     }
 
-    // Signed in - fetch user role from Firestore
+    // Signed in, fetch user role from Firestore
     final userAsync = ref.watch(currentUserProvider);
 
     return userAsync.when(
       data: (user) {
         if (user == null) {
-          return WelcomePage();
+          return const SignupPage();
         }
 
         if (user is Explorer) {
           return ExplorerHomePage();
-        } else if (user is Ranger) {
+        } else if (user is Ranger && Validator.isRangerEmail(user.email)) {
           return RangerHomePage();
         }
 

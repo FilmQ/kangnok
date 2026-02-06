@@ -7,4 +7,9 @@ class Validator {
     );
     return emailRegex.hasMatch(emailToValidate);
   }
+
+  static bool isRangerEmail(String emailToValidate) {
+    final RegExp rangerEmail = RegExp(r'^[a-zA-Z0-9._%+-]+@dnp\.th$');
+    return rangerEmail.hasMatch(emailToValidate);
+  }
 }

@@ -11,7 +11,7 @@ class _ParkPageState extends State<ParkPage> {
   int _currentPage = 0;
   final int _totalPages = 2;
 
-  // This function builds a widget that creates a green dot image locator.
+  // This function builds a widget that creates the green dot image locator.
   Widget _placeImageLocatorDots() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,

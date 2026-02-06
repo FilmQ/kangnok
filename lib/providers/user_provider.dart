@@ -11,7 +11,7 @@ import 'package:riverpod/riverpod.dart';
 ///                         ↓
 ///     userServiceProvider (the service that talks to Firestore)
 
-/// Provides the UserService singleton (talks to Firestore)
+/// UserService singleton (talks to Firestore)
 final userServiceProvider = Provider<UserService>((ref) => UserService());
 
 

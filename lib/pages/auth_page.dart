@@ -27,6 +27,14 @@ class AuthenticationPage extends StatelessWidget {
       appBar: AppBar(title: Text("Welcome!"),),
       body: SignInScreen(
         providers: providers,
+        actions: [
+          AuthStateChangeAction<SignedIn>((context, state) {
+            Navigator.of(context).popUntil((route) => route.isFirst);
+          }),
+          AuthStateChangeAction<UserCreated>((context, state) {
+            Navigator.of(context).popUntil((route) => route.isFirst);
+          }),
+        ],
         footerBuilder: (context, action) {
           return Column(
             children: [
