@@ -7,6 +7,7 @@ import 'package:kangnok/pages/auth_page.dart';
 import 'package:kangnok/pages/explorer_home_page.dart';
 import 'package:kangnok/pages/park_page.dart';
 import 'package:kangnok/pages/ranger_auth_page.dart';
+import 'package:kangnok/pages/explorer_profile_page.dart';
 import 'package:kangnok/pages/ranger_home_page.dart';
 import 'package:kangnok/pages/signup_page.dart';
 import 'pages/welcome_page.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         '/explorer_home': (context) => ExplorerHomePage(),
         '/ranger_home': (context) => RangerHomePage(),
         '/park': (context) => ParkPage(),
+        '/explorer_profile': (context) => ExplorerProfilePage(),
       },
     );
   }
