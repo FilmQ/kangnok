@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kangnok/providers/theme_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../services/weather_service.dart';
+
+enum WidgetType { pollution, weather }
 
 class ExplorerHomePage extends ConsumerStatefulWidget {
   const ExplorerHomePage({super.key});
@@ -10,72 +14,65 @@ class ExplorerHomePage extends ConsumerStatefulWidget {
 }
 
 class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
+  // --- State Variables ---
+  WidgetType _currentWidget = WidgetType.pollution;
+  final String _uid = FirebaseAuth.instance.currentUser?.uid ?? "";
   int _selectedIndex = 0;
+
+  final WeatherService _weatherService = WeatherService();
+
+// ปรับปรุงฟังก์ชันดึงข้อมูล
+Future<Map<String, dynamic>> _fetchRealData() async {
+  try {
+    if (_currentWidget == WidgetType.weather) {
+      // ดึงอากาศเชียงใหม่
+      final data = await _weatherService.fetchWeather();
+      return {
+        'value': '${data['main']['temp'].round()}°C',
+        'status': data['weather'][0]['main'],
+        'detail': 'Chiang Mai • ${data['weather'][0]['description']}',
+      };
+    } else {
+      // ดึงค่าฝุ่นเชียงใหม่
+      final data = await _weatherService.fetchPollution();
+      int aqi = data['list'][0]['main']['aqi']; // ค่า 1-5 (5 คือแย่มาก)
+      List<String> statusLabels = ['Unknown', 'Good', 'Fair', 'Moderate', 'Poor', 'Very Poor'];
+      
+      return {
+        'value': 'Level ${aqi}',
+        'status': statusLabels[aqi],
+        'detail': 'Chiang Mai Air Quality Index',
+      };
+    }
+  } catch (e) {
+    rethrow;
+  }
+}
+
+  // --- สลับ Widget ในหน้า Home ---
+  void _toggleQuickInfo() {
+    setState(() {
+      _currentWidget = _currentWidget == WidgetType.pollution 
+          ? WidgetType.weather 
+          : WidgetType.pollution;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final themeData = ref.watch(explorerThemeDataProvider);
+    // รายชื่อหน้าที่จะแสดงในแต่ละ Tab
+    final List<Widget> pages = [
+      _buildHomeContent(),           // Index 0
+      const Center(child: Text("Search Destinations", style: TextStyle(fontSize: 20))), // Index 1
+      const Center(child: Text("Add New Discovery", style: TextStyle(fontSize: 20))),   // Index 2
+      const Center(child: Text("My Favorites", style: TextStyle(fontSize: 20))),        // Index 3
+      const Center(child: Text("Profile Settings", style: TextStyle(fontSize: 20))),   // Index 4
+    ];
 
     return Scaffold(
-      backgroundColor: themeData.backgroundColor,
-      appBar: AppBar(
-        backgroundColor: themeData.appBarColor,
-        foregroundColor: Colors.white,
-        title: const Text("Welcome home explorer!"),
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-        child: Column(
-          children: [
-            const Placeholder(fallbackHeight: 200),
-            const SizedBox(height: 16),
-            SizedBox(
-              width: double.infinity,
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        "Card 1",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(height: 8),
-                      Text("This is a placeholder card."),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            SizedBox(
-              width: double.infinity,
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        "Card 2",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(height: 8),
-                      Text("This is a placeholder card."),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
@@ -87,18 +84,180 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
           setState(() => _selectedIndex = index);
         },
         type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.blueAccent,
+        unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add_circle_outline),
-            label: "Add",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: "Favorites",
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Social"),
+          BottomNavigationBarItem(icon: Icon(Icons.map), label: "Map"),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Cosmetics"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+        ],
+      ),
+    );
+  }
+
+  // --- หน้าเนื้อหาหลัก (Home Content) ---
+  Widget _buildHomeContent() {
+    return SafeArea(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // 1. User Bar
+            StreamBuilder<DocumentSnapshot>(
+              stream: FirebaseFirestore.instance.collection('users').doc(_uid).snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const SizedBox(height: 50, child: Center(child: CircularProgressIndicator()));
+                }
+                var userData = snapshot.data?.data() as Map<String, dynamic>?;
+                String name = userData?['username'] ?? "Explorer";
+
+                return Row(
+                  children: [
+                    const CircleAvatar(
+                      radius: 25, 
+                      backgroundColor: Colors.blueAccent,
+                      child: Icon(Icons.person, color: Colors.white),
+                    ),
+                    const SizedBox(width: 12),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text("Welcome back,", style: TextStyle(color: Colors.grey)),
+                        Text(name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                  ],
+                );
+              },
+            ),
+
+            const SizedBox(height: 30),
+
+            // 2. Quick Info Header
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text("Quick Info", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                TextButton.icon(
+                  onPressed: _toggleQuickInfo,
+                  icon: const Icon(Icons.swap_horiz),
+                  label: Text(_currentWidget == WidgetType.pollution ? "See Weather" : "See Pollution"),
+                )
+              ],
+            ),
+
+            // 3. Dynamic Widget Box
+            FutureBuilder<Map<String, dynamic>>(
+              future: _fetchRealData(), // ใช้ฟังก์ชันใหม่
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return _infoContainer(
+                    title: "Loading...",
+                    value: "---",
+                    icon: Icons.refresh,
+                    color: Colors.grey,
+                    detail: "Fetching live data...",
+                  );
+                }
+
+                if (snapshot.hasError) {
+                  return _infoContainer(
+                    title: "Error",
+                    value: "!",
+                    icon: Icons.error_outline,
+                    color: Colors.red,
+                    detail: "Could not load data",
+                  );
+                }
+
+                final data = snapshot.data!;
+                bool isWeather = _currentWidget == WidgetType.weather;
+
+                return _infoContainer(
+                  title: isWeather ? "Current Weather" : "Air Quality",
+                  value: data['value'],
+                  // ถ้าเป็นสภาพอากาศ อาจจะใช้ไอคอนแบบ Dynamic ตามสภาพฟ้าฝนได้
+                  icon: isWeather ? _getWeatherIcon(data['status']) : Icons.air,
+                  color: isWeather ? Colors.orange : Colors.teal,
+                  detail: "${data['status']} • ${data['detail']}",
+                );
+              },
+            ),
+          const SizedBox(height: 30),
+          const Text("Your Journey", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 12),
+          // Placeholder สำหรับข้อมูลอื่นๆ ในหน้า Home
+          Container(
+            height: 150,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.grey[200],
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: const Center(child: Icon(Icons.map_outlined, size: 50, color: Colors.grey)),
+          ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // ฟังก์ชันเสริมสำหรับเลือกไอคอนตามสภาพอากาศ
+  IconData _getWeatherIcon(String status) {
+    switch (status.toLowerCase()) {
+      case 'clouds':
+        return Icons.cloud;
+      case 'rain':
+        return Icons.umbrella;
+      case 'clear':
+        return Icons.wb_sunny;
+      default:
+        return Icons.wb_cloudy;
+    }
+  }
+
+  // --- Template สำหรับกล่องข้อมูล ---
+  Widget _infoContainer({
+    required String title,
+    required String value,
+    required IconData icon,
+    required Color color,
+    required String detail
+  }) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.15),
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: color.withOpacity(0.4), width: 1.5),
+      ),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Icon(icon, color: Colors.white, size: 32),
+          ),
+          const SizedBox(width: 20),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title, style: TextStyle(fontSize: 14, color: color, fontWeight: FontWeight.w600)),
+                const SizedBox(height: 4),
+                Text(value, style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+                Text(detail, style: const TextStyle(fontSize: 13, color: Colors.black54)),
+              ],
+            ),
+          ),
         ],
       ),
     );
