@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class WeatherService {
-  final String apiKey = "YOUR_OPENWEATHER_API_KEY_HERE";
+  String get apiKey => dotenv.env['OPENWEATHER_API_KEY'] ?? '';
 
-  final double lat = 18.7883;
-  final double lon = 98.9853;
+  double get lat => double.tryParse(dotenv.env['DEFAULT_LAT'] ?? '18.7883') ?? 18.7883;
+  double get lon => double.tryParse(dotenv.env['DEFAULT_LON'] ?? '98.9853') ?? 98.9853;
 
   // ดึงสภาพอากาศ
   Future<Map<String, dynamic>> fetchWeather() async {

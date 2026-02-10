@@ -14,6 +14,9 @@ migrate_working_dir/
 CLAUDE.md
 .claude/
 
+# Environment variables
+.env
+
 # IntelliJ related
 *.iml
 *.ipr
