@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../services/weather_service.dart';
+import 'explorer_social_page.dart';
 
 enum WidgetType { pollution, weather }
 
@@ -86,13 +87,13 @@ Future<Map<String, dynamic>> _fetchRealData({bool forceRefresh = false}) async {
 
   @override
   Widget build(BuildContext context) {
-    // รายชื่อหน้าที่จะแสดงในแต่ละ Tab
+    // 1. กำหนดหน้าที่จะแสดงในแต่ละ Tab ให้ตรงกับ Label ด้านล่าง
     final List<Widget> pages = [
-      _buildHomeContent(),           // Index 0
-      const Center(child: Text("Search Destinations", style: TextStyle(fontSize: 20))), // Index 1
-      const Center(child: Text("Add New Discovery", style: TextStyle(fontSize: 20))),   // Index 2
-      const Center(child: Text("My Favorites", style: TextStyle(fontSize: 20))),        // Index 3
-      const Center(child: Text("Profile Settings", style: TextStyle(fontSize: 20))),   // Index 4
+      _buildHomeContent(),                          // Index 0: Home
+      const SocialPage(),                           // Index 1: Social 
+      const Center(child: Text("Map Page")),        // Index 2: Map
+      const Center(child: Text("Cosmetics Page")),  // Index 3: Cosmetics
+      const Center(child: Text("Profile Settings")), 
     ];
 
     return Scaffold(
@@ -103,10 +104,12 @@ Future<Map<String, dynamic>> _fetchRealData({bool forceRefresh = false}) async {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: (index) {
+          // หากกด Tab Profile (Index 4) ให้ Push ไปหน้า Profile ใหม่
           if (index == 4) {
             Navigator.pushNamed(context, '/explorer_profile');
             return;
           }
+          // หากกด Tab อื่นๆ ให้สลับหน้าใน IndexedStack
           setState(() => _selectedIndex = index);
         },
         type: BottomNavigationBarType.fixed,
@@ -114,9 +117,9 @@ Future<Map<String, dynamic>> _fetchRealData({bool forceRefresh = false}) async {
         unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Social"),
+          BottomNavigationBarItem(icon: Icon(Icons.people), label: "Social"), // เปลี่ยน icon เป็น people ให้เข้ากับ Social
           BottomNavigationBarItem(icon: Icon(Icons.map), label: "Map"),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Cosmetics"),
+          BottomNavigationBarItem(icon: Icon(Icons.auto_awesome), label: "Cosmetics"), // เปลี่ยน icon ให้ดูเป็นสายบิวตี้
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
         ],
       ),

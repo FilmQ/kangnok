@@ -12,6 +12,8 @@ import 'package:kangnok/pages/explorer_profile_page.dart';
 import 'package:kangnok/pages/ranger_home_page.dart';
 import 'package:kangnok/pages/signup_page.dart';
 import 'pages/welcome_page.dart';
+import 'pages/explorer_add_post_page.dart';
+import 'pages/explorer_social_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,6 +39,8 @@ class MyApp extends StatelessWidget {
         '/ranger_home': (context) => RangerHomePage(),
         '/park': (context) => ParkPage(),
         '/explorer_profile': (context) => ExplorerProfilePage(),
+        '/explorer_add_post': (context) => AddPostPage(),
+        '/explorer_social': (context) => SocialPage(),
       },
     );
   }
