@@ -19,7 +19,7 @@ class RangerHomePage extends ConsumerWidget {
         ],
       ),
       body: Container(
-      
+        child: Center(),
       ),
     );
   }

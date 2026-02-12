@@ -18,8 +18,10 @@ class Park {
   String name;
   String nameTh;
   String description; // the park's brief description
-  String descriptionTh; 
-  String location; // coordinate pair
+  String descriptionTh;
+  String location;
+  String locationTh;
+  String coordinate;
 
   int visitorCount;
 
@@ -37,6 +39,8 @@ class Park {
     required this.description,
     required this.descriptionTh,
     required this.location,
+    required this.locationTh,
+    required this.coordinate,
     required this.imageUrl,
     required this.visitorCount,
     required this.landmarks,
@@ -52,6 +56,8 @@ class Park {
     'description': description,
     'descriptionTh': descriptionTh,
     'location': location,
+    'locationTh': locationTh,
+    'coordinate': coordinate,
     'imageUrl': imageUrl,
     'visitorCount': visitorCount,
     'landmarks': landmarks.map((l) => l.toJson()).toList(),
@@ -67,6 +73,8 @@ class Park {
     description: json['description'] as String,
     descriptionTh: json['descriptionTh'] as String,
     location: json['location'] as String,
+    locationTh: json['locationTh'] as String,
+    coordinate: json['coordinate'] as String,
     imageUrl: List<String>.from(json['imageUrl'] as List),
     visitorCount: json['visitorCount'] as int,
     landmarks: (json['landmarks'] as List)

@@ -2,10 +2,14 @@
   {
     "name": "Khun Khan National Park",
     "nameTh": "อุทยานแห่งชาติขุนขาน",
-    "description": "",
-    "descriptionTh": "",
-    "location": "",
-    "imageUrl": [""],
+    "description": "A rugged mountainous park with elevations ranging from 500 to 1,708 meters, known for its virgin forests, waterfalls, and scenic mountain landscapes in the Samoeng highlands.",
+    "descriptionTh": "อุทยานแห่งชาติที่มีภูมิประเทศเป็นเขาสูงชัน ระดับความสูง 500 ถึง 1,708 เมตร เป็นที่รู้จักในเรื่องป่าดิบ น้ำตก และทิวทัศน์ภูเขาที่สวยงามในเขตที่สูงสะเมิง",
+    "location": "Amphoe Samoeng, Chiang Mai",
+    "locationTh": "อำเภอสะเมิง จังหวัดเชียงใหม่",
+    "coordinate": "18.9300, 98.6200",
+    "imageUrl": [
+      ""
+    ],
     "visitorCount": 0,
     "landmarks": [],
     "rangers": [],
@@ -15,10 +19,14 @@
   {
     "name": "Doi Pha Hom Pok National Park",
     "nameTh": "อุทยานแห่งชาติดอยผ้าห่มปก",
-    "description": "",
-    "descriptionTh": "",
-    "location": "",
-    "imageUrl": [""],
+    "description": "Home to Thailand's second-highest peak at 2,285 meters, renowned for its sea of clouds, hot springs including Thailand's highest geyser, and exceptional bird diversity in montane cloud forests.",
+    "descriptionTh": "ที่ตั้งของยอดเขาสูงอันดับสองของไทยที่ 2,285 เมตร มีชื่อเสียงในเรื่องทะเลหมอก น้ำพุร้อน และความหลากหลายของนกในป่าเมฆบนภูเขา",
+    "location": "Amphoe Fang, Chiang Mai",
+    "locationTh": "อำเภอฝาง จังหวัดเชียงใหม่",
+    "coordinate": "19.9650, 99.1541",
+    "imageUrl": [
+      ""
+    ],
     "visitorCount": 0,
     "landmarks": [],
     "rangers": [],
@@ -28,10 +36,14 @@
   {
     "name": "Doi Wiang Pha National Park",
     "nameTh": "อุทยานแห่งชาติดอยเวียงผา",
-    "description": "",
-    "descriptionTh": "",
-    "location": "",
-    "imageUrl": [""],
+    "description": "A vast 583-square-kilometer park spanning mountainous terrain with elevations from 400 to over 2,000 meters, featuring pristine forest ecosystems and alpine environments along the northern border region.",
+    "descriptionTh": "อุทยานแห่งชาติขนาดใหญ่ 583 ตารางกิโลเมตร มีภูมิประเทศเป็นภูเขาสูงตั้งแต่ 400 ถึงกว่า 2,000 เมตร มีระบบนิเวศป่าที่สมบูรณ์และสภาพแวดล้อมเขาสูงตามแนวชายแดนภาคเหนือ",
+    "location": "Amphoe Chai Prakan, Chiang Mai",
+    "locationTh": "อำเภอไชยปราการ จังหวัดเชียงใหม่",
+    "coordinate": "19.4600, 99.3153",
+    "imageUrl": [
+      ""
+    ],
     "visitorCount": 0,
     "landmarks": [],
     "rangers": [],
@@ -41,10 +53,14 @@
   {
     "name": "Doi Suthep-Pui National Park",
     "nameTh": "อุทยานแห่งชาติดอยสุเทพ-ปุย",
-    "description": "",
-    "descriptionTh": "",
-    "location": "",
-    "imageUrl": [""],
+    "description": "Located just northwest of Chiang Mai city, this iconic park features twin peaks Doi Suthep (1,676m) and Doi Pui (1,685m), home to the revered Wat Phra That Doi Suthep temple and cool evergreen forests.",
+    "descriptionTh": "ตั้งอยู่ทางตะวันตกเฉียงเหนือของเมืองเชียงใหม่ อุทยานที่มีชื่อเสียงมียอดเขาสองยอดคือดอยสุเทพ (1,676 เมตร) และดอยปุย (1,685 เมตร) เป็นที่ตั้งของวัดพระธาตุดอยสุเทพและป่าดิบชื้น",
+    "location": "Amphoe Mueang Chiang Mai, Chiang Mai",
+    "locationTh": "อำเภอเมืองเชียงใหม่ จังหวัดเชียงใหม่",
+    "coordinate": "18.8164, 98.8919",
+    "imageUrl": [
+      ""
+    ],
     "visitorCount": 0,
     "landmarks": [],
     "rangers": [],
@@ -54,10 +70,14 @@
   {
     "name": "Doi Inthanon National Park",
     "nameTh": "อุทยานแห่งชาติดอยอินทนนท์",
-    "description": "",
-    "descriptionTh": "",
-    "location": "",
-    "imageUrl": [""],
+    "description": "Home to Thailand's highest peak at 2,565 meters, known as the 'Roof of Thailand,' featuring diverse cloud forest ecosystems, spectacular waterfalls including the 250-meter Mae Ya Falls, and world-class birdwatching.",
+    "descriptionTh": "ที่ตั้งของยอดเขาสูงสุดของไทยที่ 2,565 เมตร รู้จักกันในชื่อ 'หลังคาแห่งประเทศไทย' มีระบบนิเวศป่าเมฆที่หลากหลาย น้ำตกที่งดงามรวมถึงน้ำตกแม่ยาสูง 250 เมตร และเป็นแหล่งดูนกระดับโลก",
+    "location": "Amphoe Chom Thong, Chiang Mai",
+    "locationTh": "อำเภอจอมทอง จังหวัดเชียงใหม่",
+    "coordinate": "18.6087, 98.4897",
+    "imageUrl": [
+      ""
+    ],
     "visitorCount": 0,
     "landmarks": [],
     "rangers": [],
@@ -67,10 +87,14 @@
   {
     "name": "Bua Tong Waterfall-Seven Colors Spring National Park",
     "nameTh": "อุทยานแห่งชาติน้ำตกบัวตอง-น้ำพุเจ็ดสี",
-    "description": "",
-    "descriptionTh": "",
-    "location": "",
-    "imageUrl": [""],
+    "description": "Famous for the Sticky Waterfall (Bua Tong), a 100-meter cascade with calcium-rich rocks that allow visitors to walk up the falls, and the nearby Seven Colors Spring with striking blue-green mineral water.",
+    "descriptionTh": "มีชื่อเสียงจากน้ำตกบัวตองหรือน้ำตกเหนียว สูง 100 เมตร หินเคลือบแคลเซียมทำให้สามารถเดินขึ้นน้ำตกได้ และน้ำพุเจ็ดสีที่มีน้ำแร่สีฟ้าเขียวสวยงาม",
+    "location": "Amphoe Mae Taeng, Chiang Mai",
+    "locationTh": "อำเภอแม่แตง จังหวัดเชียงใหม่",
+    "coordinate": "19.0697, 99.0793",
+    "imageUrl": [
+      ""
+    ],
     "visitorCount": 0,
     "landmarks": [],
     "rangers": [],
@@ -80,10 +104,14 @@
   {
     "name": "Pha Daeng National Park",
     "nameTh": "อุทยานแห่งชาติผาแดง",
-    "description": "",
-    "descriptionTh": "",
-    "location": "",
-    "imageUrl": [""],
+    "description": "A large park covering 1,123 square kilometers along the Daen Lao Range, featuring hot springs, caves with stalactites, waterfalls, and multiple forest types supporting diverse wildlife including serow and goral.",
+    "descriptionTh": "อุทยานแห่งชาติขนาดใหญ่ครอบคลุมพื้นที่ 1,123 ตารางกิโลเมตรตามแนวเทือกเขาแดนลาว มีน้ำพุร้อน ถ้ำหินย้อย น้ำตก และป่าหลายประเภทที่เป็นแหล่งอาศัยของสัตว์ป่าหลากหลายชนิด",
+    "location": "Amphoe Chiang Dao, Chiang Mai",
+    "locationTh": "อำเภอเชียงดาว จังหวัดเชียงใหม่",
+    "coordinate": "19.3667, 98.9667",
+    "imageUrl": [
+      ""
+    ],
     "visitorCount": 0,
     "landmarks": [],
     "rangers": [],
@@ -93,10 +121,14 @@
   {
     "name": "Mae Takhrai National Park",
     "nameTh": "อุทยานแห่งชาติแม่ตะไคร้",
-    "description": "",
-    "descriptionTh": "",
-    "location": "",
-    "imageUrl": [""],
+    "description": "Known for its spectacular waterfalls including the multi-level Lam Ru Waterfall, cool mountain streams, and diverse hiking trails through mixed deciduous and evergreen forests ideal for camping and trekking.",
+    "descriptionTh": "เป็นที่รู้จักจากน้ำตกที่งดงามหลายแห่ง รวมถึงน้ำตกลำรูที่มีหลายชั้น ลำธารน้ำเย็น และเส้นทางเดินป่าที่หลากหลายผ่านป่าผสมผลัดใบและป่าดิบ เหมาะสำหรับตั้งแคมป์และเดินป่า",
+    "location": "Amphoe Doi Saket, Chiang Mai",
+    "locationTh": "อำเภอดอยสะเก็ด จังหวัดเชียงใหม่",
+    "coordinate": "18.9662, 99.2412",
+    "imageUrl": [
+      ""
+    ],
     "visitorCount": 0,
     "landmarks": [],
     "rangers": [],
@@ -106,10 +138,14 @@
   {
     "name": "Mae Tho National Park",
     "nameTh": "อุทยานแห่งชาติแม่โถ",
-    "description": "",
-    "descriptionTh": "",
-    "location": "",
-    "imageUrl": [""],
+    "description": "A remote mountain sanctuary with pristine wilderness, home to diverse wildlife including Asian elephants, gibbons, and bears, spanning multiple forest types from evergreen to mixed deciduous across rugged terrain.",
+    "descriptionTh": "เขตรักษาพันธุ์สัตว์ป่าบนภูเขาที่ห่างไกล มีป่าดั้งเดิมสมบูรณ์ เป็นแหล่งอาศัยของสัตว์ป่าหลากหลาย รวมถึงช้างเอเชีย ชะนี และหมี ครอบคลุมป่าหลายประเภทในภูมิประเทศที่ขรุขระ",
+    "location": "Amphoe Hot, Chiang Mai",
+    "locationTh": "อำเภอฮอด จังหวัดเชียงใหม่",
+    "coordinate": "18.1800, 98.1700",
+    "imageUrl": [
+      ""
+    ],
     "visitorCount": 0,
     "landmarks": [],
     "rangers": [],
@@ -119,10 +155,14 @@
   {
     "name": "Mae Wang National Park",
     "nameTh": "อุทยานแห่งชาติแม่วาง",
-    "description": "",
-    "descriptionTh": "",
-    "location": "",
-    "imageUrl": [""],
+    "description": "Features dramatic cliff formations known as Pha Chor and mountainous terrain with elevations up to 1,909 meters at Doi Pha Tang, serving as a crucial water source for the Mae Wang and Mae Chaem rivers.",
+    "descriptionTh": "มีหน้าผาที่สวยงามชื่อ ผาช่อ และภูมิประเทศภูเขาสูงถึง 1,909 เมตรที่ดอยผาตั้ง เป็นแหล่งต้นน้ำที่สำคัญของแม่น้ำแม่วางและแม่น้ำแม่แจม",
+    "location": "Amphoe Chom Thong, Chiang Mai",
+    "locationTh": "อำเภอจอมทอง จังหวัดเชียงใหม่",
+    "coordinate": "18.5278, 98.7558",
+    "imageUrl": [
+      ""
+    ],
     "visitorCount": 0,
     "landmarks": [],
     "rangers": [],
@@ -132,10 +172,14 @@
   {
     "name": "Si Lanna National Park",
     "nameTh": "อุทยานแห่งชาติศรีลานนา",
-    "description": "",
-    "descriptionTh": "",
-    "location": "",
-    "imageUrl": [""],
+    "description": "A scenic mountain sanctuary featuring waterfalls, limestone formations, and dense tropical forests along the Ping River valley, serving as an important water catchment for the upper Ping River.",
+    "descriptionTh": "อุทยานบนภูเขาที่งดงามมีน้ำตก หินปูนรูปร่างแปลกตา และป่าเขตร้อนหนาแน่นตามหุบเขาแม่น้ำปิง เป็นแหล่งต้นน้ำที่สำคัญของแม่น้ำปิงตอนบน",
+    "location": "Amphoe Mae Taeng, Chiang Mai",
+    "locationTh": "อำเภอแม่แตง จังหวัดเชียงใหม่",
+    "coordinate": "19.2830, 99.0670",
+    "imageUrl": [
+      ""
+    ],
     "visitorCount": 0,
     "landmarks": [],
     "rangers": [],
@@ -145,10 +189,14 @@
   {
     "name": "Huai Nam Dang National Park",
     "nameTh": "อุทยานแห่งชาติห้วยน้ำดัง",
-    "description": "",
-    "descriptionTh": "",
-    "location": "",
-    "imageUrl": [""],
+    "description": "Famous for its spectacular sea of mist visible from mountain viewpoints like Doi Chang, with mountains reaching over 1,500 meters, diverse forests, waterfalls, and natural hot springs.",
+    "descriptionTh": "มีชื่อเสียงจากทะเลหมอกที่สวยงามมองเห็นได้จากจุดชมวิวบนภูเขาเช่นดอยช้าง มียอดเขาสูงกว่า 1,500 เมตร ป่าที่หลากหลาย น้ำตก และน้ำพุร้อนธรรมชาติ",
+    "location": "Amphoe Mae Taeng, Chiang Mai",
+    "locationTh": "อำเภอแม่แตง จังหวัดเชียงใหม่",
+    "coordinate": "19.3039, 98.5989",
+    "imageUrl": [
+      ""
+    ],
     "visitorCount": 0,
     "landmarks": [],
     "rangers": [],
@@ -158,10 +206,14 @@
   {
     "name": "Op Khan National Park",
     "nameTh": "อุทยานแห่งชาติออบขาน",
-    "description": "",
-    "descriptionTh": "",
-    "location": "",
-    "imageUrl": [""],
+    "description": "A scenic nature destination centered around the Khan Waterway, offering cool streams for swimming, limestone mountains, evergreen forests, and diverse hiking trails through pristine wilderness.",
+    "descriptionTh": "แหล่งท่องเที่ยวธรรมชาติที่สวยงามตั้งอยู่ริมลำน้ำขาน มีลำธารน้ำเย็นสำหรับเล่นน้ำ ภูเขาหินปูน ป่าดิบชื้น และเส้นทางเดินป่าที่หลากหลายผ่านป่าที่สมบูรณ์",
+    "location": "Amphoe Hang Dong, Chiang Mai",
+    "locationTh": "อำเภอหางดง จังหวัดเชียงใหม่",
+    "coordinate": "18.7229, 98.8215",
+    "imageUrl": [
+      ""
+    ],
     "visitorCount": 0,
     "landmarks": [],
     "rangers": [],
@@ -171,10 +223,14 @@
   {
     "name": "Op Luang National Park",
     "nameTh": "อุทยานแห่งชาติออบหลวง",
-    "description": "",
-    "descriptionTh": "",
-    "location": "",
-    "imageUrl": [""],
+    "description": "Renowned for the dramatic Op Luang Canyon carved by the Mae Chaem River with steep cliffs and scenic gorges, plus ancient rock paintings dating back thousands of years, caves, and waterfalls.",
+    "descriptionTh": "มีชื่อเสียงจากหุบเขาออบหลวงที่เกิดจากการกัดเซาะของแม่น้ำแม่แจม มีหน้าผาชัน หุบเขาที่สวยงาม ภาพเขียนสีโบราณอายุหลายพันปี ถ้ำ และน้ำตก",
+    "location": "Amphoe Hot, Chiang Mai",
+    "locationTh": "อำเภอฮอด จังหวัดเชียงใหม่",
+    "coordinate": "18.0658, 98.6678",
+    "imageUrl": [
+      ""
+    ],
     "visitorCount": 0,
     "landmarks": [],
     "rangers": [],
