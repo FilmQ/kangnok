@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:kangnok/models/explorer.dart';
-import 'package:kangnok/models/ranger.dart';
-import 'package:kangnok/models/user.dart';
+import 'package:kangnok/models/roles/explorer.dart';
+import 'package:kangnok/models/roles/ranger.dart';
+import 'package:kangnok/models/roles/user.dart';
 
 /// Handles user persistence with Firestore.
 ///

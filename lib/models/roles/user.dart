@@ -1,5 +1,5 @@
-import 'package:kangnok/models/explorer.dart';
-import 'package:kangnok/models/ranger.dart';
+import 'package:kangnok/models/roles/explorer.dart';
+import 'package:kangnok/models/roles/ranger.dart';
 import 'package:kangnok/services/validator.dart';
 
 /*

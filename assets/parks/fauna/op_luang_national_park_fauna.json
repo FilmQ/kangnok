@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Sambar Deer",
+    "nameTh": "กวางป่า",
+    "sciName": "Rusa unicolor",
+    "description": "Thailand's largest cervid with dark brown coloring, males bearing large multi-pointed antlers.",
+    "descriptionTh": "กวางที่ใหญ่ที่สุดของไทยสีน้ำตาลเข้ม ตัวผู้มีเขาแตกหลายสาขา",
+    "imageUrl": ""
+  },
+  {
+    "name": "Asiatic Black Bear",
+    "nameTh": "หมีควาย",
+    "sciName": "Ursus thibetanus",
+    "description": "A medium-sized bear with black fur and a distinctive white V-shaped chest marking, largely solitary.",
+    "descriptionTh": "หมีขนาดกลางมีขนสีดำและเครื่องหมายรูป V สีขาวที่อก อยู่โดดเดี่ยว",
+    "imageUrl": ""
+  },
+  {
+    "name": "Phayre's Leaf Monkey",
+    "nameTh": "ค่างแว่นถิ่นเหนือ",
+    "sciName": "Trachypithecus phayrei",
+    "description": "A slender monkey with grayish-brown fur and distinctive white markings around the eyes.",
+    "descriptionTh": "ลิงสีเทาน้ำตาลตัวเรียว มีลายสีขาวรอบตาคล้ายแว่น",
+    "imageUrl": ""
+  },
+  {
+    "name": "Sunda Pangolin",
+    "nameTh": "ลิ่น",
+    "sciName": "Manis javanica",
+    "description": "A unique mammal covered in overlapping scales, feeding exclusively on ants and termites using a long sticky tongue.",
+    "descriptionTh": "สัตว์มีเกล็ดซ้อนกันทั่วตัว กินมดและปลวกโดยใช้ลิ้นยาวเหนียว",
+    "imageUrl": ""
+  },
+  {
+    "name": "Green Peafowl",
+    "nameTh": "นกยูงเขียว",
+    "sciName": "Pavo muticus",
+    "description": "A large iridescent green bird with males displaying elaborate tail feathers, an endangered species.",
+    "descriptionTh": "นกขนาดใหญ่สีเขียวเหลือบ ตัวผู้มีหางยาวสวยงาม เป็นสัตว์ใกล้สูญพันธุ์",
+    "imageUrl": ""
+  }
+]

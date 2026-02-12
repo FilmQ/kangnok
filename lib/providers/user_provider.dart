@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart' as auth;
-import 'package:kangnok/models/user.dart';
+import 'package:kangnok/models/roles/user.dart';
 import 'package:kangnok/services/user_service.dart';
 import 'package:riverpod/riverpod.dart';
 

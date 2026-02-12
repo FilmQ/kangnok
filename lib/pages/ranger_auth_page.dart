@@ -24,6 +24,9 @@ class RangerAuthPage extends StatelessWidget {
         providers: [EmailAuthProvider()],
         showAuthActionSwitch: false,
         actions: [
+          AuthStateChangeAction<SignedIn>((context, state) {
+            Navigator.of(context).popUntil((route) => route.isFirst);
+          }),
           AuthStateChangeAction<AuthFailed>((context, state) {
             final exception = state.exception;
             if (exception is FirebaseAuthException) {

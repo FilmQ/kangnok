@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Teak",
+    "nameTh": "สัก",
+    "sciName": "Tectona grandis",
+    "description": "A large deciduous hardwood tree producing fragrant white flowers and highly valued timber.",
+    "descriptionTh": "ไม้เนื้อแข็งผลัดใบขนาดใหญ่ดอกสีขาวหอม เป็นไม้มีคุณค่าสูง",
+    "imageUrl": ""
+  },
+  {
+    "name": "Yang Na",
+    "nameTh": "ยางนา",
+    "sciName": "Dipterocarpus alatus",
+    "description": "A large tropical forest tree that secretes resin and grows up to 60 meters tall.",
+    "descriptionTh": "ไม้ป่าเขตร้อนขนาดใหญ่ให้ยาง สูงได้ถึง 60 เมตร",
+    "imageUrl": ""
+  },
+  {
+    "name": "Burma Padauk",
+    "nameTh": "ประดู่",
+    "sciName": "Pterocarpus macrocarpus",
+    "description": "A medium-sized deciduous tree with flaky bark that secretes red gum when cut, valued for durable timber.",
+    "descriptionTh": "ไม้ผลัดใบขนาดกลางเปลือกลอกได้ มียางสีแดงเมื่อตัด ไม้ทนทานสูง",
+    "imageUrl": ""
+  },
+  {
+    "name": "Siamese Sal",
+    "nameTh": "รัง",
+    "sciName": "Shorea obtusa",
+    "description": "A deciduous tropical hardwood tree growing 10-30 meters tall, thriving in dry areas.",
+    "descriptionTh": "ไม้เนื้อแข็งผลัดใบสูง 10-30 เมตร เจริญเติบโตดีในพื้นที่แห้ง",
+    "imageUrl": ""
+  },
+  {
+    "name": "Bamboo",
+    "nameTh": "ไผ่",
+    "sciName": "Thyrsostachys siamensis",
+    "description": "A fast-growing woody grass native to Southeast Asia, used for construction and handicrafts.",
+    "descriptionTh": "หญ้าเนื้อแข็งเติบโตเร็วของเอเชียตะวันออกเฉียงใต้ ใช้ในงานก่อสร้างและหัตถกรรม",
+    "imageUrl": ""
+  }
+]

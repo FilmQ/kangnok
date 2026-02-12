@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Oak",
+    "nameTh": "ก่อ",
+    "sciName": "Quercus eumorpha",
+    "description": "An important oak species dominating upper montane forest at Doi Inthanon's summit above 2,080 meters.",
+    "descriptionTh": "ไม้ก่อที่สำคัญเป็นไม้เด่นของป่าดิบเขาระดับสูงบนยอดดอยอินทนนท์เหนือ 2,080 เมตร",
+    "imageUrl": ""
+  },
+  {
+    "name": "Lady's Slipper Orchid",
+    "nameTh": "รองเท้านารี",
+    "sciName": "Paphiopedilum villosum",
+    "description": "An endangered epiphytic orchid endemic to Doi Inthanon with distinctive slipper-shaped flowers.",
+    "descriptionTh": "กล้วยไม้ใกล้สูญพันธุ์เฉพาะถิ่นของดอยอินทนนท์ ดอกมีรูปร่างคล้ายรองเท้า",
+    "imageUrl": ""
+  },
+  {
+    "name": "Sphagnum Moss",
+    "nameTh": "สแฟกนัมมอส",
+    "sciName": "Sphagnum spp.",
+    "description": "Bright green moss carpeting the ground in the cloud forest above 1,800 meters elevation.",
+    "descriptionTh": "มอสสีเขียวสดปกคลุมพื้นดินในป่าเมฆเหนือระดับ 1,800 เมตร",
+    "imageUrl": ""
+  },
+  {
+    "name": "Schima",
+    "nameTh": "ชำมะเลียง",
+    "sciName": "Schima wallichii",
+    "description": "An evergreen broadleaf tree found throughout Doi Inthanon's montane forest ecosystem.",
+    "descriptionTh": "ไม้ใบกว้างไม่ผลัดใบพบทั่วไปในระบบนิเวศป่าดิบเขาของดอยอินทนนท์",
+    "imageUrl": ""
+  },
+  {
+    "name": "Rhododendron",
+    "nameTh": "กุหลาบพันปี",
+    "sciName": "Rhododendron spp.",
+    "description": "Vibrant flowering shrubs blooming spectacularly in the cool, humid cloud forest of Doi Inthanon.",
+    "descriptionTh": "ไม้พุ่มดอกสีสดใสบานสวยงามในป่าเมฆที่เย็นชื้นของดอยอินทนนท์",
+    "imageUrl": ""
+  }
+]

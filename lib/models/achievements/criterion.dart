@@ -5,9 +5,9 @@
 
   This class must be extended and the child must implement its own criteria.
  */
-import 'package:kangnok/models/review_criterion.dart'
+import 'package:kangnok/models/achievements/review_criterion.dart'
     show ReviewCountCriterion, ReviewLikesCriterion;
-import 'package:kangnok/models/park_visited_criterion.dart';
+import 'package:kangnok/models/achievements/park_visited_criterion.dart';
 
 abstract class Criterion {
   String get type;

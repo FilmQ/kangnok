@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Asian Elephant",
+    "nameTh": "ช้างป่า",
+    "sciName": "Elephas maximus",
+    "description": "Thailand's national animal, occasionally found in the park's dense forested regions.",
+    "descriptionTh": "สัตว์ประจำชาติไทย พบเห็นเป็นครั้งคราวในป่าทึบของอุทยาน",
+    "imageUrl": ""
+  },
+  {
+    "name": "Sambar Deer",
+    "nameTh": "กวางป่า",
+    "sciName": "Rusa unicolor",
+    "description": "A large deer species native to Southeast Asia, now listed as Vulnerable due to hunting and habitat loss.",
+    "descriptionTh": "กวางขนาดใหญ่ของเอเชียตะวันออกเฉียงใต้ จัดอยู่ในสถานะใกล้ถูกคุกคาม",
+    "imageUrl": ""
+  },
+  {
+    "name": "Indochinese Tiger",
+    "nameTh": "เสือโคร่ง",
+    "sciName": "Panthera tigris corbetti",
+    "description": "A large endangered carnivore with distinctive orange and black stripes, rarely observed in the park.",
+    "descriptionTh": "สัตว์กินเนื้อใกล้สูญพันธุ์ขนาดใหญ่มีลายดำบนพื้นสีส้ม พบเห็นได้ยากมาก",
+    "imageUrl": ""
+  },
+  {
+    "name": "Lar Gibbon",
+    "nameTh": "ชะนีมือขาว",
+    "sciName": "Hylobates lar",
+    "description": "An endangered primate with distinctive white hands and feet, inhabiting canopy layers of tall forest trees.",
+    "descriptionTh": "ลิงใกล้สูญพันธุ์มีมือและเท้าสีขาว อาศัยบนเรือนยอดไม้สูง",
+    "imageUrl": ""
+  },
+  {
+    "name": "Wild Boar",
+    "nameTh": "หมูป่า",
+    "sciName": "Sus scrofa",
+    "description": "A medium-sized ungulate with coarse dark hair and sharp tusks, commonly found in remote forest areas.",
+    "descriptionTh": "สัตว์กีบขนาดกลางมีขนหยาบสีเข้มและงาคม พบในป่าห่างไกล",
+    "imageUrl": ""
+  }
+]

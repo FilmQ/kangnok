@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Yang Na",
+    "nameTh": "ยางนา",
+    "sciName": "Dipterocarpus alatus",
+    "description": "A tall forest tree producing aromatic resin, found in mixed deciduous forests at moderate elevations.",
+    "descriptionTh": "ไม้ป่าขนาดใหญ่ให้ยางหอม พบในป่าผสมผลัดใบบนที่สูงปานกลาง",
+    "imageUrl": ""
+  },
+  {
+    "name": "Burma Padauk",
+    "nameTh": "ประดู่",
+    "sciName": "Pterocarpus macrocarpus",
+    "description": "A hardwood tree with valuable timber used in traditional crafts, found in deciduous dipterocarp forests.",
+    "descriptionTh": "ไม้เนื้อแข็งมีคุณค่า ใช้ในงานฝีมือพื้นบ้าน พบในป่าเต็งรัง",
+    "imageUrl": ""
+  },
+  {
+    "name": "Merkus Pine",
+    "nameTh": "สนสองใบ",
+    "sciName": "Pinus merkusii",
+    "description": "A coniferous tree with a tall straight trunk, dominating ridges and higher elevations in the park.",
+    "descriptionTh": "ต้นสนลำต้นตรงสูง ขึ้นหนาแน่นบนสันเขาและที่สูงในอุทยาน",
+    "imageUrl": ""
+  },
+  {
+    "name": "Teak",
+    "nameTh": "สัก",
+    "sciName": "Tectona grandis",
+    "description": "A large deciduous tree valued for timber, found scattered in mixed deciduous forest zones.",
+    "descriptionTh": "ไม้ผลัดใบขนาดใหญ่มีคุณค่าทางไม้ พบกระจายในป่าผสมผลัดใบ",
+    "imageUrl": ""
+  },
+  {
+    "name": "Wild Magnolia",
+    "nameTh": "จำปาป่า",
+    "sciName": "Michelia floribunda",
+    "description": "A small evergreen tree with delicate fragrant white flowers, found in cool mountain forests.",
+    "descriptionTh": "ไม้ขนาดเล็กไม่ผลัดใบ ดอกสีขาวหอม พบในป่าเขาอากาศเย็น",
+    "imageUrl": ""
+  }
+]

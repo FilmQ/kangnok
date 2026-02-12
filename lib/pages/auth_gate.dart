@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kangnok/models/explorer.dart';
-import 'package:kangnok/models/ranger.dart';
+import 'package:kangnok/models/roles/explorer.dart';
+import 'package:kangnok/models/roles/ranger.dart';
 import 'package:kangnok/pages/explorer_home_page.dart';
 import 'package:kangnok/pages/ranger_home_page.dart';
 import 'package:kangnok/pages/signup_page.dart';

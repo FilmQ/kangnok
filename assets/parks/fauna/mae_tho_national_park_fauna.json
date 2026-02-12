@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Asian Elephant",
+    "nameTh": "ช้างป่า",
+    "sciName": "Elephas maximus",
+    "description": "A large herbivorous mammal serving as Thailand's national animal, found in the park's forested regions.",
+    "descriptionTh": "สัตว์กินพืชขนาดใหญ่เป็นสัตว์ประจำชาติไทย พบในป่าของอุทยาน",
+    "imageUrl": ""
+  },
+  {
+    "name": "Lar Gibbon",
+    "nameTh": "ชะนีมือขาว",
+    "sciName": "Hylobates lar",
+    "description": "An endangered primate with white hands and feet, characterized by elongated arms and arboreal lifestyle.",
+    "descriptionTh": "ลิงใกล้สูญพันธุ์มีมือและเท้าสีขาว มีแขนยาวอาศัยบนต้นไม้",
+    "imageUrl": ""
+  },
+  {
+    "name": "Wild Boar",
+    "nameTh": "หมูป่า",
+    "sciName": "Sus scrofa",
+    "description": "A medium-sized wild pig with coarse dark hair, commonly found wallowing in mud throughout Thai forests.",
+    "descriptionTh": "หมูป่าขนาดกลางมีขนหยาบสีเข้ม พบนอนแช่โคลนตามป่าทั่วไป",
+    "imageUrl": ""
+  },
+  {
+    "name": "Common Muntjac",
+    "nameTh": "เก้ง",
+    "sciName": "Muntiacus muntjak",
+    "description": "A small reddish-brown deer known for its distinctive barking call that alerts other forest animals.",
+    "descriptionTh": "กวางขนาดเล็กสีน้ำตาลแดงมีเสียงร้องคล้ายเห่าเพื่อเตือนภัยสัตว์อื่น",
+    "imageUrl": ""
+  },
+  {
+    "name": "Phayre's Leaf Monkey",
+    "nameTh": "ค่างแว่นถิ่นเหนือ",
+    "sciName": "Trachypithecus phayrei",
+    "description": "A gray-colored leaf monkey with a specialized stomach for digesting leaves, inhabiting forested areas.",
+    "descriptionTh": "ลิงสีเทากินใบไม้มีกระเพาะพิเศษสำหรับย่อยใบไม้ อาศัยในป่า",
+    "imageUrl": ""
+  }
+]

@@ -1,4 +1,4 @@
-import 'package:kangnok/models/criterion.dart';
+import 'package:kangnok/models/achievements/criterion.dart';
 
 /// Two classes exist here:
 ///   ReviewCountCriterion: how many reviews user has posted

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Lar Gibbon",
+    "nameTh": "ชะนีมือขาว",
+    "sciName": "Hylobates lar",
+    "description": "Acrobatic primate swinging through the rainforest canopy, significant for park conservation efforts.",
+    "descriptionTh": "ลิงที่คล่องแคล่วโหนไปตามเรือนยอดป่า ที่มีความสำคัญต่อการอนุรักษ์ของอุทยาน",
+    "imageUrl": ""
+  },
+  {
+    "name": "Common Muntjac",
+    "nameTh": "เก้ง",
+    "sciName": "Muntiacus muntjak",
+    "description": "A small deer known for its distinctive barking calls, commonly found throughout the park's forests.",
+    "descriptionTh": "กวางขนาดเล็กมีเสียงร้องคล้ายเห่า พบได้ทั่วไปในเขตป่าของอุทยาน",
+    "imageUrl": ""
+  },
+  {
+    "name": "Wild Boar",
+    "nameTh": "หมูป่า",
+    "sciName": "Sus scrofa",
+    "description": "An omnivorous wild pig with dark coarse hair, widespread in the park's mixed forests.",
+    "descriptionTh": "หมูป่ากินได้ทั้งพืชและสัตว์ มีขนหยาบสีเข้ม พบทั่วไปในป่าผสม",
+    "imageUrl": ""
+  },
+  {
+    "name": "Chinese Goral",
+    "nameTh": "กวางผา",
+    "sciName": "Naemorhedus griseus",
+    "description": "A small grey goat-antelope with a long tail adapted to steep rocky mountain habitats.",
+    "descriptionTh": "สัตว์คล้ายแพะขนาดเล็กสีเทามีหางยาว ปรับตัวอยู่บนภูเขาหินชัน",
+    "imageUrl": ""
+  },
+  {
+    "name": "Asian Elephant",
+    "nameTh": "ช้างป่า",
+    "sciName": "Elephas maximus",
+    "description": "Thailand's largest land mammal, occasionally sighted in the park's dense forested regions.",
+    "descriptionTh": "สัตว์บกขนาดใหญ่ที่สุดของไทย พบเห็นเป็นครั้งคราวในป่าทึบ",
+    "imageUrl": ""
+  }
+]

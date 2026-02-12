@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Asiatic Black Bear",
+    "nameTh": "หมีควาย",
+    "sciName": "Ursus thibetanus",
+    "description": "A medium-sized bear with a distinctive white V-shaped chest marking, inhabiting the mountainous areas of Pha Daeng.",
+    "descriptionTh": "หมีขนาดกลางมีขนสีดำและเครื่องหมายรูปตัว V สีขาวที่อก อาศัยในป่าเขาของผาแดง",
+    "imageUrl": ""
+  },
+  {
+    "name": "Sumatran Serow",
+    "nameTh": "เลียงผา",
+    "sciName": "Capricornis sumatraensis",
+    "description": "A goat-antelope with short legs and dark coloring, inhabiting steep rocky mountain slopes in Pha Daeng.",
+    "descriptionTh": "สัตว์คล้ายแพะขาสั้นสีเข้ม อาศัยบนเนินเขาหินชันของผาแดง",
+    "imageUrl": ""
+  },
+  {
+    "name": "Chinese Goral",
+    "nameTh": "กวางผา",
+    "sciName": "Naemorhedus griseus",
+    "description": "A small grey goat-antelope with a long tail, found on rocky mountain terrain in limited numbers.",
+    "descriptionTh": "สัตว์คล้ายแพะขนาดเล็กสีเทามีหางยาว พบตามผาหินในจำนวนจำกัด",
+    "imageUrl": ""
+  },
+  {
+    "name": "Banteng",
+    "nameTh": "วัวแดง",
+    "sciName": "Bos javanicus",
+    "description": "A large wild cattle species with curved horns, a critically endangered megafauna of tropical forests.",
+    "descriptionTh": "วัวป่าขนาดใหญ่มีเขาโค้ง เป็นสัตว์ใกล้สูญพันธุ์ของป่าเขตร้อน",
+    "imageUrl": ""
+  },
+  {
+    "name": "Common Muntjac",
+    "nameTh": "เก้ง",
+    "sciName": "Muntiacus muntjak",
+    "description": "A small deer producing barking calls, widely distributed in the park's mixed forests.",
+    "descriptionTh": "กวางขนาดเล็กส่งเสียงร้องคล้ายเห่า พบกระจายทั่วป่าผสมของอุทยาน",
+    "imageUrl": ""
+  }
+]

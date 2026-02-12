@@ -1,4 +1,4 @@
-import 'package:kangnok/models/criterion.dart';
+import 'package:kangnok/models/achievements/criterion.dart';
 
 class ParkVisitedCountCriterion extends Criterion {
   @override

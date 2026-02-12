@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Rosewood",
+    "nameTh": "พะยูง",
+    "sciName": "Dalbergia latifolia",
+    "description": "A dense hardwood tree with reddish-brown heartwood highly valued for fine furniture and musical instruments.",
+    "descriptionTh": "ไม้เนื้อแข็งแก่นสีแดงน้ำตาล มีคุณค่าสูงใช้ทำเฟอร์นิเจอร์และเครื่องดนตรี",
+    "imageUrl": ""
+  },
+  {
+    "name": "Ironwood",
+    "nameTh": "แดง",
+    "sciName": "Xylia xylocarpa",
+    "description": "An extremely hard and dense tree highly resistant to decay, prized for structural purposes.",
+    "descriptionTh": "ไม้เนื้อแข็งมากทนต่อการผุ มีคุณค่าสูงสำหรับงานโครงสร้าง",
+    "imageUrl": ""
+  },
+  {
+    "name": "Wild Orchid",
+    "nameTh": "กล้วยไม้ป่า",
+    "sciName": "Dendrobium spp.",
+    "description": "Epiphytic orchids growing on tree branches with delicate flowers in various colors, blooming seasonally.",
+    "descriptionTh": "กล้วยไม้เกาะอาศัยบนกิ่งไม้ ดอกหลากสีบานตามฤดูกาล",
+    "imageUrl": ""
+  },
+  {
+    "name": "Khasi Pine",
+    "nameTh": "สนสามใบ",
+    "sciName": "Pinus kesiya",
+    "description": "A tropical pine with needle-like foliage in bundles of three, providing high elevation forest composition.",
+    "descriptionTh": "ต้นสนเขตร้อนใบเป็นเข็มกลุ่มละ 3 ใบ เป็นองค์ประกอบของป่าบนที่สูง",
+    "imageUrl": ""
+  },
+  {
+    "name": "Lagerstroemia",
+    "nameTh": "ตะแบก",
+    "sciName": "Lagerstroemia floribunda",
+    "description": "A flowering tree with brilliant pink or purple blooms, deciduous with decorative peeling bark.",
+    "descriptionTh": "ไม้ดอกสีชมพูหรือม่วงสวยงาม ผลัดใบ ลำต้นมีเปลือกลอกหลากสี",
+    "imageUrl": ""
+  }
+]

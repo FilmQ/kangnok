@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Common Muntjac",
+    "nameTh": "เก้ง",
+    "sciName": "Muntiacus muntjak",
+    "description": "A small reddish-brown deer known for its distinctive barking calls, with males sporting short antlers.",
+    "descriptionTh": "กวางขนาดเล็กสีน้ำตาลแดงมีเสียงร้องคล้ายเห่า ตัวผู้มีเขาสั้น",
+    "imageUrl": ""
+  },
+  {
+    "name": "Wild Boar",
+    "nameTh": "หมูป่า",
+    "sciName": "Sus scrofa",
+    "description": "A large dark-colored ungulate with a strong rooting nose used to dig for food in the forest floor.",
+    "descriptionTh": "สัตว์กีบขนาดใหญ่สีเข้มมีจมูกแข็งแรงใช้ขุดดินหาอาหารตามพื้นป่า",
+    "imageUrl": ""
+  },
+  {
+    "name": "Sumatran Serow",
+    "nameTh": "เลียงผา",
+    "sciName": "Capricornis sumatraensis",
+    "description": "A horned ungulate resembling a goat-antelope, found in rocky mountainous terrain with sharp curved horns.",
+    "descriptionTh": "สัตว์มีเขาคล้ายแพะ อาศัยบนเขาหินชัน มีเขาโค้งคม",
+    "imageUrl": ""
+  },
+  {
+    "name": "Asian Palm Civet",
+    "nameTh": "อีเห็นข้างลาย",
+    "sciName": "Paradoxurus hermaphroditus",
+    "description": "A nocturnal mammal with grayish fur and distinctive dark markings, feeding on fruits and small animals.",
+    "descriptionTh": "สัตว์ออกหากินกลางคืนมีขนสีเทาและลายดำ กินผลไม้และสัตว์เล็ก",
+    "imageUrl": ""
+  },
+  {
+    "name": "Rhesus Macaque",
+    "nameTh": "ลิงวอก",
+    "sciName": "Macaca mulatta",
+    "description": "A medium-sized primate with brownish-gray fur and a bare pinkish face, highly social and adaptable.",
+    "descriptionTh": "ลิงขนาดกลางมีขนสีน้ำตาลเทาหน้าชมพู เป็นสัตว์สังคมปรับตัวเก่ง",
+    "imageUrl": ""
+  }
+]

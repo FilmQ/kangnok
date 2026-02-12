@@ -254,7 +254,11 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                   backgroundColor: Colors.red,
                   foregroundColor: Colors.white,
                 ),
-                onPressed: () => FirebaseAuth.instance.signOut(),
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/', (route) => false);
+                },
                 child: const Text("Logout"),
               ),
             ),

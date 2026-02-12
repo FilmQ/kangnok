@@ -1,4 +1,4 @@
-import 'package:kangnok/models/user.dart';
+import 'package:kangnok/models/roles/user.dart';
 
 class Explorer extends User {
   @override

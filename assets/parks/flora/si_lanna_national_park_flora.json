@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Teak",
+    "nameTh": "สัก",
+    "sciName": "Tectona grandis",
+    "description": "A large deciduous hardwood tree producing fragrant white flowers, highly valued for timber.",
+    "descriptionTh": "ไม้เนื้อแข็งผลัดใบขนาดใหญ่ดอกสีขาวหอม เป็นไม้มีคุณค่าสูง",
+    "imageUrl": ""
+  },
+  {
+    "name": "Burma Padauk",
+    "nameTh": "ประดู่",
+    "sciName": "Pterocarpus macrocarpus",
+    "description": "A medium-sized deciduous hardwood tree with flaky bark that exudes red gum, used for fine furniture.",
+    "descriptionTh": "ไม้เนื้อแข็งผลัดใบขนาดกลางมียางสีแดง ใช้ทำเฟอร์นิเจอร์ชั้นดี",
+    "imageUrl": ""
+  },
+  {
+    "name": "Siamese Sal",
+    "nameTh": "รัง",
+    "sciName": "Shorea obtusa",
+    "description": "A deciduous tropical hardwood tree commonly found in dry areas up to 1,300 meters altitude.",
+    "descriptionTh": "ไม้เนื้อแข็งผลัดใบพบในพื้นที่แห้งจนถึงระดับ 1,300 เมตร",
+    "imageUrl": ""
+  },
+  {
+    "name": "Hopea Odorata",
+    "nameTh": "ตะเคียนทอง",
+    "sciName": "Hopea odorata",
+    "description": "A valuable hardwood tree producing aromatic resin, used for timber and traditional medicine.",
+    "descriptionTh": "ไม้เนื้อแข็งมีคุณค่าให้ยางหอม ใช้เป็นไม้และในการแพทย์แผนโบราณ",
+    "imageUrl": ""
+  },
+  {
+    "name": "Wild Orchid",
+    "nameTh": "กล้วยไม้ป่า",
+    "sciName": "Orchidaceae spp.",
+    "description": "Diverse flowering plants adapted to humid tropical climates, flourishing on tree trunks throughout the park.",
+    "descriptionTh": "พืชดอกหลากชนิดเกาะอาศัยบนลำต้นไม้ทั่วอุทยาน",
+    "imageUrl": ""
+  }
+]

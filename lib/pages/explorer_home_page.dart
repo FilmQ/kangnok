@@ -21,33 +21,59 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
 
   final WeatherService _weatherService = WeatherService();
 
+  Map<String, dynamic>? _cachedWeatherData;
+  Map<String, dynamic>? _cachedPollutionData;
+
 // ปรับปรุงฟังก์ชันดึงข้อมูล
-Future<Map<String, dynamic>> _fetchRealData() async {
+Future<Map<String, dynamic>> _fetchRealData({bool forceRefresh = false}) async {
   try {
     if (_currentWidget == WidgetType.weather) {
+      // Check cache first unless force refresh
+      if (!forceRefresh && _cachedWeatherData != null) {
+        return _cachedWeatherData!;
+      }
+
       // ดึงอากาศเชียงใหม่
       final data = await _weatherService.fetchWeather();
-      return {
+      _cachedWeatherData = {
         'value': '${data['main']['temp'].round()}°C',
         'status': data['weather'][0]['main'],
         'detail': 'Chiang Mai • ${data['weather'][0]['description']}',
       };
+      return _cachedWeatherData!;
     } else {
+      // Check cache first unless force refresh
+      if (!forceRefresh && _cachedPollutionData != null) {
+        return _cachedPollutionData!;
+      }
+
       // ดึงค่าฝุ่นเชียงใหม่
       final data = await _weatherService.fetchPollution();
       int aqi = data['list'][0]['main']['aqi']; // ค่า 1-5 (5 คือแย่มาก)
       List<String> statusLabels = ['Unknown', 'Good', 'Fair', 'Moderate', 'Poor', 'Very Poor'];
-      
-      return {
+
+      _cachedPollutionData = {
         'value': 'Level ${aqi}',
         'status': statusLabels[aqi],
         'detail': 'Chiang Mai Air Quality Index',
       };
+      return _cachedPollutionData!;
     }
   } catch (e) {
     rethrow;
   }
 }
+
+  // Refresh data from API
+  void _refreshData() {
+    setState(() {
+      if (_currentWidget == WidgetType.weather) {
+        _cachedWeatherData = null;
+      } else {
+        _cachedPollutionData = null;
+      }
+    });
+  }
 
   // --- สลับ Widget ในหน้า Home ---
   void _toggleQuickInfo() {
@@ -106,34 +132,52 @@ Future<Map<String, dynamic>> _fetchRealData() async {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // 1. User Bar
-            StreamBuilder<DocumentSnapshot>(
-              stream: FirebaseFirestore.instance.collection('users').doc(_uid).snapshots(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const SizedBox(height: 50, child: Center(child: CircularProgressIndicator()));
-                }
-                var userData = snapshot.data?.data() as Map<String, dynamic>?;
-                String name = userData?['username'] ?? "Explorer";
+            _uid.isEmpty
+                ? Row(
+                    children: [
+                      const CircleAvatar(
+                        radius: 25,
+                        backgroundColor: Colors.blueAccent,
+                        child: Icon(Icons.person, color: Colors.white),
+                      ),
+                      const SizedBox(width: 12),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("Welcome back,", style: TextStyle(color: Colors.grey)),
+                          const Text("Explorer", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                    ],
+                  )
+                : StreamBuilder<DocumentSnapshot>(
+                    stream: FirebaseFirestore.instance.collection('users').doc(_uid).snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const SizedBox(height: 50, child: Center(child: CircularProgressIndicator()));
+                      }
+                      var userData = snapshot.data?.data() as Map<String, dynamic>?;
+                      String name = userData?['username'] ?? "Explorer";
 
-                return Row(
-                  children: [
-                    const CircleAvatar(
-                      radius: 25, 
-                      backgroundColor: Colors.blueAccent,
-                      child: Icon(Icons.person, color: Colors.white),
-                    ),
-                    const SizedBox(width: 12),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text("Welcome back,", style: TextStyle(color: Colors.grey)),
-                        Text(name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                  ],
-                );
-              },
-            ),
+                      return Row(
+                        children: [
+                          const CircleAvatar(
+                            radius: 25,
+                            backgroundColor: Colors.blueAccent,
+                            child: Icon(Icons.person, color: Colors.white),
+                          ),
+                          const SizedBox(width: 12),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Welcome back,", style: TextStyle(color: Colors.grey)),
+                              Text(name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                        ],
+                      );
+                    },
+                  ),
 
             const SizedBox(height: 30),
 
@@ -142,11 +186,21 @@ Future<Map<String, dynamic>> _fetchRealData() async {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text("Quick Info", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                TextButton.icon(
-                  onPressed: _toggleQuickInfo,
-                  icon: const Icon(Icons.swap_horiz),
-                  label: Text(_currentWidget == WidgetType.pollution ? "See Weather" : "See Pollution"),
-                )
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: _refreshData,
+                      icon: const Icon(Icons.refresh),
+                      tooltip: "Refresh data",
+                      color: Colors.blueAccent,
+                    ),
+                    TextButton.icon(
+                      onPressed: _toggleQuickInfo,
+                      icon: const Icon(Icons.swap_horiz),
+                      label: Text(_currentWidget == WidgetType.pollution ? "See Weather" : "See Pollution"),
+                    ),
+                  ],
+                ),
               ],
             ),
 
@@ -262,4 +316,6 @@ Future<Map<String, dynamic>> _fetchRealData() async {
       ),
     );
   }
+
+  
 }
