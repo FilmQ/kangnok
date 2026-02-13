@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:kangnok/pages/explorer_achievement_page.dart';
 import '../services/weather_service.dart';
 import 'explorer_social_page.dart';
 
@@ -90,7 +91,7 @@ Future<Map<String, dynamic>> _fetchRealData({bool forceRefresh = false}) async {
     // 1. กำหนดหน้าที่จะแสดงในแต่ละ Tab ให้ตรงกับ Label ด้านล่าง
     final List<Widget> pages = [
       _buildHomeContent(),                          // Index 0: Home
-      const SocialPage(),                           // Index 1: Social 
+      const AchievementPage(),  // Index 1: Achievement
       const Center(child: Text("Map Page")),        // Index 2: Map
       const Center(child: Text("Cosmetics Page")),  // Index 3: Cosmetics
       const Center(child: Text("Profile Settings")), 
@@ -117,7 +118,7 @@ Future<Map<String, dynamic>> _fetchRealData({bool forceRefresh = false}) async {
         unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.people), label: "Social"), // เปลี่ยน icon เป็น people ให้เข้ากับ Social
+          BottomNavigationBarItem(icon: Icon(Icons.people), label: "Achievement"), // เปลี่ยน icon เป็น people ให้เข้ากับ Social
           BottomNavigationBarItem(icon: Icon(Icons.map), label: "Map"),
           BottomNavigationBarItem(icon: Icon(Icons.auto_awesome), label: "Cosmetics"), // เปลี่ยน icon ให้ดูเป็นสายบิวตี้
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),

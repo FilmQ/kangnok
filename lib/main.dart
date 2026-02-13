@@ -14,6 +14,7 @@ import 'package:kangnok/pages/signup_page.dart';
 import 'pages/welcome_page.dart';
 import 'pages/explorer_add_post_page.dart';
 import 'pages/explorer_social_page.dart';
+import 'pages/explorer_achievement_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         '/explorer_profile': (context) => ExplorerProfilePage(),
         '/explorer_add_post': (context) => AddPostPage(),
         '/explorer_social': (context) => SocialPage(),
+        '/explorer_achievement': (context) => AchievementPage(),
       },
     );
   }

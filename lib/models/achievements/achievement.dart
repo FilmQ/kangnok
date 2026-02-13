@@ -27,7 +27,7 @@ class Achievement {
     title: json['title'] as String,
     description: json['description'] as String,
     thumbnail: json['thumbnail'] as String,
-    achieved: json['achieved'] as bool,
+    achieved: json['achieved'] as bool? ?? false,
     criterias: (json['criterias'] as List)
         .map((c) => CriterionFactory.fromJson(c as Map<String, dynamic>))
         .toList(),

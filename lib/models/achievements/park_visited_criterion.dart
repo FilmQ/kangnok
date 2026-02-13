@@ -13,7 +13,8 @@ class ParkVisitedCountCriterion extends Criterion {
 
   @override
   bool isSatisfied(Map<String, dynamic> userProgress) {
-    return userProgress['parkVisited'] >= requiredCount;
+    final visitedParks = userProgress['parkVisited'] as List<dynamic>? ?? [];
+    return visitedParks.length >= requiredCount;
   }
 
   @override
@@ -36,8 +37,8 @@ class ParkVisitedNameCriterion extends Criterion {
 
   @override
   bool isSatisfied(Map<String, dynamic> userProgress) {
-    final visitedParks = userProgress["parkVisited"] as List<dynamic>?;
-    return visitedParks?.contains(requiredName) ?? false;
+  final visitedParks = userProgress['parkVisited'] as List<dynamic>?;
+  return visitedParks?.contains(requiredName) ?? false; 
   }
 
   @override

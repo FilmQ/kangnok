@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Chiang Mai Explorer",
+    "description": "Visit Doi Inthanon and post 1 review",
+    "thumbnail": "https://firebasestorage.googleapis.com/.../badge.png",
+    "criterias": [
+      {
+        "type": "park_visit_name",
+        "requiredName": "Doi Inthanon" 
+      },
+      {
+        "type": "review_count",
+        "requiredCount": 1
+      }
+    ]
+  }
+]
