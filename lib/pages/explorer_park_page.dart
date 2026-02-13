@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:kangnok/models/parks/park.dart';
 
-class ParkPage extends StatefulWidget {
-  const ParkPage({super.key});
+// TODO: add the park's functionality here
+class ExplorerParkPage extends StatefulWidget {
+  const ExplorerParkPage({super.key});
 
   @override
-  State<ParkPage> createState() => _ParkPageState();
+  State<ExplorerParkPage> createState() => _ExplorerParkPageState();
 }
 
-class _ParkPageState extends State<ParkPage> {
+class _ExplorerParkPageState extends State<ExplorerParkPage> {
   int _currentPage = 0;
   final int _totalPages = 2;
 
@@ -32,6 +34,8 @@ class _ParkPageState extends State<ParkPage> {
 
   @override
   Widget build(BuildContext context) {
+    final park = ModalRoute.of(context)!.settings.arguments as Park?;
+    final parkName = park?.name ?? "Park's page";
     final imgLocation = "assets/parks/";
     return DefaultTabController(
       length: 4,
@@ -40,13 +44,15 @@ class _ParkPageState extends State<ParkPage> {
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
               SliverAppBar(
-                title: Text("Park's page"),
+                title: Text(parkName),
                 expandedHeight: 450,
                 floating: false,
                 flexibleSpace: FlexibleSpaceBar(
                   background: SafeArea(
                     child: Padding(
-                      padding: const EdgeInsets.only(bottom: 50), // TabBar height
+                      padding: const EdgeInsets.only(
+                        bottom: 50,
+                      ), // TabBar height
                       child: Column(
                         children: [
                           const SizedBox(height: 56), // AppBar height
@@ -97,20 +103,14 @@ class _ParkPageState extends State<ParkPage> {
             children: [
               ListView.builder(
                 itemCount: 10,
-                itemBuilder: (context, index) => ListTile(
-                  title: Text("Announcement ${index + 1}"),
-                ),
+                itemBuilder: (context, index) =>
+                    ListTile(title: Text("Announcement ${index + 1}")),
               ),
-              ListView(
-                children: [
-                  ListTile(title: Text("Overview content")),
-                ],
-              ),
+              ListView(children: [ListTile(title: Text("Overview content"))]),
               ListView.builder(
                 itemCount: 10,
-                itemBuilder: (context, index) => ListTile(
-                  title: Text("Review ${index + 1}"),
-                ),
+                itemBuilder: (context, index) =>
+                    ListTile(title: Text("Review ${index + 1}")),
               ),
               ListView.builder(
                 itemCount: 10,

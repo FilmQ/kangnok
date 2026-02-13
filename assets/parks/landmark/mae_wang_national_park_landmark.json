@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Pha Chor",
+    "nameTh": "ผาช่อ",
+    "description": "Known as the 'Grand Canyon of Thailand,' these towering soil pillars were carved by river erosion thousands of years ago.",
+    "descriptionTh": "แกรนด์แคนยอนเมืองไทย เกิดจากเสาดินที่ถูกกัดเซาะโดยธรรมชาตินับพันปีจนเป็นกำแพงดินสูงสง่า",
+    "parkName": "Mae Wang National Park",
+    "businessHour": "08:30 - 16:30",
+    "transportOptions": ["Private Car", "Motorbike"],
+    "transportOptionsTh": ["รถยนต์ส่วนตัว", "รถจักรยานยนต์"],
+    "fee": 20,
+    "feeForeigner": 100
+  },
+  {
+    "name": "Mae Wang Waterfall",
+    "nameTh": "น้ำตกแม่วาง",
+    "description": "A 20-meter high waterfall with a large basin suitable for swimming, popular for tourists and elephant trekking nearby.",
+    "descriptionTh": "น้ำตกสูง 20 เมตรที่มีแอ่งกว้างสำหรับเล่นน้ำ ยอดนิยมสำหรับนักท่องเที่ยวและกิจกรรมขี่ช้างในบริเวณใกล้เคียง",
+    "parkName": "Mae Wang National Park",
+    "businessHour": "08:30 - 16:30",
+    "transportOptions": ["Private Car", "Motorbike"],
+    "transportOptionsTh": ["รถยนต์ส่วนตัว", "รถจักรยานยนต์"],
+    "fee": 20,
+    "feeForeigner": 100
+  }
+]

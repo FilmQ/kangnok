@@ -6,7 +6,8 @@ import 'package:kangnok/firebase_options.dart';
 import 'package:kangnok/pages/auth_gate.dart';
 import 'package:kangnok/pages/auth_page.dart';
 import 'package:kangnok/pages/explorer_home_page.dart';
-import 'package:kangnok/pages/park_page.dart';
+import 'package:kangnok/pages/explorer_map_page.dart';
+import 'package:kangnok/pages/explorer_park_page.dart';
 import 'package:kangnok/pages/ranger_auth_page.dart';
 import 'package:kangnok/pages/explorer_profile_page.dart';
 import 'package:kangnok/pages/ranger_home_page.dart';
@@ -38,11 +39,13 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => SignupPage(),
         '/explorer_home': (context) => ExplorerHomePage(),
         '/ranger_home': (context) => RangerHomePage(),
-        '/park': (context) => ParkPage(),
+        '/park': (context) => ExplorerParkPage(),
         '/explorer_profile': (context) => ExplorerProfilePage(),
         '/explorer_add_post': (context) => AddPostPage(),
         '/explorer_social': (context) => SocialPage(),
         '/explorer_achievement': (context) => AchievementPage(),
+        '/explorer_map': (context) => ExplorerMapPage(),
+        '/explorer_park': (context) => ExplorerMapPage(),
       },
     );
   }

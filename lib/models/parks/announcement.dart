@@ -1,48 +1,29 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Announcement {
-  String _rangerId;
-  String _parkId;
-  String _title;
-  String _content;
-  String _type;
-  DateTime _createdAt;
+  String rangerId;
+  String parkId;
+  String title;
+  String content;
+  String type;
+  DateTime createdAt;
 
   Announcement({
-    required String rangerId,
-    required String parkId,
-    required String title,
-    required String content,
-    required String type,
-    required DateTime createdAt,
-  })  : _rangerId = rangerId,
-        _parkId = parkId,
-        _title = title,
-        _content = content,
-        _type = type,
-        _createdAt = createdAt;
-
-  String get rangerId => _rangerId;
-  String get parkId => _parkId;
-  String get title => _title;
-  String get content => _content;
-  String get type => _type;
-  DateTime get createdAt => _createdAt;
-
-  set rangerId(String rangerId) => _rangerId = rangerId;
-  set parkId(String parkId) => _parkId = parkId;
-  set title(String title) => _title = title;
-  set content(String content) => _content = content;
-  set type(String type) => _type = type;
-  set createdAt(DateTime createdAt) => _createdAt = createdAt;
+    required this.rangerId,
+    required this.parkId,
+    required this.title,
+    required this.content,
+    required this.type,
+    required this.createdAt,
+  });
 
   Map<String, dynamic> toJson() => {
-    'rangerId': _rangerId,
-    'parkId': _parkId,
-    'title': _title,
-    'content': _content,
-    'type': _type,
-    'createdAt': Timestamp.fromDate(_createdAt),
+    'rangerId': rangerId,
+    'parkId': parkId,
+    'title': title,
+    'content': content,
+    'type': type,
+    'createdAt': Timestamp.fromDate(createdAt),
   };
 
   factory Announcement.fromJson(Map<String, dynamic> json) => Announcement(

@@ -45,6 +45,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   image_picker: ^1.2.1
+  flutter_map: ^8.2.2
+  latlong2: ^0.9.1
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +75,7 @@ flutter:
     - assets/parks/
     - assets/parks/fauna/
     - assets/parks/flora/
+    - assets/parks/landmark/
     - .env
     - assets/achievements/
 

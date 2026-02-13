@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Doi Inthanon Summit",
+    "nameTh": "ยอดดอยอินทนนท์",
+    "description": "The highest point in Thailand at 2,565 meters above sea level. It features a stupa containing the remains of King Inthawichayanon and the Ang Ka Luang nature trail.",
+    "descriptionTh": "จุดสูงสุดแดนสยาม สูง 2,565 เมตรจากระดับน้ำทะเล เป็นที่ประดิษฐานกู่พระอัฐิของพระเจ้าอินทวิชยานนท์ และมีเส้นทางศึกษาธรรมชาติอ่างกา",
+    "parkName": "Doi Inthanon National Park",
+    "businessHour": "05:00 - 18:00",
+    "transportOptions": ["Private Car", "Motorbike", "Chartered Songthaew", "Guided Tour"],
+    "transportOptionsTh": ["รถยนต์ส่วนตัว", "มอเตอร์ไซค์", "รถสองแถวเช่าเหมา", "ทัวร์นำเที่ยว"],
+    "fee": 60,
+    "feeForeigner": 300
+  },
+  {
+    "name": "The Royal Twin Pagodas",
+    "nameTh": "พระมหาธาตุนภเมทนีดลและพระมหาธาตุนภพลภูมิสิริ",
+    "description": "Iconic twin stupas built to honor King Rama IX and Queen Sirikit, surrounded by beautiful cold-climate flower gardens and offering panoramic mountain views.",
+    "descriptionTh": "พระมหาธาตุคู่ที่สร้างขึ้นเพื่อถวายพระเกียรติแด่รัชกาลที่ 9 และพระพันปีหลวง แวดล้อมด้วยสวนดอกไม้เมืองหนาวและจุดชมวิวพาโนรามา",
+    "parkName": "Doi Inthanon National Park",
+    "businessHour": "08:00 - 17:00",
+    "transportOptions": ["Private Car", "Motorbike", "Internal Shuttle Bus", "Guided Tour"],
+    "transportOptionsTh": ["รถยนต์ส่วนตัว", "มอเตอร์ไซค์", "รถรับส่งภายใน", "ทัวร์นำเที่ยว"],
+    "fee": 40,
+    "feeForeigner": 100
+  },
+  {
+    "name": "Kew Mae Pan Nature Trail",
+    "nameTh": "เส้นทางศึกษาธรรมชาติกิ่วแม่ปาน",
+    "description": "A famous 2.7 km trekking trail offering a walk along a mountain ridge with spectacular sea of mist views. Closed from June to October annually.",
+    "descriptionTh": "เส้นทางเดินป่าระยะทาง 2.7 กม. เลียบไปตามสันเขายอดนิยมเพื่อชมทะเลหมอก (ปิดพักฟื้นป่าช่วงเดือนมิถุนายนถึงตุลาคม)",
+    "parkName": "Doi Inthanon National Park",
+    "businessHour": "06:00 - 16:00",
+    "transportOptions": ["Private Car", "Motorbike", "Guided Tour"],
+    "transportOptionsTh": ["รถยนต์ส่วนตัว", "มอเตอร์ไซค์", "ทัวร์นำเที่ยว"],
+    "fee": 200,
+    "feeForeigner": 200
+  },
+  {
+    "name": "Wachirathan Waterfall",
+    "nameTh": "น้ำตกวชิรธาร",
+    "description": "A large and powerful waterfall known for its perpetual mist and rainbows. Easily accessible from the main road into the park.",
+    "descriptionTh": "น้ำตกขนาดใหญ่ที่มีกระแสน้ำแรงและละอองน้ำมหาศาลจนเกิดรุ้งกินน้ำบ่อยครั้ง ตั้งอยู่ริมถนนหลักขึ้นดอยอินทนนท์",
+    "parkName": "Doi Inthanon National Park",
+    "businessHour": "06:00 - 17:00",
+    "transportOptions": ["Private Car", "Motorbike", "Yellow Songthaew", "Guided Tour"],
+    "transportOptionsTh": ["รถยนต์ส่วนตัว", "มอเตอร์ไซค์", "รถสองแถวสีเหลือง", "ทัวร์นำเที่ยว"],
+    "fee": 60,
+    "feeForeigner": 300
+  }
+]
+
+

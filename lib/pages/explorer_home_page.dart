@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kangnok/pages/explorer_achievement_page.dart';
 import '../services/weather_service.dart';
-import 'explorer_social_page.dart';
 
 enum WidgetType { pollution, weather }
 
@@ -23,48 +22,59 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
 
   final WeatherService _weatherService = WeatherService();
 
+  // cache the info to reduce the amount of repeated API call
   Map<String, dynamic>? _cachedWeatherData;
   Map<String, dynamic>? _cachedPollutionData;
 
-// ปรับปรุงฟังก์ชันดึงข้อมูล
-Future<Map<String, dynamic>> _fetchRealData({bool forceRefresh = false}) async {
-  try {
-    if (_currentWidget == WidgetType.weather) {
-      // Check cache first unless force refresh
-      if (!forceRefresh && _cachedWeatherData != null) {
-        return _cachedWeatherData!;
-      }
+  // ปรับปรุงฟังก์ชันดึงข้อมูล
+  Future<Map<String, dynamic>> _fetchRealData({
+    bool forceRefresh = false,
+  }) async {
+    try {
+      if (_currentWidget == WidgetType.weather) {
+        // Check cache first unless force refresh
+        if (!forceRefresh && _cachedWeatherData != null) {
+          return _cachedWeatherData!;
+        }
 
-      // ดึงอากาศเชียงใหม่
-      final data = await _weatherService.fetchWeather();
-      _cachedWeatherData = {
-        'value': '${data['main']['temp'].round()}°C',
-        'status': data['weather'][0]['main'],
-        'detail': 'Chiang Mai • ${data['weather'][0]['description']}',
-      };
-      return _cachedWeatherData!;
-    } else {
-      // Check cache first unless force refresh
-      if (!forceRefresh && _cachedPollutionData != null) {
+        // ดึงอากาศเชียงใหม่
+        final data = await _weatherService.fetchWeather();
+
+        _cachedWeatherData = {
+          'value': '${data['main']['temp'].round()}°C',
+          'status': data['weather'][0]['main'],
+          'detail': 'Chiang Mai • ${data['weather'][0]['description']}',
+        };
+        return _cachedWeatherData!;
+      } else {
+        // Check cache first unless force refresh
+        if (!forceRefresh && _cachedPollutionData != null) {
+          return _cachedPollutionData!;
+        }
+
+        // ดึงค่าฝุ่นเชียงใหม่
+        final data = await _weatherService.fetchPollution();
+        int aqi = data['list'][0]['main']['aqi']; // ค่า 1-5 (5 คือแย่มาก)
+        List<String> statusLabels = [
+          'Unknown',
+          'Good',
+          'Fair',
+          'Moderate',
+          'Poor',
+          'Very Poor',
+        ];
+
+        _cachedPollutionData = {
+          'value': 'Level ${aqi}',
+          'status': statusLabels[aqi],
+          'detail': 'Chiang Mai Air Quality Index',
+        };
         return _cachedPollutionData!;
       }
-
-      // ดึงค่าฝุ่นเชียงใหม่
-      final data = await _weatherService.fetchPollution();
-      int aqi = data['list'][0]['main']['aqi']; // ค่า 1-5 (5 คือแย่มาก)
-      List<String> statusLabels = ['Unknown', 'Good', 'Fair', 'Moderate', 'Poor', 'Very Poor'];
-
-      _cachedPollutionData = {
-        'value': 'Level ${aqi}',
-        'status': statusLabels[aqi],
-        'detail': 'Chiang Mai Air Quality Index',
-      };
-      return _cachedPollutionData!;
+    } catch (e) {
+      rethrow;
     }
-  } catch (e) {
-    rethrow;
   }
-}
 
   // Refresh data from API
   void _refreshData() {
@@ -80,8 +90,8 @@ Future<Map<String, dynamic>> _fetchRealData({bool forceRefresh = false}) async {
   // --- สลับ Widget ในหน้า Home ---
   void _toggleQuickInfo() {
     setState(() {
-      _currentWidget = _currentWidget == WidgetType.pollution 
-          ? WidgetType.weather 
+      _currentWidget = _currentWidget == WidgetType.pollution
+          ? WidgetType.weather
           : WidgetType.pollution;
     });
   }
@@ -98,15 +108,14 @@ Future<Map<String, dynamic>> _fetchRealData({bool forceRefresh = false}) async {
     ];
 
     return Scaffold(
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: pages,
-      ),
+      body: IndexedStack(index: _selectedIndex, children: pages),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: (index) {
-          // หากกด Tab Profile (Index 4) ให้ Push ไปหน้า Profile ใหม่
-          if (index == 4) {
+          if (index == 2) {
+            Navigator.pushNamed(context, '/explorer_map');
+            return;
+          } else if (index == 4) {
             Navigator.pushNamed(context, '/explorer_profile');
             return;
           }
@@ -120,7 +129,10 @@ Future<Map<String, dynamic>> _fetchRealData({bool forceRefresh = false}) async {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.people), label: "Achievement"), // เปลี่ยน icon เป็น people ให้เข้ากับ Social
           BottomNavigationBarItem(icon: Icon(Icons.map), label: "Map"),
-          BottomNavigationBarItem(icon: Icon(Icons.auto_awesome), label: "Cosmetics"), // เปลี่ยน icon ให้ดูเป็นสายบิวตี้
+          BottomNavigationBarItem(
+            icon: Icon(Icons.auto_awesome),
+            label: "Cosmetics",
+          ), // เปลี่ยน icon ให้ดูเป็นสายบิวตี้
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
         ],
       ),
@@ -148,19 +160,35 @@ Future<Map<String, dynamic>> _fetchRealData({bool forceRefresh = false}) async {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text("Welcome back,", style: TextStyle(color: Colors.grey)),
-                          const Text("Explorer", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                          const Text(
+                            "Welcome back,",
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                          const Text(
+                            "Explorer",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ],
                       ),
                     ],
                   )
                 : StreamBuilder<DocumentSnapshot>(
-                    stream: FirebaseFirestore.instance.collection('users').doc(_uid).snapshots(),
+                    stream: FirebaseFirestore.instance
+                        .collection('users')
+                        .doc(_uid)
+                        .snapshots(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const SizedBox(height: 50, child: Center(child: CircularProgressIndicator()));
+                        return const SizedBox(
+                          height: 50,
+                          child: Center(child: CircularProgressIndicator()),
+                        );
                       }
-                      var userData = snapshot.data?.data() as Map<String, dynamic>?;
+                      var userData =
+                          snapshot.data?.data() as Map<String, dynamic>?;
                       String name = userData?['username'] ?? "Explorer";
 
                       return Row(
@@ -174,8 +202,17 @@ Future<Map<String, dynamic>> _fetchRealData({bool forceRefresh = false}) async {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text("Welcome back,", style: TextStyle(color: Colors.grey)),
-                              Text(name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                              const Text(
+                                "Welcome back,",
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                              Text(
+                                name,
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                             ],
                           ),
                         ],
@@ -189,7 +226,10 @@ Future<Map<String, dynamic>> _fetchRealData({bool forceRefresh = false}) async {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text("Quick Info", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const Text(
+                  "Quick Info",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
                 Row(
                   children: [
                     IconButton(
@@ -201,7 +241,11 @@ Future<Map<String, dynamic>> _fetchRealData({bool forceRefresh = false}) async {
                     TextButton.icon(
                       onPressed: _toggleQuickInfo,
                       icon: const Icon(Icons.swap_horiz),
-                      label: Text(_currentWidget == WidgetType.pollution ? "See Weather" : "See Pollution"),
+                      label: Text(
+                        _currentWidget == WidgetType.pollution
+                            ? "See Weather"
+                            : "See Pollution",
+                      ),
                     ),
                   ],
                 ),
@@ -245,19 +289,24 @@ Future<Map<String, dynamic>> _fetchRealData({bool forceRefresh = false}) async {
                 );
               },
             ),
-          const SizedBox(height: 30),
-          const Text("Your Journey", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 12),
-          // Placeholder สำหรับข้อมูลอื่นๆ ในหน้า Home
-          Container(
-            height: 150,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(20),
+            const SizedBox(height: 30),
+            const Text(
+              "Your Journey",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            child: const Center(child: Icon(Icons.map_outlined, size: 50, color: Colors.grey)),
-          ),
+            const SizedBox(height: 12),
+            // Placeholder สำหรับข้อมูลอื่นๆ ในหน้า Home
+            Container(
+              height: 150,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Center(
+                child: Icon(Icons.map_outlined, size: 50, color: Colors.grey),
+              ),
+            ),
           ],
         ),
       ),
@@ -284,7 +333,7 @@ Future<Map<String, dynamic>> _fetchRealData({bool forceRefresh = false}) async {
     required String value,
     required IconData icon,
     required Color color,
-    required String detail
+    required String detail,
   }) {
     return Container(
       width: double.infinity,
@@ -309,10 +358,26 @@ Future<Map<String, dynamic>> _fetchRealData({bool forceRefresh = false}) async {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: TextStyle(fontSize: 14, color: color, fontWeight: FontWeight.w600)),
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: color,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
                 const SizedBox(height: 4),
-                Text(value, style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
-                Text(detail, style: const TextStyle(fontSize: 13, color: Colors.black54)),
+                Text(
+                  value,
+                  style: const TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  detail,
+                  style: const TextStyle(fontSize: 13, color: Colors.black54),
+                ),
               ],
             ),
           ),
@@ -320,6 +385,4 @@ Future<Map<String, dynamic>> _fetchRealData({bool forceRefresh = false}) async {
       ),
     );
   }
-
-  
 }

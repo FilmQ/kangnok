@@ -9,7 +9,7 @@ import 'package:riverpod/riverpod.dart';
 ///                         ↓
 ///     currentUserProvider (watches auth state, fetches from Firestore)
 ///                         ↓
-///     userServiceProvider (the service that talks to Firestore)
+///     userServiceProvider (the service that talks to Firestore) !!! USE THIS TO GET THE USER MODEL FROM THE CACHED RIVERPOD STATE !!!
 
 /// UserService singleton (talks to Firestore)
 final userServiceProvider = Provider<UserService>((ref) => UserService());

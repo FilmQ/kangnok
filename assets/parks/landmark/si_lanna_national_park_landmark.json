@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Mae Ngat Dam Houseboats",
+    "nameTh": "เรือนแพเขื่อนแม่งัด",
+    "description": "A massive reservoir featuring floating resorts and houseboats accessible only by boat, ideal for relaxation and water sports.",
+    "descriptionTh": "เขื่อนขนาดใหญ่ที่มีเรือนแพที่พัก ต้องนั่งเรือเข้าไป เหมาะสำหรับการพักผ่อนและเล่นน้ำ",
+    "parkName": "Si Lanna National Park",
+    "businessHour": "08:00 - 17:00",
+    "transportOptions": ["Private Car to Pier", "Long-tail Boat"],
+    "transportOptionsTh": ["รถยนต์ส่วนตัวถึงท่าเรือ", "เรือหางยาว"],
+    "fee": 20,
+    "feeForeigner": 100
+  },
+  {
+    "name": "Mon Hin Lai Waterfall",
+    "nameTh": "น้ำตกม่อนหินไหล",
+    "description": "A remote 9-tiered waterfall in the Mae Ngat forest, featuring a high peak that overlooks the surrounding mountain landscape.",
+    "descriptionTh": "น้ำตก 9 ชั้นในป่าแม่งัด มีจุดเด่นที่ยอดม่อนหินไหลซึ่งสามารถมองเห็นทิวทัศน์ป่าเขาโดยรอบ",
+    "parkName": "Si Lanna National Park",
+    "businessHour": "08:30 - 16:30",
+    "transportOptions": ["4WD Vehicle", "Hiking"],
+    "transportOptionsTh": ["รถขับเคลื่อน 4 ล้อ", "เดินเท้า"],
+    "fee": 20,
+    "feeForeigner": 100
+  }
+]

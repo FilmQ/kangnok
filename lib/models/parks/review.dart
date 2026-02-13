@@ -1,54 +1,32 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Review {
-  String _authorId;
-  String _parkId;
-  String _content;
-  List<String> _imageUrls;
-  int _likeCount;
-  List<String> _likedBy;
-  DateTime _createdAt;
+  String authorId;
+  String parkId;
+  String content;
+  List<String> imageUrls;
+  int likeCount;
+  List<String> likedBy;
+  DateTime createdAt;
 
   Review({
-    required String authorId,
-    required String parkId,
-    required String content,
-    required List<String> imageUrls,
-    required int likeCount,
-    required List<String> likedBy,
-    required DateTime createdAt,
-  })  : _authorId = authorId,
-        _parkId = parkId,
-        _content = content,
-        _imageUrls = imageUrls,
-        _likeCount = likeCount,
-        _likedBy = likedBy,
-        _createdAt = createdAt;
-
-  String get authorId => _authorId;
-  String get parkId => _parkId;
-  String get content => _content;
-  List<String> get imageUrls => _imageUrls;
-  int get likeCount => _likeCount;
-  List<String> get likedBy => _likedBy;
-  DateTime get createdAt => _createdAt;
-
-  set authorId(String authorId) => _authorId = authorId;
-  set parkId(String parkId) => _parkId = parkId;
-  set content(String content) => _content = content;
-  set imageUrls(List<String> imageUrls) => _imageUrls = imageUrls;
-  set likeCount(int likeCount) => _likeCount = likeCount;
-  set likedBy(List<String> likedBy) => _likedBy = likedBy;
-  set createdAt(DateTime createdAt) => _createdAt = createdAt;
+    required this.authorId,
+    required this.parkId,
+    required this.content,
+    required this.imageUrls,
+    required this.likeCount,
+    required this.likedBy,
+    required this.createdAt,
+  });
 
   Map<String, dynamic> toJson() => {
-    'authorId': _authorId,
-    'parkId': _parkId,
-    'content': _content,
-    'imageUrls': _imageUrls,
-    'likeCount': _likeCount,
-    'likedBy': _likedBy,
-    'createdAt': Timestamp.fromDate(_createdAt),
+    'authorId': authorId,
+    'parkId': parkId,
+    'content': content,
+    'imageUrls': imageUrls,
+    'likeCount': likeCount,
+    'likedBy': likedBy,
+    'createdAt': Timestamp.fromDate(createdAt),
   };
 
   factory Review.fromJson(Map<String, dynamic> json) => Review(

@@ -8,6 +8,9 @@ class ParkService {
   );
 
   // CREATE (prolly wont be used after all 14 parks are serialized):
+  
+  // This function essentially reads FROM the assets/parks to construct
+  // a "parks" collection in Firestore
   Future<void> seedParks() async {
     final jsonString = await rootBundle.loadString(
       'assets/parks/parks_data.json',
@@ -23,17 +26,18 @@ class ParkService {
           .replaceAll(' ', '_')
           .replaceAll('-', '_');
 
+      // flora, fauna, and landmarks
       try {
         final faunaJson = await rootBundle.loadString(
           'assets/parks/fauna/${sanitizedName}_fauna.json',
         );
         parkJson['faunas'] = json.decode(faunaJson);
         print(
-          '✓ Loaded ${(parkJson['faunas'] as List).length} fauna for $parkName',
+          'Loaded ${(parkJson['faunas'] as List).length} fauna for $parkName',
         );
       } catch (e) {
         print(
-          '⚠ No fauna file for $parkName (${sanitizedName}_fauna.json): $e',
+          'No fauna file for $parkName (${sanitizedName}_fauna.json): $e',
         );
         parkJson['faunas'] = [];
       }
@@ -49,6 +53,21 @@ class ParkService {
       } catch (e) {
         print('No flora file for $parkName (${sanitizedName}_flora.json): $e');
         parkJson['floras'] = [];
+      }
+
+      try {
+        final landmarksJson = await rootBundle.loadString(
+          'assets/parks/landmark/${sanitizedName}_landmark.json',
+        );
+        parkJson['landmarks'] = json.decode(landmarksJson);
+        print(
+          'Loaded ${(parkJson['landmarks'] as List).length} landmarks for $parkName',
+        );
+      } catch (e) {
+        print(
+          'No landmarks file for $parkName (${sanitizedName}_landmark.json): $e',
+        );
+        parkJson['landmarks'] = [];
       }
 
       parkJson['createdAt'] = Timestamp.now();
@@ -68,6 +87,7 @@ class ParkService {
   }
 
   // UPDATE:
+  
 
   // DELETE:
 }

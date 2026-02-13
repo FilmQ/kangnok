@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Mae Takhrai Reservoir",
+    "nameTh": "อ่างเก็บน้ำแม่ตะไคร้",
+    "description": "A tranquil reservoir surrounded by mountains, serving as the main area for recreation. It is a popular spot for camping, fishing, and picnicking with scenic mountain reflections.",
+    "descriptionTh": "อ่างเก็บน้ำที่ล้อมรอบด้วยทิวเขา เป็นพื้นที่นันทนาการหลักของอุทยานฯ ยอดนิยมสำหรับการกางเต็นท์ ตกปลา และปิกนิกท่ามกลางวิวภูเขาสะท้อนน้ำ",
+    "parkName": "Mae Takhrai National Park",
+    "businessHour": "08:30 - 16:30",
+    "transportOptions": ["Private Car", "Motorbike", "Bicycle"],
+    "transportOptionsTh": ["รถยนต์ส่วนตัว", "รถจักรยานยนต์", "จักรยาน"],
+    "fee": 20,
+    "feeForeigner": 100
+  },
+  {
+    "name": "Tad Moei Waterfall",
+    "nameTh": "น้ำตกตาดเหมย",
+    "description": "A secluded and serene waterfall located deep within the forest. It requires a short hike and offers a peaceful atmosphere away from larger tourist crowds.",
+    "descriptionTh": "น้ำตกที่เงียบสงบตั้งอยู่กลางป่า ต้องเดินเท้าเข้าไปในระยะทางสั้นๆ เหมาะสำหรับผู้ที่ต้องการความสงบและหลีกหนีความวุ่นวาย",
+    "parkName": "Mae Takhrai National Park",
+    "businessHour": "08:30 - 16:30",
+    "transportOptions": ["Private Car to trailhead", "Motorbike", "Hiking"],
+    "transportOptionsTh": ["รถยนต์ส่วนตัวถึงจุดเริ่มเดิน", "รถจักรยานยนต์", "เดินเท้า"],
+    "fee": 20,
+    "feeForeigner": 100
+  },
+  {
+    "name": "Doi Lang Ka Luang",
+    "nameTh": "ดอยลังกาหลวง",
+    "description": "One of Thailand's highest peaks at 2,030 meters, shared with nearby Khun Chae National Park. It is a premier hiking destination for viewing rare flora like Rhododendrons and spectacular mountain ridges.",
+    "descriptionTh": "หนึ่งในยอดเขาที่สูงที่สุดของไทย (2,030 เมตร) เป็นจุดหมายปลายทางยอดฮิตของนักเดินป่าเพื่อชมดอกกุหลาบพันปีและวิวสันเขาสลับซับซ้อนที่สวยงาม",
+    "parkName": "Mae Takhrai National Park",
+    "businessHour": "By appointment (Guided trek required)",
+    "transportOptions": ["4WD Vehicle to village", "Hiking"],
+    "transportOptionsTh": ["รถขับเคลื่อน 4 ล้อไปยังหมู่บ้าน", "เดินเท้า"],
+    "fee": 20,
+    "feeForeigner": 100
+  },
+  {
+    "name": "Huai Mae Ta Gnai Reservoir",
+    "nameTh": "อ่างเก็บน้ำห้วยแม่ตะกไน",
+    "description": "Located near the tourist center, this area is known for its beautiful sunrise views and early morning mist over the water surface during the winter months.",
+    "descriptionTh": "ตั้งอยู่ใกล้กับศูนย์บริการนักท่องเที่ยว โดดเด่นด้วยทิวทัศน์ยามเช้าที่สามารถชมพระอาทิตย์ขึ้นและทะเลหมอกเหนือผิวน้ำได้ในช่วงฤดูหนาว",
+    "parkName": "Mae Takhrai National Park",
+    "businessHour": "06:00 - 18:00 (Sightseeing)",
+    "transportOptions": ["Private Car", "Motorbike"],
+    "transportOptionsTh": ["รถยนต์ส่วนตัว", "รถจักรยานยนต์"],
+    "fee": 0,
+    "feeForeigner": 0
+  }
+]
