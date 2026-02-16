@@ -49,5 +49,5 @@ final currentUserProvider = FutureProvider<User?>((ref) async {
   if (authUser == null) return null;
 
   final userService = ref.read(userServiceProvider);
-  return userService.getUser(authUser.uid);
+  return userService.getUser(authUser.uid, email: authUser.email);
 });

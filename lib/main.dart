@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:kangnok/firebase_options.dart';
+import 'package:kangnok/pages/admin/admin_create_ranger_page.dart';
 import 'package:kangnok/pages/auth_gate.dart';
 import 'package:kangnok/pages/auth_page.dart';
 import 'package:kangnok/pages/explorer_home_page.dart';
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         '/explorer_achievement': (context) => AchievementPage(),
         '/explorer_map': (context) => ExplorerMapPage(),
         '/explorer_park': (context) => ExplorerMapPage(),
+        '/admin_create_ranger': (context) => AdminCreateRangerPage(),
       },
     );
   }

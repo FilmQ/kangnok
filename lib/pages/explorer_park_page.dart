@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kangnok/models/parks/park.dart';
 
+// TODO: by order:
 // TODO: add the park's functionality here
+// TODO: connect the park to firebase storage AND firestore
+// TODO: refine the park's look
 class ExplorerParkPage extends StatefulWidget {
   const ExplorerParkPage({super.key});
 

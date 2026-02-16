@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:kangnok/models/roles/ranger.dart';
 
 class ParkService {
   final CollectionReference park = FirebaseFirestore.instance.collection(
@@ -87,7 +88,17 @@ class ParkService {
   }
 
   // UPDATE:
-  
+
+  /// Adds a ranger to a park's rangers list by park name.
+  Future<void> addRangerToPark(String parkName, Ranger ranger) async {
+    final query = await park.where('name', isEqualTo: parkName).limit(1).get();
+    if (query.docs.isEmpty) {
+      throw ArgumentError('Park "$parkName" not found.');
+    }
+    await query.docs.first.reference.update({
+      'rangers': FieldValue.arrayUnion([ranger.toJson()]),
+    });
+  }
 
   // DELETE:
 }

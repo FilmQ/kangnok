@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kangnok/providers/user_provider.dart';
+import 'package:kangnok/services/validator.dart';
 
 /// Collects additional profile info (name) after Firebase Auth registration,
 /// then creates the Explorer document in Firestore.
@@ -39,10 +40,45 @@ class _SignupPageState extends ConsumerState<SignupPage> {
       final firebaseUser = FirebaseAuth.instance.currentUser;
       if (firebaseUser == null) return;
 
+      final email = firebaseUser.email ?? '';
+
+      if (Validator.isExplorerBlacklistedEmail(email)) {
+        await firebaseUser.delete();
+
+        if (mounted) {
+          setState(() {
+            _isLoading = false;
+            _errorText = 'The @dnp.th domain is reserved for park rangers. Please use a different email address.';
+          });
+
+          await showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: const Text('Invalid Email Domain'),
+              content: const Text(
+                'The @dnp.th domain is reserved for park rangers only. '
+                'Please sign up with a different email address.'
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: const Text('OK'),
+                ),
+              ],
+            ),
+          );
+
+          if (mounted) {
+            Navigator.of(context).popUntil((route) => route.isFirst);
+          }
+        }
+        return;
+      }
+
       final userService = ref.read(userServiceProvider);
       await userService.createExplorer(
         firebaseUser.uid,
-        firebaseUser.email ?? '',
+        email,
         name,
       );
 

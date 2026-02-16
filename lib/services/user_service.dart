@@ -19,10 +19,28 @@ class UserService {
     await _usersCollection.doc(uid).set(user.toJson());
   }
 
-  Future<User?> getUser(String uid) async {
+  Future<User?> getUser(String uid, {String? email}) async {
     final doc = await _usersCollection.doc(uid).get();
-    if (!doc.exists || doc.data() == null) return null;
-    return UserFactory.fromJson(doc.data()!);
+    if (doc.exists && doc.data() != null) {
+      return UserFactory.fromJson(doc.data()!);
+    }
+
+    // Fallback: query by email if UID lookup fails (e.g. after account recreation)
+    if (email != null && email.isNotEmpty) {
+      final query = await _usersCollection
+          .where('email', isEqualTo: email)
+          .limit(1)
+          .get();
+      if (query.docs.isNotEmpty) {
+        // Update the document to use the new UID
+        final data = query.docs.first.data();
+        await _usersCollection.doc(uid).set(data);
+        await _usersCollection.doc(query.docs.first.id).delete();
+        return UserFactory.fromJson(data);
+      }
+    }
+
+    return null;
   }
 
   Future<User> createExplorer(String uid, String email, String name) async {

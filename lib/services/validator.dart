@@ -12,4 +12,11 @@ class Validator {
     final RegExp rangerEmail = RegExp(r'^[a-zA-Z0-9._%+-]+@dnp\.th$');
     return rangerEmail.hasMatch(emailToValidate);
   }
+
+  static const List<String> _explorerBlacklistedDomains = ['dnp.th'];
+
+  static bool isExplorerBlacklistedEmail(String emailToValidate) {
+    final domain = emailToValidate.split('@').last.toLowerCase();
+    return _explorerBlacklistedDomains.contains(domain);
+  }
 }
