@@ -35,11 +35,183 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
     );
   }
 
+  List<Widget> _buildFrontPagePictures(Park park) {
+    return park.imageUrl
+        .where((url) => url.isNotEmpty)
+        .map<Widget>((url) => Image.network(url, fit: BoxFit.cover))
+        .toList();
+  }
+
+  Widget _buildDescription(Park park) {
+    return ListView(
+      padding: EdgeInsets.all(16),
+      children: [
+        Card(
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Overview", style: TextStyle(fontSize: 30)),
+                SizedBox(height: 5),
+                Text(park.description),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(height: 12),
+        Card(
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Business Hours", style: TextStyle(fontSize: 30)),
+                SizedBox(height: 5),
+                Text(
+                  park.businessHour.isNotEmpty
+                      ? park.businessHour
+                      : 'No business hours available',
+                ),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(height: 12),
+        Card(
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Location", style: TextStyle(fontSize: 30)),
+                SizedBox(height: 5),
+                Text(park.location),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(height: 12),
+        Card(
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Coordinate", style: TextStyle(fontSize: 30)),
+                SizedBox(height: 5),
+                Text(park.coordinate),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(height: 12),
+        Card(
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Faunas", style: TextStyle(fontSize: 30)),
+                SizedBox(height: 10),
+                ...park.faunas.map((fauna) => Padding(
+                  padding: EdgeInsets.only(bottom: 8),
+                  child: Card(
+                    child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: SizedBox(
+                              width: 70,
+                              height: 70,
+                              child: fauna.imageUrl.isNotEmpty
+                                  ? Image.network(fauna.imageUrl, fit: BoxFit.cover)
+                                  : Container(
+                                      color: Colors.grey.shade300,
+                                      child: Icon(Icons.pets, color: Colors.grey.shade600),
+                                    ),
+                            ),
+                          ),
+                          SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(fauna.name, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                                SizedBox(height: 4),
+                                Text(fauna.description, maxLines: 3, overflow: TextOverflow.ellipsis),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                )),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(height: 12),
+        Card(
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Floras", style: TextStyle(fontSize: 30)),
+                SizedBox(height: 10),
+                ...park.floras.map((flora) => Padding(
+                  padding: EdgeInsets.only(bottom: 8),
+                  child: Card(
+                    child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: SizedBox(
+                              width: 70,
+                              height: 70,
+                              child: flora.imageUrl.isNotEmpty
+                                  ? Image.network(flora.imageUrl, fit: BoxFit.cover)
+                                  : Container(
+                                      color: Colors.grey.shade300,
+                                      child: Icon(Icons.local_florist, color: Colors.grey.shade600),
+                                    ),
+                            ),
+                          ),
+                          SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(flora.name, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                                SizedBox(height: 4),
+                                Text(flora.description, maxLines: 3, overflow: TextOverflow.ellipsis),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                )),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final park = ModalRoute.of(context)!.settings.arguments as Park?;
     final parkName = park?.name ?? "Park's page";
-    final imgLocation = "assets/parks/";
+
     return DefaultTabController(
       length: 4,
       child: Scaffold(
@@ -66,17 +238,7 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
                                   _currentPage = index;
                                 });
                               },
-                              // ALSO YET ANOTHER PLACEHOLDER DATA.
-                              children: [
-                                Image.asset(
-                                  "${imgLocation}grand-canyon.jpg",
-                                  fit: BoxFit.cover,
-                                ),
-                                Image.asset(
-                                  "${imgLocation}pnw.png",
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                              children: _buildFrontPagePictures(park!),
                             ),
                           ),
                           const SizedBox(height: 10),
@@ -109,7 +271,7 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
                 itemBuilder: (context, index) =>
                     ListTile(title: Text("Announcement ${index + 1}")),
               ),
-              ListView(children: [ListTile(title: Text("Overview content"))]),
+              _buildDescription(park!),
               ListView.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) =>

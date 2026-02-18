@@ -14,7 +14,9 @@
     "landmarks": [],
     "rangers": [],
     "faunas": [],
-    "floras": []
+    "floras": [],
+    "businessHour": "Open daily 08:30 AM - 04:30 PM",
+    "businessHourTh": "เปิดทุกวัน 08:30 - 16:30 น."
   },
   {
     "name": "Doi Pha Hom Pok National Park",
@@ -31,7 +33,9 @@
     "landmarks": [],
     "rangers": [],
     "faunas": [],
-    "floras": []
+    "floras": [],
+    "businessHour": "Open daily 08:00 AM - 06:00 PM",
+    "businessHourTh": "เปิดทุกวัน 08:00 - 18:00 น."
   },
   {
     "name": "Doi Wiang Pha National Park",
@@ -48,7 +52,9 @@
     "landmarks": [],
     "rangers": [],
     "faunas": [],
-    "floras": []
+    "floras": [],
+    "businessHour": "Open daily 08:00 AM - 04:30 PM (Doi Wiang Pha mountain closed 1 May - 30 September)",
+    "businessHourTh": "เปิดทุกวัน 08:00 - 16:30 น. (ดอยเวียงผาปิดให้บริการ 1 พฤษภาคม - 30 กันยายน)"
   },
   {
     "name": "Doi Suthep-Pui National Park",
@@ -65,7 +71,9 @@
     "landmarks": [],
     "rangers": [],
     "faunas": [],
-    "floras": []
+    "floras": [],
+    "businessHour": "Open daily 08:30 AM - 04:30 PM",
+    "businessHourTh": "เปิดทุกวัน 08:30 - 16:30 น."
   },
   {
     "name": "Doi Inthanon National Park",
@@ -82,7 +90,9 @@
     "landmarks": [],
     "rangers": [],
     "faunas": [],
-    "floras": []
+    "floras": [],
+    "businessHour": "Open daily 05:30 AM - 06:30 PM",
+    "businessHourTh": "เปิดทุกวัน 05:30 - 18:30 น."
   },
   {
     "name": "Bua Tong Waterfall-Seven Colors Spring National Park",
@@ -99,7 +109,9 @@
     "landmarks": [],
     "rangers": [],
     "faunas": [],
-    "floras": []
+    "floras": [],
+    "businessHour": "Open daily 08:00 AM - 05:00 PM",
+    "businessHourTh": "เปิดทุกวัน 08:00 - 17:00 น."
   },
   {
     "name": "Pha Daeng National Park",
@@ -116,7 +128,9 @@
     "landmarks": [],
     "rangers": [],
     "faunas": [],
-    "floras": []
+    "floras": [],
+    "businessHour": "Open daily 08:30 AM - 04:30 PM",
+    "businessHourTh": "เปิดทุกวัน 08:30 - 16:30 น."
   },
   {
     "name": "Mae Takhrai National Park",
@@ -133,7 +147,9 @@
     "landmarks": [],
     "rangers": [],
     "faunas": [],
-    "floras": []
+    "floras": [],
+    "businessHour": "Open daily 08:00 AM - 06:00 PM",
+    "businessHourTh": "เปิดทุกวัน 08:00 - 18:00 น."
   },
   {
     "name": "Mae Tho National Park",
@@ -150,7 +166,9 @@
     "landmarks": [],
     "rangers": [],
     "faunas": [],
-    "floras": []
+    "floras": [],
+    "businessHour": "Open daily 08:00 AM - 05:00 PM (Mae Tho viewpoint open October - February only)",
+    "businessHourTh": "เปิดทุกวัน 08:00 - 17:00 น. (จุดชมวิวแม่โถเปิดเฉพาะเดือนตุลาคม - กุมภาพันธ์)"
   },
   {
     "name": "Mae Wang National Park",
@@ -167,7 +185,9 @@
     "landmarks": [],
     "rangers": [],
     "faunas": [],
-    "floras": []
+    "floras": [],
+    "businessHour": "Open daily 08:30 AM - 04:30 PM",
+    "businessHourTh": "เปิดทุกวัน 08:30 - 16:30 น."
   },
   {
     "name": "Si Lanna National Park",
@@ -184,7 +204,9 @@
     "landmarks": [],
     "rangers": [],
     "faunas": [],
-    "floras": []
+    "floras": [],
+    "businessHour": "Open daily 08:00 AM - 05:00 PM",
+    "businessHourTh": "เปิดทุกวัน 08:00 - 17:00 น."
   },
   {
     "name": "Huai Nam Dang National Park",
@@ -201,7 +223,9 @@
     "landmarks": [],
     "rangers": [],
     "faunas": [],
-    "floras": []
+    "floras": [],
+    "businessHour": "Open daily 08:00 AM - 06:00 PM",
+    "businessHourTh": "เปิดทุกวัน 08:00 - 18:00 น."
   },
   {
     "name": "Op Khan National Park",
@@ -218,7 +242,9 @@
     "landmarks": [],
     "rangers": [],
     "faunas": [],
-    "floras": []
+    "floras": [],
+    "businessHour": "Open daily 08:00 AM - 05:00 PM",
+    "businessHourTh": "เปิดทุกวัน 08:00 - 17:00 น."
   },
   {
     "name": "Op Luang National Park",
@@ -235,7 +261,9 @@
     "landmarks": [],
     "rangers": [],
     "faunas": [],
-    "floras": []
+    "floras": [],
+    "businessHour": "Open daily 06:00 AM - 06:00 PM",
+    "businessHourTh": "เปิดทุกวัน 06:00 - 18:00 น."
   },
   {
     "name": "Kasetsart University",
@@ -254,6 +282,8 @@
     "faunas": [
       "Aomsin"
     ],
-    "floras": []
+    "floras": [],
+    "businessHour": "Open Monday - Friday 08:30 AM - 04:30 PM (closed Saturday - Sunday)",
+    "businessHourTh": "เปิดวันจันทร์ - ศุกร์ 08:30 - 16:30 น. (ปิดวันเสาร์ - อาทิตย์)"
   }
 ]

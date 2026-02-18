@@ -5,8 +5,8 @@ import 'package:kangnok/models/parks/park.dart';
 import 'package:kangnok/providers/park_provider.dart';
 import 'package:latlong2/latlong.dart';
 
-// TODO: Refine this god damn map 
-// TASK: 
+// TODO: Refine this god damn map
+// TASK:
 //  make the card actually a content that displays at the center
 //  add the bottom nav bar to navigate back to user's page
 //  that should be it i think :broken-heart:
@@ -37,6 +37,10 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
       debugPrint("Unable to parse the park's coordinate.");
       return null;
     }
+  }
+
+  Widget _universityButton() {
+    return FloatingActionButton(onPressed: () {}, child: Text("KU"));
   }
 
   @override
@@ -110,6 +114,20 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
               _mapController.move(_defaultCenter, _defaultZoom);
             },
             child: const Icon(Icons.my_location),
+          ),
+        ),
+        Positioned(
+          top: 56,
+          right: 12,
+          child: FloatingActionButton.small(
+            heroTag: 'ku',
+            onPressed: () {
+              final ku = parks.where((p) => p.name == 'Kasetsart University').firstOrNull;
+              if (ku != null) {
+                Navigator.pushNamed(context, '/park', arguments: ku);
+              }
+            },
+            child: Text("KU"),
           ),
         ),
         if (_selectedPark != null) _buildParkCard(_selectedPark!),
