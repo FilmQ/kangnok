@@ -6,10 +6,17 @@
     "descriptionTh": "เนินเขาทุ่งหญ้ากว้างขวางคล้ายสะวันนา เห็นวิวได้ 360 องศา เป็นจุดถ่ายภาพยอดฮิต",
     "parkName": "Mae Tho National Park",
     "businessHour": "06:00 - 18:00",
-    "transportOptions": ["4WD Local Shuttle", "Hiking"],
-    "transportOptionsTh": ["รถขับเคลื่อน 4 ล้อรับจ้างท้องถิ่น", "เดินเท้า"],
+    "transportOptions": [
+      "4WD Local Shuttle",
+      "Hiking"
+    ],
+    "transportOptionsTh": [
+      "รถขับเคลื่อน 4 ล้อรับจ้างท้องถิ่น",
+      "เดินเท้า"
+    ],
     "fee": 20,
-    "feeForeigner": 100
+    "feeForeigner": 100,
+    "imageUrl": ""
   },
   {
     "name": "Mae Tho Viewpoint",
@@ -18,9 +25,16 @@
     "descriptionTh": "จุดชมวิวพาโนรามาใกล้ที่ทำการ มองเห็นหุบเขาลึกและนาขั้นบันไดของชาวไทยภูเขาที่สวยงาม",
     "parkName": "Mae Tho National Park",
     "businessHour": "06:00 - 18:00",
-    "transportOptions": ["Private Car", "Motorbike"],
-    "transportOptionsTh": ["รถยนต์ส่วนตัว", "รถจักรยานยนต์"],
+    "transportOptions": [
+      "Private Car",
+      "Motorbike"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์"
+    ],
     "fee": 0,
-    "feeForeigner": 0
+    "feeForeigner": 0,
+    "imageUrl": ""
   }
 ]

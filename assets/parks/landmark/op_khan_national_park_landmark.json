@@ -6,10 +6,17 @@
     "descriptionTh": "หน้าผาหินปูนริมน้ำขานที่ถูกกัดเซาะจนสวยงาม มีเส้นทางเดินป่าและจุดเล่นน้ำริมลำธาร",
     "parkName": "Ob Khan National Park",
     "businessHour": "08:30 - 16:30",
-    "transportOptions": ["Private Car", "Motorbike"],
-    "transportOptionsTh": ["รถยนต์ส่วนตัว", "รถจักรยานยนต์"],
+    "transportOptions": [
+      "Private Car",
+      "Motorbike"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์"
+    ],
     "fee": 0,
-    "feeForeigner": 0
+    "feeForeigner": 0,
+    "imageUrl": ""
   },
   {
     "name": "Ob Khan Nature Trail",
@@ -18,9 +25,14 @@
     "descriptionTh": "เส้นทางเดินวงกลม 3.3 กม. เลียบลำน้ำและโกรกธาร เหมาะสำหรับดูนกและชมพรรณไม้หลากหลาย",
     "parkName": "Ob Khan National Park",
     "businessHour": "08:30 - 16:30",
-    "transportOptions": ["Walking"],
-    "transportOptionsTh": ["เดินเท้า"],
+    "transportOptions": [
+      "Walking"
+    ],
+    "transportOptionsTh": [
+      "เดินเท้า"
+    ],
     "fee": 0,
-    "feeForeigner": 0
+    "feeForeigner": 0,
+    "imageUrl": ""
   }
 ]

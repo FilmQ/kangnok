@@ -1,0 +1,105 @@
+[
+  {
+    "name": "The Monument of the Three Founders",
+    "nameTh": "อนุสาวรีย์สามบูรพาจารย์",
+    "description": "A monument honoring the three founders of Kasetsart University, known as the 'Three Musketeers,' who pioneered agricultural education in Thailand.",
+    "descriptionTh": "อนุสาวรีย์เพื่อระลึกถึงผู้ร่วมก่อตั้งมหาวิทยาลัยเกษตรศาสตร์ 3 ท่าน หรือที่รู้จักในนาม 'สามบูรพาจารย์' ผู้วางรากฐานการศึกษาวิจัยด้านเกษตรกรรมของไทย",
+    "parkName": "Kasetsart University",
+    "businessHour": "24 hours",
+    "transportOptions": [
+      "BTS Skytrain",
+      "Public Bus",
+      "Taxi"
+    ],
+    "transportOptionsTh": [
+      "รถไฟฟ้า BTS",
+      "รถเมล์สาธารณะ",
+      "รถแท็กซี่"
+    ],
+    "fee": 0,
+    "feeForeigner": 0,
+    "imageUrl": ""
+  },
+  {
+    "name": "Kasetsart University Hall of History",
+    "nameTh": "หอประวัติมหาวิทยาลัยเกษตรศาสตร์",
+    "description": "Housed in the oldest brick building on campus, this museum preserves the historical journey of the university and showcases rare documents and artifacts.",
+    "descriptionTh": "พิพิธภัณฑ์ที่ตั้งอยู่ในอาคารตึกแถวโบราณหลังแรกของมหาวิทยาลัย จัดแสดงประวัติความเป็นมา เอกสาร และวัตถุโบราณที่ทรงคุณค่า",
+    "parkName": "Kasetsart University",
+    "businessHour": "08:30 - 16:30 (Mon-Fri)",
+    "transportOptions": [
+      "BTS Skytrain",
+      "Public Bus",
+      "Private Car"
+    ],
+    "transportOptionsTh": [
+      "รถไฟฟ้า BTS",
+      "รถเมล์สาธารณะ",
+      "รถยนต์ส่วนตัว"
+    ],
+    "fee": 0,
+    "feeForeigner": 0,
+    "imageUrl": ""
+  },
+  {
+    "name": "Museum of Fisheries",
+    "nameTh": "พิพิธภัณฑ์ธรรมชาติวิทยาประมง",
+    "description": "A specialized museum within the Faculty of Fisheries featuring over 300,000 aquatic specimens, including rare stuffed fish and marine shells.",
+    "descriptionTh": "พิพิธภัณฑ์เฉพาะทางในคณะประมงที่จัดแสดงตัวอย่างสัตว์น้ำกว่า 300,000 ชิ้น รวมถึงปลาสตาฟหายากและเปลือกหอยประเภทต่างๆ",
+    "parkName": "Kasetsart University",
+    "businessHour": "09:00 - 16:00 (Mon-Fri)",
+    "transportOptions": [
+      "Public Bus",
+      "Taxi",
+      "Motorbike"
+    ],
+    "transportOptionsTh": [
+      "รถเมล์สาธารณะ",
+      "รถแท็กซี่",
+      "รถจักรยานยนต์"
+    ],
+    "fee": 0,
+    "feeForeigner": 0,
+    "imageUrl": ""
+  },
+  {
+    "name": "Ant Museum",
+    "nameTh": "พิพิธภัณฑ์มด",
+    "description": "The first and only museum in the world focusing solely on ants, located in the Faculty of Forestry with four main educational zones.",
+    "descriptionTh": "พิพิธภัณฑ์มดแห่งแรกและแห่งเดียวในโลก ตั้งอยู่ในคณะวนศาสตร์ ภายในมีโซนนิทรรศการให้ความรู้เรื่องมด 4 โซนหลัก",
+    "parkName": "Kasetsart University",
+    "businessHour": "08:30 - 16:30 (Mon-Fri)",
+    "transportOptions": [
+      "Public Bus",
+      "Taxi",
+      "Private Car"
+    ],
+    "transportOptionsTh": [
+      "รถเมล์สาธารณะ",
+      "รถแท็กซี่",
+      "รถยนต์ส่วนตัว"
+    ],
+    "fee": 0,
+    "feeForeigner": 0,
+    "imageUrl": ""
+  },
+  {
+    "name": "Symbolic Nonsi Trees",
+    "nameTh": "ต้นนนทรีทรงปลูก",
+    "description": "Nine yellow flamboyant trees planted by King Bhumibol Adulyadej in 1963, serving as the eternal symbol of Kasetsart University.",
+    "descriptionTh": "ต้นนนทรี 9 ต้นที่พระบาทสมเด็จพระเจ้าอยู่หัวรัชกาลที่ 9 ทรงปลูกไว้เมื่อปี พ.ศ. 2506 ถือเป็นสัญลักษณ์ประจำมหาวิทยาลัยเกษตรศาสตร์",
+    "parkName": "Kasetsart University",
+    "businessHour": "Open 24 hours (Outdoor)",
+    "transportOptions": [
+      "BTS Skytrain",
+      "Public Bus"
+    ],
+    "transportOptionsTh": [
+      "รถไฟฟ้า BTS",
+      "รถเมล์สาธารณะ"
+    ],
+    "fee": 0,
+    "feeForeigner": 0,
+    "imageUrl": ""
+  }
+]

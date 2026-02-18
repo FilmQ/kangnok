@@ -6,10 +6,17 @@
     "descriptionTh": "ยอดเขาที่สูงเป็นอันดับ 2 ของไทย (2,285 เมตร) มีชื่อเสียงด้านจุดชมทะเลหมอก 360 องศาและผีเสื้อหายาก",
     "parkName": "Doi Pha Hom Pok National Park",
     "businessHour": "05:00 - 16:30",
-    "transportOptions": ["4WD Vehicle Only", "Chartered Songthaew"],
-    "transportOptionsTh": ["รถขับเคลื่อน 4 ล้อเท่านั้น", "รถสองแถวเหมา"],
+    "transportOptions": [
+      "4WD Vehicle Only",
+      "Chartered Songthaew"
+    ],
+    "transportOptionsTh": [
+      "รถขับเคลื่อน 4 ล้อเท่านั้น",
+      "รถสองแถวเหมา"
+    ],
     "fee": 50,
-    "feeForeigner": 300
+    "feeForeigner": 300,
+    "imageUrl": ""
   },
   {
     "name": "Fang Hot Springs",
@@ -18,10 +25,17 @@
     "descriptionTh": "พื้นที่ความร้อนใต้ภิภพที่มีบ่อน้ำร้อนกว่า 50 บ่อ และมีไกเซอร์พุ่งสูงถึง 50 เมตร ทุกๆ 25-30 นาที",
     "parkName": "Doi Pha Hom Pok National Park",
     "businessHour": "08:00 - 18:00",
-    "transportOptions": ["Private Car", "Motorbike"],
-    "transportOptionsTh": ["รถยนต์ส่วนตัว", "รถจักรยานยนต์"],
+    "transportOptions": [
+      "Private Car",
+      "Motorbike"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์"
+    ],
     "fee": 50,
-    "feeForeigner": 300
+    "feeForeigner": 300,
+    "imageUrl": ""
   },
   {
     "name": "Huai Bon Cave",
@@ -30,9 +44,16 @@
     "descriptionTh": "ถ้ำขนาดใหญ่ตั้งอยู่ห่างจากตัวเมืองฝาง 12 กม. มีหินงอกหินย้อยที่สวยงามและน่าประทับใจ",
     "parkName": "Doi Pha Hom Pok National Park",
     "businessHour": "08:30 - 16:30",
-    "transportOptions": ["Private Car", "Motorbike"],
-    "transportOptionsTh": ["รถยนต์ส่วนตัว", "รถจักรยานยนต์"],
+    "transportOptions": [
+      "Private Car",
+      "Motorbike"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์"
+    ],
     "fee": 0,
-    "feeForeigner": 0
+    "feeForeigner": 0,
+    "imageUrl": ""
   }
 ]

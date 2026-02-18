@@ -6,10 +6,19 @@
     "descriptionTh": "จุดชมพระอาทิตย์ขึ้นและทะเลหมอกที่สวยที่สุดแห่งหนึ่งในไทย ตั้งอยู่บนเส้นทางไปอำเภอปาย",
     "parkName": "Huai Nam Dang National Park",
     "businessHour": "05:00 - 18:00",
-    "transportOptions": ["Private Car", "Motorbike", "Public Bus"],
-    "transportOptionsTh": ["รถยนต์ส่วนตัว", "รถจักรยานยนต์", "รถโดยสารประจำทาง"],
+    "transportOptions": [
+      "Private Car",
+      "Motorbike",
+      "Public Bus"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์",
+      "รถโดยสารประจำทาง"
+    ],
     "fee": 60,
-    "feeForeigner": 300
+    "feeForeigner": 300,
+    "imageUrl": ""
   },
   {
     "name": "Pong Dueat Geyser",
@@ -18,10 +27,17 @@
     "descriptionTh": "น้ำพุร้อนประเภทไกเซอร์ที่พุ่งสูงถึง 2 เมตร มีเส้นทางเดินชมธรรมชาติและห้องอาบน้ำแร่บริการ",
     "parkName": "Huai Nam Dang National Park",
     "businessHour": "08:00 - 17:00",
-    "transportOptions": ["Private Car", "Motorbike"],
-    "transportOptionsTh": ["รถยนต์ส่วนตัว", "รถจักรยานยนต์"],
+    "transportOptions": [
+      "Private Car",
+      "Motorbike"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์"
+    ],
     "fee": 60,
-    "feeForeigner": 300
+    "feeForeigner": 300,
+    "imageUrl": ""
   },
   {
     "name": "Tha Pai Hot Springs",
@@ -30,9 +46,18 @@
     "descriptionTh": "บ่อน้ำร้อนธรรมชาติใกล้ตัวเมืองปาย มีลำธารน้ำแร่อุ่นไหลผ่านป่าและบ่อแช่ตัวหลายระดับ",
     "parkName": "Huai Nam Dang National Park",
     "businessHour": "08:00 - 18:00",
-    "transportOptions": ["Private Car", "Motorbike", "Bicycle"],
-    "transportOptionsTh": ["รถยนต์ส่วนตัว", "รถจักรยานยนต์", "จักรยาน"],
+    "transportOptions": [
+      "Private Car",
+      "Motorbike",
+      "Bicycle"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์",
+      "จักรยาน"
+    ],
     "fee": 60,
-    "feeForeigner": 300
+    "feeForeigner": 300,
+    "imageUrl": ""
   }
 ]

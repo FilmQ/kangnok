@@ -6,10 +6,17 @@
     "descriptionTh": "ถ้ำสีรุ้งที่มีลวดลายหินเป็นชั้นสีสวยงามในแนวนอน เกิดจากการสะสมของแร่ธาตุมานานนับพันปี",
     "parkName": "Khun Khan National Park",
     "businessHour": "08:30 - 16:30",
-    "transportOptions": ["Private Car", "Motorbike"],
-    "transportOptionsTh": ["รถยนต์ส่วนตัว", "รถจักรยานยนต์"],
+    "transportOptions": [
+      "Private Car",
+      "Motorbike"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์"
+    ],
     "fee": 20,
-    "feeForeigner": 100
+    "feeForeigner": 100,
+    "imageUrl": ""
   },
   {
     "name": "Huai Tat Waterfall",
@@ -18,10 +25,17 @@
     "descriptionTh": "น้ำตก 2 ชั้นที่มีน้ำไหลตลอดปี โดยชั้นหนึ่งมีความสูงถึง 30 เมตร เหมาะสำหรับการพักผ่อนและถ่ายภาพธรรมชาติ",
     "parkName": "Khun Khan National Park",
     "businessHour": "08:30 - 16:30",
-    "transportOptions": ["Private Car", "Motorbike"],
-    "transportOptionsTh": ["รถยนต์ส่วนตัว", "รถจักรยานยนต์"],
+    "transportOptions": [
+      "Private Car",
+      "Motorbike"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์"
+    ],
     "fee": 20,
-    "feeForeigner": 100
+    "feeForeigner": 100,
+    "imageUrl": ""
   },
   {
     "name": "Pha Sam Na Viewpoint",
@@ -30,9 +44,16 @@
     "descriptionTh": "หน้าผาสามด้านที่ความสูง 1,253 เมตร ให้ทัศนียภาพกว้างไกลของทิวเขาและผืนป่าที่อุดมสมบูรณ์",
     "parkName": "Khun Khan National Park",
     "businessHour": "06:00 - 18:00",
-    "transportOptions": ["4WD Vehicle", "Hiking"],
-    "transportOptionsTh": ["รถขับเคลื่อน 4 ล้อ", "เดินเท้า"],
+    "transportOptions": [
+      "4WD Vehicle",
+      "Hiking"
+    ],
+    "transportOptionsTh": [
+      "รถขับเคลื่อน 4 ล้อ",
+      "เดินเท้า"
+    ],
     "fee": 0,
-    "feeForeigner": 0
+    "feeForeigner": 0,
+    "imageUrl": ""
   }
 ]

@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kangnok/services/achievement_service.dart';
-import 'package:kangnok/services/park_service.dart';
 
 class RangerHomePage extends ConsumerWidget {
   const RangerHomePage({super.key});
@@ -19,11 +18,7 @@ class RangerHomePage extends ConsumerWidget {
           ),
         ],
       ),
-      body: Container(
-        child: Center(
-          child: FloatingActionButton(onPressed: AchievementService().seedAchievements)
-        ),
-      ),
+      body: Container(child: Center()),
     );
   }
 }

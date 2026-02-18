@@ -1,6 +1,6 @@
 [
   {
-    "name": "Bua Tong Waterfall (Sticky Waterfall)",
+    "name": "Bua Tong Waterfall",
     "nameTh": "น้ำตกบัวตอง",
     "description": "A unique limestone waterfall famous for its 'sticky' surface. The high calcium carbonate content creates a non-slip texture on the rocks, allowing visitors to climb directly up the falls against the water flow.",
     "descriptionTh": "น้ำตกหินปูนที่มีลักษณะพิเศษคือมีความสากและไม่ลื่นเนื่องจากมีสารแคลเซียมคาร์บอเนตเคลือบผิวหิน ทำให้นักท่องเที่ยวสามารถเดินปีนป่ายทวนกระแสน้ำขึ้นไปได้โดยไม่ลื่น",
@@ -19,10 +19,11 @@
       "รถแดงเช่าเหมา"
     ],
     "fee": 0,
-    "feeForeigner": 0
+    "feeForeigner": 0,
+    "imageUrl": ""
   },
   {
-    "name": "Chet Si Fountain (Seven-Color Fountain)",
+    "name": "Chet Si Fountain",
     "nameTh": "น้ำพุเจ็ดสี",
     "description": "A sacred mineral spring and the source of the waterfall. The crystal-clear water reflects a beautiful emerald or rainbow-like glow when sunlight hits the mineral deposits at the bottom of the pool.",
     "descriptionTh": "บ่อน้ำพุศักดิ์สิทธิ์ที่เป็นต้นกำเนิดของน้ำตกบัวตอง มีน้ำใสสะอาดจนเห็นพื้นทรายด้านล่าง เมื่อแสงแดดตกกระทบจะสะท้อนเป็นสีรุ้งหรือสีเขียวมรกตสวยงาม",
@@ -41,7 +42,8 @@
       "รถแดงเช่าเหมา"
     ],
     "fee": 0,
-    "feeForeigner": 0
+    "feeForeigner": 0,
+    "imageUrl": ""
   },
   {
     "name": "Bua Tong Cave",
@@ -63,6 +65,7 @@
       "รถแดงเช่าเหมา"
     ],
     "fee": 0,
-    "feeForeigner": 0
+    "feeForeigner": 0,
+    "imageUrl": ""
   }
 ]

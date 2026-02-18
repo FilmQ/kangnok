@@ -9,6 +9,7 @@ class Landmark {
   List<String> transportOptionsTh;
   int fee;
   int feeForeigner; // fee for foreigners
+  String imageUrl;
 
   Landmark({
     required this.name,
@@ -21,6 +22,7 @@ class Landmark {
     required this.transportOptionsTh,
     required this.fee,
     required this.feeForeigner,
+    required this.imageUrl,
   });
 
   Map<String, dynamic> toJson() => {
@@ -34,6 +36,7 @@ class Landmark {
     'transportOptionsTh': transportOptionsTh,
     'fee': fee,
     'feeForeigner': feeForeigner,
+    'imageUrl': imageUrl,
   };
 
   factory Landmark.fromJson(Map<String, dynamic> json) {
@@ -51,6 +54,7 @@ class Landmark {
       transportOptionsTh: List<String>.from(json['transportOptionsTh'] as List? ?? []),
       fee: json['fee'] as int? ?? 0,
       feeForeigner: json['feeForeigner'] as int? ?? 0,
+      imageUrl: json['imageUrl'] as String? ?? '',
     );
   }
 }

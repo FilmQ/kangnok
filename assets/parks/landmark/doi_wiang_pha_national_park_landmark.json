@@ -6,9 +6,14 @@
     "descriptionTh": "ยอดเขาที่สูงที่สุดของอุทยานฯ (1,834 เมตร) โดดเด่นด้วยทิวทัศน์ 360 องศา ทะเลหมอก และพันธุ์ไม้หายากอย่างกุหลาบพันปีที่จะบานในช่วงฤดูหนาว",
     "parkName": "Doi Wiang Pha National Park",
     "businessHour": "08:00 - 17:00",
-    "transportOptions": ["4WD Vehicle", "Chartered Songthaew", "Hiking (3 Days 2 Nights trip)"],
+    "transportOptions": [
+      "4WD Vehicle",
+      "Chartered Songthaew",
+      "Hiking (3 Days 2 Nights trip)"
+    ],
     "fee": 20,
-    "feeForeigner": 100
+    "feeForeigner": 100,
+    "imageUrl": ""
   },
   {
     "name": "Doi Wiang Pha Waterfall",
@@ -17,9 +22,14 @@
     "descriptionTh": "น้ำตกขนาดกลางที่มีความสูงหลายชั้น ตั้งอยู่ห่างจากที่ทำการอุทยานฯ ประมาณ 8 กม. แวดล้อมด้วยป่าร่มรื่นและมีแอ่งน้ำสำหรับพักผ่อน",
     "parkName": "Doi Wiang Pha National Park",
     "businessHour": "08:00 - 16:30",
-    "transportOptions": ["Private Car", "Motorbike", "Walking"],
+    "transportOptions": [
+      "Private Car",
+      "Motorbike",
+      "Walking"
+    ],
     "fee": 20,
-    "feeForeigner": 100
+    "feeForeigner": 100,
+    "imageUrl": ""
   },
   {
     "name": "Doi Wiang Pha Viewpoint",
@@ -28,9 +38,13 @@
     "descriptionTh": "จุดชมทิวทัศน์ที่ตั้งอยู่ห่างจากหน่วยพิทักษ์อุทยานฯ ประมาณ 30 กม. สามารถมองเห็นแนวเทือกเขาสลับซับซ้อนที่เป็นพรมแดนระหว่างเชียงใหม่และเชียงราย",
     "parkName": "Doi Wiang Pha National Park",
     "businessHour": "06:00 - 18:00",
-    "transportOptions": ["4WD Vehicle", "Motorbike (Experienced)"],
+    "transportOptions": [
+      "4WD Vehicle",
+      "Motorbike (Experienced)"
+    ],
     "fee": 0,
-    "feeForeigner": 0
+    "feeForeigner": 0,
+    "imageUrl": ""
   },
   {
     "name": "Huai Sai Khao Waterfall",
@@ -39,8 +53,13 @@
     "descriptionTh": "น้ำตกที่เข้าถึงได้ง่ายที่สุด อยู่ใกล้กับที่ทำการอุทยานฯ มีแอ่งน้ำขนาดเล็กที่สามารถลงเล่นน้ำได้ในช่วงหลังฤดูฝน",
     "parkName": "Doi Wiang Pha National Park",
     "businessHour": "08:00 - 17:00",
-    "transportOptions": ["Private Car", "Motorbike", "Walking"],
+    "transportOptions": [
+      "Private Car",
+      "Motorbike",
+      "Walking"
+    ],
     "fee": 20,
-    "feeForeigner": 100
+    "feeForeigner": 100,
+    "imageUrl": ""
   }
 ]

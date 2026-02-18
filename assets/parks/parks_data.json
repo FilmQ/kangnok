@@ -236,5 +236,24 @@
     "rangers": [],
     "faunas": [],
     "floras": []
+  },
+  {
+    "name": "Kasetsart University",
+    "nameTh": "มหาวิทยาลัยเกษตรศาสตร์",
+    "description": "Public research university with over 50000 students enrolled with a specialty in agriculural science.",
+    "descriptionTh": "สถาบันอุดมศึกษาในกำกับของรัฐแห่งแรกของประเทศไทยที่เปิดสอนหลักสูตรทางด้านการเกษตร",
+    "location": "50 Ngamwongwan Rd, Lat Yao, Chatuchak, Bangkok 10900",
+    "locationTh": "เลขที่ 50 ถนนงามวงศ์วาน แขวงลาดยาว เขตจตุจักร กรุงเทพมหานคร 10900",
+    "coordinate": "13.8480, 100.5723",
+    "imageUrl": [
+      ""
+    ],
+    "visitorCount": 0,
+    "landmarks": [],
+    "rangers": [],
+    "faunas": [
+      "Aomsin"
+    ],
+    "floras": []
   }
 ]

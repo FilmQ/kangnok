@@ -6,10 +6,17 @@
     "descriptionTh": "จุดชมวิวบนสันเขาที่มองเห็นดอยหลวงเชียงดาวได้อย่างสวยงาม ยอดนิยมสำหรับการกางเต็นท์ชมทะเลหมอก",
     "parkName": "Pha Daeng National Park",
     "businessHour": "05:00 - 18:00",
-    "transportOptions": ["4WD Vehicle Only", "Chartered Songthaew"],
-    "transportOptionsTh": ["รถขับเคลื่อน 4 ล้อเท่านั้น", "รถสองแถวเหมา"],
+    "transportOptions": [
+      "4WD Vehicle Only",
+      "Chartered Songthaew"
+    ],
+    "transportOptionsTh": [
+      "รถขับเคลื่อน 4 ล้อเท่านั้น",
+      "รถสองแถวเหมา"
+    ],
     "fee": 20,
-    "feeForeigner": 100
+    "feeForeigner": 100,
+    "imageUrl": ""
   },
   {
     "name": "Si Sangwan Waterfall",
@@ -18,10 +25,17 @@
     "descriptionTh": "น้ำตกหินปูนหลายชั้นใกล้ที่ทำการอุทยานฯ มีลักษณะพิเศษคือไม่ลื่น สามารถเดินลัดเลาะตัวน้ำตกได้ปลอดภัย",
     "parkName": "Pha Daeng National Park",
     "businessHour": "08:30 - 16:30",
-    "transportOptions": ["Private Car", "Motorbike"],
-    "transportOptionsTh": ["รถยนต์ส่วนตัว", "รถจักรยานยนต์"],
+    "transportOptions": [
+      "Private Car",
+      "Motorbike"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์"
+    ],
     "fee": 20,
-    "feeForeigner": 100
+    "feeForeigner": 100,
+    "imageUrl": ""
   },
   {
     "name": "Pong Ang Hot Springs",
@@ -30,9 +44,16 @@
     "descriptionTh": "บ่อน้ำร้อนธรรมชาติที่มีบ่อแช่น้ำแร่ขนาดใหญ่ 2 บ่อ แวดล้อมด้วยสวนป่าที่ร่มรื่นและเงียบสงบ",
     "parkName": "Pha Daeng National Park",
     "businessHour": "08:00 - 17:00",
-    "transportOptions": ["Private Car", "Motorbike"],
-    "transportOptionsTh": ["รถยนต์ส่วนตัว", "รถจักรยานยนต์"],
+    "transportOptions": [
+      "Private Car",
+      "Motorbike"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์"
+    ],
     "fee": 20,
-    "feeForeigner": 100
+    "feeForeigner": 100,
+    "imageUrl": ""
   }
 ]

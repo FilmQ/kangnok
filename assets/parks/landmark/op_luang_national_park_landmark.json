@@ -6,10 +6,19 @@
     "descriptionTh": "ช่องเขาขาดที่มีสะพานเชื่อมหน้าผาสูงชันเหนือลำน้ำแม่แจ่ม และมีภาพเขียนสีก่อนประวัติศาสตร์ในบริเวณใกล้เคียง",
     "parkName": "Ob Luang National Park",
     "businessHour": "08:30 - 16:30",
-    "transportOptions": ["Private Car", "Motorbike", "Public Bus"],
-    "transportOptionsTh": ["รถยนต์ส่วนตัว", "รถจักรยานยนต์", "รถโดยสารประจำทาง"],
+    "transportOptions": [
+      "Private Car",
+      "Motorbike",
+      "Public Bus"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์",
+      "รถโดยสารประจำทาง"
+    ],
     "fee": 40,
-    "feeForeigner": 200
+    "feeForeigner": 200,
+    "imageUrl": ""
   },
   {
     "name": "Thephana Waterfall",
@@ -18,9 +27,16 @@
     "descriptionTh": "น้ำตกขนาดกลางที่สวยงามมากในช่วงฤดูฝน ตั้งอยู่ริมเส้นทางที่มุ่งหน้าไปทางอำเภอแม่แจ่ม",
     "parkName": "Ob Luang National Park",
     "businessHour": "08:30 - 16:30",
-    "transportOptions": ["Private Car", "Motorbike"],
-    "transportOptionsTh": ["รถยนต์ส่วนตัว", "รถจักรยานยนต์"],
+    "transportOptions": [
+      "Private Car",
+      "Motorbike"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์"
+    ],
     "fee": 40,
-    "feeForeigner": 200
+    "feeForeigner": 200,
+    "imageUrl": ""
   }
 ]

@@ -29,7 +29,6 @@ class _AdminCreateRangerPageState extends State<AdminCreateRangerPage> {
   }
 
   Future<void> onFinishButtonClick() async {
-    final context = this.context;
     final email = _rangerEmailTextbox.text.trim();
     final password = _rangerPasswordTextbox.text.trim();
 
@@ -37,6 +36,7 @@ class _AdminCreateRangerPageState extends State<AdminCreateRangerPage> {
         email.isEmpty ||
         password.isEmpty ||
         _selectedParkName == null) {
+      if (!mounted) return;
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -56,14 +56,12 @@ class _AdminCreateRangerPageState extends State<AdminCreateRangerPage> {
     }
 
     try {
-      // Create a secondary Firebase App to avoid signing out the admin
       final secondaryApp = await Firebase.initializeApp(
         name: 'rangerCreation',
         options: DefaultFirebaseOptions.currentPlatform,
       );
       final secondaryAuth = FirebaseAuth.instanceFor(app: secondaryApp);
 
-      // Create the Firebase Auth account on the secondary app
       final credential = await secondaryAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
@@ -74,15 +72,18 @@ class _AdminCreateRangerPageState extends State<AdminCreateRangerPage> {
       await secondaryAuth.signOut();
       await secondaryApp.delete();
 
-      // Create the Ranger document in Firestore
       final ranger = Ranger(
         email: email,
         parkStation: _selectedParkName!,
         title: 'Ranger',
       );
-      await UserService().createRanger(uid, email, _selectedParkName!, 'Ranger');
 
-      // Add ranger to the park's rangers list
+      await UserService().createRanger(
+        uid,
+        email,
+        _selectedParkName!,
+        'Ranger',
+      );
       await ParkService().addRangerToPark(_selectedParkName!, ranger);
 
       if (mounted) {
@@ -90,7 +91,9 @@ class _AdminCreateRangerPageState extends State<AdminCreateRangerPage> {
           context: context,
           builder: (context) => AlertDialog(
             title: Text("Success"),
-            content: Text("Ranger account created for $email at $_selectedParkName."),
+            content: Text(
+              "Ranger account created for $email at $_selectedParkName.",
+            ),
             actions: [
               TextButton(
                 onPressed: () {
@@ -107,7 +110,9 @@ class _AdminCreateRangerPageState extends State<AdminCreateRangerPage> {
       // Clean up secondary app if it exists
       try {
         await Firebase.app('rangerCreation').delete();
-      } catch (_) {}
+      } catch (e) {
+        debugPrint("Something happened regarding Firebase: $e");
+      }
 
       if (mounted) {
         showDialog(
