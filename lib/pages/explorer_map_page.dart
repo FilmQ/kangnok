@@ -5,8 +5,8 @@ import 'package:kangnok/models/parks/park.dart';
 import 'package:kangnok/providers/park_provider.dart';
 import 'package:latlong2/latlong.dart';
 
-// TODO: Refine this god damn map
-// TASK:
+// TODO: Refine this god damn map 
+// TASK: 
 //  make the card actually a content that displays at the center
 //  add the bottom nav bar to navigate back to user's page
 //  that should be it i think :broken-heart:
@@ -17,6 +17,7 @@ class ExplorerMapPage extends ConsumerStatefulWidget {
 
   @override
   ConsumerState<ExplorerMapPage> createState() => _ExplorerMapPageState();
+  
 }
 
 class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
@@ -25,6 +26,19 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
 
   static const _defaultCenter = LatLng(18.7883, 98.9853); // chiang mai
   static const _defaultZoom = 8.1;
+
+  @override
+  void initState() {
+    super.initState();
+  
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _mapController.mapEventStream.listen((event) {
+        if (mounted) {
+          setState(() {});
+        }
+      });
+    });
+  }
 
   LatLng? _parseCoordinate(String coordinate) {
     try {
@@ -102,9 +116,50 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
               urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
               userAgentPackageName: 'com.kangnok.app',
             ),
-            MarkerLayer(markers: markers),
-          ],
-        ),
+            MarkerLayer(
+              markers: parks.map((park) {
+                final latLng = _parseCoordinate(park.coordinate);
+                if (latLng == null) return Marker(point: LatLng(0,0), child: Container());
+
+                double currentZoom = 0.0;
+                try { currentZoom = _mapController.camera.zoom; } catch (_) {}
+
+                return Marker(
+                  point: latLng,
+                  width: 350, 
+                  height: 100,
+                  alignment: Alignment.bottomCenter,
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _selectedPark = park;
+                      });
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        if (currentZoom > 10.0) 
+                          AnimatedOpacity(
+                            opacity: currentZoom > 10.0 ? 1.0 : 0.0,
+                            duration: const Duration(milliseconds: 700),
+                            curve: Curves.easeInOut,
+                            child: _buildAlwaysShowCard(park.name),
+                          )
+                        else
+                          const SizedBox(height: 0),
+                        Icon(
+                          Icons.location_on,
+                          color: _selectedPark?.name == park.name ? Colors.red : Colors.green,
+                          size: _selectedPark?.name == park.name ? 40 : 30,
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+            ],
+          ),
         Positioned(
           top: 12,
           right: 12,
@@ -223,6 +278,40 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildAlwaysShowCard(String name) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      margin: const EdgeInsets.only(bottom: 4),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.95),
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.15),
+            blurRadius: 6,
+            offset: const Offset(0, 3),
+          ),
+        ],
+        border: Border.all(color: Colors.green.shade200, width: 1),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min, // ทำให้ Container กว้างเท่ากับเนื้อหาข้างใน
+        children: [
+          const Icon(Icons.park, size: 14, color: Colors.green),
+          const SizedBox(width: 6),
+          Text(
+            name,
+            style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
+          ),
+        ],
       ),
     );
   }
