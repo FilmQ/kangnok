@@ -19,6 +19,7 @@ class AdminCreateRangerPage extends StatefulWidget {
 class _AdminCreateRangerPageState extends State<AdminCreateRangerPage> {
   final TextEditingController _rangerEmailTextbox = TextEditingController();
   final TextEditingController _rangerPasswordTextbox = TextEditingController();
+  String? _selectedParkId;
   String? _selectedParkName;
 
   @override
@@ -35,7 +36,7 @@ class _AdminCreateRangerPageState extends State<AdminCreateRangerPage> {
     if (!Validator.isValidEmail(email) ||
         email.isEmpty ||
         password.isEmpty ||
-        _selectedParkName == null) {
+        _selectedParkId == null) {
       if (!mounted) return;
       showDialog(
         context: context,
@@ -74,17 +75,17 @@ class _AdminCreateRangerPageState extends State<AdminCreateRangerPage> {
 
       final ranger = Ranger(
         email: email,
-        parkStation: _selectedParkName!,
+        parkId: _selectedParkId!,
         title: 'Ranger',
       );
 
       await UserService().createRanger(
         uid,
         email,
-        _selectedParkName!,
+        _selectedParkId!,
         'Ranger',
       );
-      await ParkService().addRangerToPark(_selectedParkName!, ranger);
+      await ParkService().addRangerToPark(_selectedParkId!, ranger);
 
       if (mounted) {
         showDialog(
@@ -92,7 +93,7 @@ class _AdminCreateRangerPageState extends State<AdminCreateRangerPage> {
           builder: (context) => AlertDialog(
             title: Text("Success"),
             content: Text(
-              "Ranger account created for $email at $_selectedParkName.",
+              "Ranger account created for $email at ${_selectedParkName ?? _selectedParkId}.",
             ),
             actions: [
               TextButton(
@@ -144,21 +145,26 @@ class _AdminCreateRangerPageState extends State<AdminCreateRangerPage> {
         }
 
         final parks = snapshot.data!.docs.map((doc) {
-          return Park.fromJson(doc.data() as Map<String, dynamic>);
+          return Park.fromJson(doc.data() as Map<String, dynamic>, id: doc.id);
         }).toList();
 
         return DropdownButton<String>(
-          value: _selectedParkName,
+          value: _selectedParkId,
           hint: const Text('Select a park'),
           isExpanded: true,
           items: parks.map((park) {
             return DropdownMenuItem<String>(
-              value: park.name,
+              value: park.id,
               child: Text(park.name),
             );
           }).toList(),
           onChanged: (value) {
-            setState(() => _selectedParkName = value);
+            setState(() {
+              _selectedParkId = value;
+              _selectedParkName = parks
+                  .firstWhere((p) => p.id == value)
+                  .name;
+            });
           },
         );
       },

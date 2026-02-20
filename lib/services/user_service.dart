@@ -58,10 +58,10 @@ class UserService {
   Future<User> createRanger(
     String uid,
     String email,
-    String parkStation,
+    String parkId,
     String title,
   ) async {
-    final ranger = Ranger(email: email, parkStation: parkStation, title: title);
+    final ranger = Ranger(email: email, parkId: parkId, title: title);
     await saveUser(uid, ranger);
     return ranger;
   }

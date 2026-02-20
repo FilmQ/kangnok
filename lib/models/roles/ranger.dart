@@ -4,20 +4,22 @@ class Ranger extends User {
   @override
   String get type => 'ranger';
 
-  String _parkStation;
+  String? id; // Firestore document ID (usually the Firebase Auth UID)
+  String _parkId;
   String _title;
 
   Ranger({
+    this.id,
     required super.email,
-    required String parkStation,
+    required String parkId,
     required String title,
-  }) : _parkStation = parkStation,
+  }) : _parkId = parkId,
        _title = title;
 
-  String get parkStation => _parkStation;
+  String get parkId => _parkId;
   String get title => _title;
 
-  set parkStation(String value) => _parkStation = value;
+  set parkId(String value) => _parkId = value;
   set title(String value) => _title = value;
 
   @override
@@ -26,13 +28,14 @@ class Ranger extends User {
     'email': super.email,
     // this
     'type': 'ranger',
-    'parkStation': parkStation,
+    'parkId': parkId,
     'title': title,
   };
 
-  factory Ranger.fromJson(Map<String, dynamic> json) => Ranger(
+  factory Ranger.fromJson(Map<String, dynamic> json, {String? id}) => Ranger(
+    id: id,
     email: json['email'] as String,
-    parkStation: json['parkStation'] as String,
+    parkId: (json['parkId'] ?? json['parkStation']) as String,
     title: json['title'] as String,
   );
 }

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Announcement {
+  String? id; // Firestore document ID (null when creating, populated on fetch)
   String rangerId;
   String parkId;
   String title;
@@ -10,6 +11,7 @@ class Announcement {
   DateTime createdAt;
 
   Announcement({
+    this.id,
     required this.rangerId,
     required this.parkId,
     required this.title,
@@ -29,13 +31,15 @@ class Announcement {
     if (imageUrl != null) 'imageUrl': imageUrl,
   };
 
-  factory Announcement.fromJson(Map<String, dynamic> json) => Announcement(
-    rangerId: json['rangerId'] as String,
-    parkId: json['parkId'] as String,
-    title: json['title'] as String,
-    content: json['content'] as String,
-    type: json['type'] as String,
-    createdAt: (json['createdAt'] as Timestamp).toDate(),
-    imageUrl: json['imageUrl'] as String?,
-  );
+  factory Announcement.fromJson(Map<String, dynamic> json, {String? id}) =>
+      Announcement(
+        id: id,
+        rangerId: json['rangerId'] as String,
+        parkId: json['parkId'] as String,
+        title: json['title'] as String,
+        content: json['content'] as String,
+        type: json['type'] as String,
+        createdAt: (json['createdAt'] as Timestamp).toDate(),
+        imageUrl: json['imageUrl'] as String?,
+      );
 }

@@ -15,6 +15,7 @@ import 'package:kangnok/models/roles/ranger.dart';
 */
 
 class Park {
+  String? id; // Firestore document ID (null when creating, populated on fetch)
   String name;
   String nameTh;
   String description; // the park's brief description
@@ -24,7 +25,7 @@ class Park {
   String coordinate;
 
   String businessHour; // park's opening and close time.
-  String businessHourTh; 
+  String businessHourTh;
 
   int visitorCount;
 
@@ -37,6 +38,7 @@ class Park {
   DateTime createdAt;
 
   Park({
+    this.id,
     required this.name,
     required this.nameTh,
     required this.description,
@@ -74,11 +76,9 @@ class Park {
     'createdAt': Timestamp.fromDate(createdAt),
   };
 
-  factory Park.fromJson(Map<String, dynamic> json) {
-    print('[Park.fromJson] keys: ${json.keys.toList()}');
-    print('[Park.fromJson] parsing park: ${json['name']}');
-
+  factory Park.fromJson(Map<String, dynamic> json, {String? id}) {
     return Park(
+      id: id,
       name: json['name'] as String,
       nameTh: json['nameTh'] as String,
       description: json['description'] as String,

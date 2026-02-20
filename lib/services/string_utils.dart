@@ -21,7 +21,3 @@ class StringUtils {
     return name.toLowerCase().replaceAll(' ', '_').replaceAll('-', '_');
   }
 }
-
-void main() {
-  print(StringUtils.normalizeForLookup("Lady's Finger Orchid"));
-}

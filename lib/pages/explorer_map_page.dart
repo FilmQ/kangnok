@@ -124,10 +124,12 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
                 double currentZoom = 0.0;
                 try { currentZoom = _mapController.camera.zoom; } catch (_) {}
 
+                final bool showCard = currentZoom > 10.0;
+
                 return Marker(
                   point: latLng,
-                  width: 350, 
-                  height: 100,
+                  width: showCard ? 350 : 40,
+                  height: showCard ? 100 : 40,
                   alignment: Alignment.bottomCenter,
                   child: GestureDetector(
                     onTap: () {

@@ -176,13 +176,14 @@ class ParkService {
 
   // UPDATE:
 
-  /// Adds a ranger to a park's rangers list by park name.
-  Future<void> addRangerToPark(String parkName, Ranger ranger) async {
-    final query = await park.where('name', isEqualTo: parkName).limit(1).get();
-    if (query.docs.isEmpty) {
-      throw ArgumentError('Park "$parkName" not found.');
+  /// Adds a ranger to a park's rangers list by park document ID.
+  Future<void> addRangerToPark(String parkId, Ranger ranger) async {
+    final docRef = park.doc(parkId);
+    final doc = await docRef.get();
+    if (!doc.exists) {
+      throw ArgumentError('Park with ID "$parkId" not found.');
     }
-    await query.docs.first.reference.update({
+    await docRef.update({
       'rangers': FieldValue.arrayUnion([ranger.toJson()]),
     });
   }

@@ -35,7 +35,7 @@ final currentUserProvider = FutureProvider<User?>((ref) async {
         data: (user) {
           if (user == null) return Text('Not logged in');
           if (user is Explorer) return Text('Welcome, ${user.name}');
-          if (user is Ranger) return Text('Ranger at ${user.parkStation}');
+          if (user is Ranger) return Text('Ranger at ${user.parkId}');
           return Text('Unknown user type');
         },
         loading: () => CircularProgressIndicator(),

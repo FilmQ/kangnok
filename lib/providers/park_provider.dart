@@ -9,7 +9,7 @@ final parksStreamProvider = StreamProvider<List<Park>>((ref) {
   final parkService = ref.read(parkServiceProvider);
   return parkService.getParkStream().map((snapshot) {
     return snapshot.docs.map((doc) {
-      return Park.fromJson(doc.data() as Map<String, dynamic>);
+      return Park.fromJson(doc.data() as Map<String, dynamic>, id: doc.id);
     }).toList();
   });
 });
