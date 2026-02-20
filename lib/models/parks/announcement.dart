@@ -6,6 +6,7 @@ class Announcement {
   String title;
   String content;
   String type;
+  String? imageUrl;
   DateTime createdAt;
 
   Announcement({
@@ -15,6 +16,7 @@ class Announcement {
     required this.content,
     required this.type,
     required this.createdAt,
+    this.imageUrl,
   });
 
   Map<String, dynamic> toJson() => {
@@ -24,6 +26,7 @@ class Announcement {
     'content': content,
     'type': type,
     'createdAt': Timestamp.fromDate(createdAt),
+    if (imageUrl != null) 'imageUrl': imageUrl,
   };
 
   factory Announcement.fromJson(Map<String, dynamic> json) => Announcement(
@@ -33,5 +36,6 @@ class Announcement {
     content: json['content'] as String,
     type: json['type'] as String,
     createdAt: (json['createdAt'] as Timestamp).toDate(),
+    imageUrl: json['imageUrl'] as String?,
   );
 }

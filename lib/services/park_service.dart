@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:kangnok/models/roles/ranger.dart';
+import 'package:kangnok/services/string_utils.dart';
 
 class ParkService {
   final CollectionReference park = FirebaseFirestore.instance.collection(
@@ -10,28 +11,7 @@ class ParkService {
   );
   final FirebaseStorage _storage = FirebaseStorage.instance;
 
-  // Suffixes to strip when deriving Storage folder names from park names
-  static const _parkSuffixes = [' National Park'];
-
-  /// Derives the Storage folder name from a park name.
-  /// e.g. "Doi Inthanon National Park" -> "doi_inthanon"
-  String _storageFolderName(String parkName) {
-    var stripped = parkName;
-    for (final suffix in _parkSuffixes) {
-      if (stripped.endsWith(suffix)) {
-        stripped = stripped.substring(0, stripped.length - suffix.length);
-        break;
-      }
-    }
-    return stripped.toLowerCase().replaceAll(' ', '_').replaceAll('-', '_');
-  }
-
-  /// Normalizes a name for lookup matching: lowercase, spaces/hyphens to underscores.
-  String _normalizeForLookup(String name) {
-    return name.toLowerCase().replaceAll(' ', '_').replaceAll('-', '_');
-  }
-
-  /// Lists all files in a Storage folder and returns a map of
+/// Lists all files in a Storage folder and returns a map of
   /// { normalized filename without extension -> download URL }.
   Future<Map<String, String>> _buildImageLookup(String folderPath) async {
     final lookup = <String, String>{};
@@ -46,7 +26,7 @@ class ParkService {
         final baseName = fullName.contains('.')
             ? fullName.substring(0, fullName.lastIndexOf('.'))
             : fullName;
-        final normalizedKey = _normalizeForLookup(baseName);
+        final normalizedKey = StringUtils.normalizeForLookup(baseName);
         print('[Storage] Mapped: "$normalizedKey" -> ${item.name}');
         lookup[normalizedKey] = url;
       }
@@ -90,7 +70,7 @@ class ParkService {
           .toLowerCase()
           .replaceAll(' ', '_')
           .replaceAll('-', '_');
-      final storageName = _storageFolderName(parkName);
+      final storageName = StringUtils.storageFolderName(parkName);
 
       // -- Resolve front page images from Storage --
       final frontPageUrls = await _listAllImageUrls(
@@ -113,7 +93,7 @@ class ParkService {
         );
         for (var fauna in faunaList) {
           final name = fauna['name'] as String;
-          final normalized = _normalizeForLookup(name);
+          final normalized = StringUtils.normalizeForLookup(name);
           final url = faunaLookup[normalized] ?? '';
           fauna['imageUrl'] = url;
           print('[Fauna] "$name" -> normalized: "$normalized" -> '
@@ -142,7 +122,7 @@ class ParkService {
         );
         for (var flora in floraList) {
           final name = flora['name'] as String;
-          flora['imageUrl'] = floraLookup[_normalizeForLookup(name)] ?? '';
+          flora['imageUrl'] = floraLookup[StringUtils.normalizeForLookup(name)] ?? '';
         }
 
         parkJson['floras'] = floraList;
@@ -165,7 +145,7 @@ class ParkService {
         );
         for (var landmark in landmarkList) {
           final name = landmark['name'] as String;
-          landmark['imageUrl'] = landmarkLookup[_normalizeForLookup(name)] ?? '';
+          landmark['imageUrl'] = landmarkLookup[StringUtils.normalizeForLookup(name)] ?? '';
         }
 
         parkJson['landmarks'] = landmarkList;
