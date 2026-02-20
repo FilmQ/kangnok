@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kangnok/pages/explorer_achievement_page.dart';
+import 'package:kangnok/pages/explorer_map_page.dart';
 import '../services/weather_service.dart';
+import 'package:kangnok/providers/explorer_profile_provider.dart';
 
 enum WidgetType { pollution, weather }
 
@@ -98,11 +100,11 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // 1. กำหนดหน้าที่จะแสดงในแต่ละ Tab ให้ตรงกับ Label ด้านล่าง
+    // 1. กำหนดหน้าที่จะแสดงในแต่ละ Tab ให้ตรงกับ Label ด้านล่าง 
     final List<Widget> pages = [
-      _buildHomeContent(),                          // Index 0: Home
-      const AchievementPage(),  // Index 1: Achievement
-      const Center(child: Text("Map Page")),        // Index 2: Map
+      _buildHomeContent(ref),                      // Index 0: Home
+      const AchievementPage(),        // Index 1: Achievement
+      const ExplorerMapPage(),        // Index 2: Map
       const Center(child: Text("Cosmetics Page")),  // Index 3: Cosmetics
       const Center(child: Text("Profile Settings")), 
     ];
@@ -112,10 +114,7 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: (index) {
-          if (index == 2) {
-            Navigator.pushNamed(context, '/explorer_map');
-            return;
-          } else if (index == 4) {
+          if (index == 4) {
             Navigator.pushNamed(context, '/explorer_profile');
             return;
           }
@@ -127,7 +126,7 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
         unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.people), label: "Achievement"), // เปลี่ยน icon เป็น people ให้เข้ากับ Social
+          BottomNavigationBarItem(icon: Icon(Icons.people), label: "Achievement"), 
           BottomNavigationBarItem(icon: Icon(Icons.map), label: "Map"),
           BottomNavigationBarItem(
             icon: Icon(Icons.auto_awesome),
@@ -140,86 +139,57 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
   }
 
   // --- หน้าเนื้อหาหลัก (Home Content) ---
-  Widget _buildHomeContent() {
+  Widget _buildHomeContent(WidgetRef ref) { // เพิ่ม WidgetRef เข้ามา
+    final profileAsyncValue = ref.watch(explorerProfileProvider);
+
     return SafeArea(
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 1. User Bar
-            _uid.isEmpty
-                ? Row(
-                    children: [
-                      const CircleAvatar(
-                        radius: 25,
-                        backgroundColor: Colors.blueAccent,
-                        child: Icon(Icons.person, color: Colors.white),
-                      ),
-                      const SizedBox(width: 12),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "Welcome back,",
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                          const Text(
-                            "Explorer",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )
-                : StreamBuilder<DocumentSnapshot>(
-                    stream: FirebaseFirestore.instance
-                        .collection('users')
-                        .doc(_uid)
-                        .snapshots(),
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const SizedBox(
-                          height: 50,
-                          child: Center(child: CircularProgressIndicator()),
-                        );
-                      }
-                      var userData =
-                          snapshot.data?.data() as Map<String, dynamic>?;
-                      String name = userData?['username'] ?? "Explorer";
+            profileAsyncValue.when(
+              loading: () => const SizedBox(
+                height: 50,
+                child: Center(child: CircularProgressIndicator()),
+              ),
+              error: (err, stack) => _buildGuestHeader(), // ถ้า error ให้โชว์แบบ Guest
+              data: (explorer) {
+                if (explorer == null) return _buildGuestHeader();
 
-                      return Row(
-                        children: [
-                          const CircleAvatar(
-                            radius: 25,
-                            backgroundColor: Colors.blueAccent,
-                            child: Icon(Icons.person, color: Colors.white),
+                return Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 25,
+                      backgroundColor: Colors.blueAccent,
+                      backgroundImage: explorer.profileImageUrl != null
+                          ? NetworkImage(explorer.profileImageUrl!)
+                          : null,
+                      child: explorer.profileImageUrl == null
+                          ? const Icon(Icons.person, color: Colors.white)
+                          : null,
+                    ),
+                    const SizedBox(width: 12),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Welcome back",
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        Text(
+                          explorer.name, // ✅ ดึงจาก explorer.name (ตรงกับใน DB)
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
                           ),
-                          const SizedBox(width: 12),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                "Welcome back,",
-                                style: TextStyle(color: Colors.grey),
-                              ),
-                              Text(
-                                name,
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-
+                        ),
+                      ],
+                    ),
+                  ],
+                );
+              },
+            ),
             const SizedBox(height: 30),
 
             // 2. Quick Info Header
@@ -385,4 +355,24 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
       ),
     );
   }
+}
+
+Widget _buildGuestHeader() {
+  return Row(
+    children: [
+      const CircleAvatar(
+        radius: 25,
+        backgroundColor: Colors.grey,
+        child: Icon(Icons.person, color: Colors.white),
+      ),
+      const SizedBox(width: 12),
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text("Welcome,", style: TextStyle(color: Colors.grey)),
+          const Text("Explorer", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        ],
+      ),
+    ],
+  );
 }

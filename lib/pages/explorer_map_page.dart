@@ -60,14 +60,14 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
   @override
   Widget build(BuildContext context) {
     final parksAsync = ref.watch(parksStreamProvider);
-
+    
     return Scaffold(
-      appBar: AppBar(title: const Text(""), centerTitle: true),
+      //appBar: AppBar(title: const Text(""), centerTitle: true, backgroundColor: Color(0x44000000)),
       body: parksAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('Error loading parks: $e')),
         data: (parks) => _buildMap(parks),
-      ),
+      )
     );
   }
 
@@ -94,7 +94,7 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
               Icons.location_on,
               color: _selectedPark?.name == park.name
                   ? Colors.red
-                  : Colors.green.shade700,
+                  : Colors.blue.shade900,
               size: _selectedPark?.name == park.name ? 40 : 36,
             ),
           ),
@@ -149,7 +149,7 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
                           const SizedBox(height: 0),
                         Icon(
                           Icons.location_on,
-                          color: _selectedPark?.name == park.name ? Colors.red : Colors.green,
+                          color: _selectedPark?.name == park.name ? Colors.red : Colors.blue.shade900,
                           size: _selectedPark?.name == park.name ? 40 : 30,
                         ),
                       ],
@@ -161,7 +161,7 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
             ],
           ),
         Positioned(
-          top: 12,
+          top: 50,
           right: 12,
           child: FloatingActionButton.small(
             heroTag: 'recenter',
@@ -172,7 +172,7 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
           ),
         ),
         Positioned(
-          top: 56,
+          top: 100,
           right: 12,
           child: FloatingActionButton.small(
             heroTag: 'ku',

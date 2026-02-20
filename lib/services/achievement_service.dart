@@ -17,7 +17,6 @@ class AchievementService {
       batch.set(docRef, item);
     }
     await batch.commit();
-    print("Seed Achievements Success!");
   }
 
   // สำหรับหน้า Explorer: ดึง Achievement ทั้งหมด
@@ -33,5 +32,32 @@ class AchievementService {
     if (!doc.exists) return {'parkVisited': [], 'reviewCount': 0}; // คืนค่า Default ถ้าไม่เจอ User Doc
     return doc.data() as Map<String, dynamic>;
   });
+  }
+
+  /// 1. ลบ Achievement ทั้งหมดที่มีในคอลเลกชัน (มีประโยชน์มากเวลาจะ Re-seed ข้อมูล)
+  Future<void> deleteAllAchievements() async {
+    final collection = await _db.collection('achievements').get();
+    final batch = _db.batch();
+
+    for (final doc in collection.docs) {
+      batch.delete(doc.reference);
+    }
+
+    return batch.commit();
+  }
+
+  /// 2. ลบ Achievement เฉพาะรายการ (ต้องใช้ Document ID)
+  Future<void> deleteAchievementById(String docId) async {
+    try {
+      await _db.collection('achievements').doc(docId).delete();
+    } catch (e) {
+      throw Exception("Failed to delete achievement: $e");
+    }
+  }
+
+  /// 3. (แนะนำเพิ่ม) ล้างและลงข้อมูลใหม่ในฟังก์ชันเดียว
+  Future<void> resetAndSeedAchievements() async {
+    await deleteAllAchievements(); // ลบของเก่าก่อน
+    await seedAchievements();      // ลงของใหม่ตาม JSON
   }
 }

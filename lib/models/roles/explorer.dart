@@ -8,6 +8,8 @@ class Explorer extends User {
   List<String> _parkVisited;
   int _reviewCount;
   int _reviewLikes;
+  String? _bio;
+  String? _profileImageUrl;
 
   Explorer({
     required super.email,
@@ -15,10 +17,14 @@ class Explorer extends User {
     required List<String> parkVisited,
     required int reviewCount,
     required int reviewLikes,
+    String? bio,              
+    String? profileImageUrl,  
   }) : _name = name,
        _parkVisited = parkVisited,
        _reviewCount = reviewCount,
-       _reviewLikes = reviewLikes;
+       _reviewLikes = reviewLikes,
+       _bio = bio,
+       _profileImageUrl = profileImageUrl;
 
   String get name => _name;
   set name(String newName) => _name = newName;
@@ -32,13 +38,21 @@ class Explorer extends User {
   int get reviewLikes => _reviewLikes;
   set reviewLikes(int newReviewLikes) => _reviewLikes = newReviewLikes;
 
+  String? get bio => _bio;
+  set bio(String? newBio) => _bio = newBio;
+
+  String? get profileImageUrl => _profileImageUrl;
+  set profileImageUrl(String? newUrl) => _profileImageUrl = newUrl;
+
   factory Explorer.fromJson(Map<String, dynamic> json) {
     return Explorer(
       email: json['email'] as String,
       name: json['name'] as String,
-      parkVisited: List<String>.from(json['parkVisited'] as List),
-      reviewCount: json['reviewCount'] as int,
-      reviewLikes: json['reviewLikes'] as int,
+      parkVisited: List<String>.from(json['parkVisited'] ?? []),
+      reviewCount: json['reviewCount'] as int? ?? 0,
+      reviewLikes: json['reviewLikes'] as int? ?? 0,
+      bio: json['bio'] as String?,                     
+      profileImageUrl: json['profileImageUrl'] as String?,   
     );
   }
 
@@ -51,6 +65,8 @@ class Explorer extends User {
       'parkVisited': parkVisited,
       'reviewCount': reviewCount,
       'reviewLikes': reviewLikes,
+      'bio': bio,                       
+      'profileImageUrl': profileImageUrl, 
     };
   }
 }

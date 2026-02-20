@@ -148,18 +148,19 @@ class AchievementPage extends StatelessWidget {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(16),
-                  child: ColorFiltered(
+                child: ColorFiltered(
                     colorFilter: unlocked 
                         ? const ColorFilter.mode(Colors.transparent, BlendMode.multiply)
                         : const ColorFilter.mode(Colors.grey, BlendMode.saturation),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Image.network(
-                        ach.thumbnail,
-                        fit: BoxFit.contain,
-                        errorBuilder: (context, error, stackTrace) => 
-                            const Icon(Icons.military_tech, size: 40, color: Colors.grey),
-                      ),
+                    child: Image.network(
+                      ach.thumbnail,
+                      fit: BoxFit.cover, 
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return const Center(child: CircularProgressIndicator(strokeWidth: 2));
+                      },
+                      errorBuilder: (context, error, stackTrace) => 
+                          const Icon(Icons.military_tech, size: 40, color: Colors.grey),
                     ),
                   ),
                 ),

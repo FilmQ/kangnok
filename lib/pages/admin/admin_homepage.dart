@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kangnok/services/park_service.dart';
+import 'package:kangnok/services/achievement_service.dart';
 
 class AdminHomepage extends ConsumerStatefulWidget {
   const AdminHomepage({super.key});
@@ -29,6 +30,12 @@ class _AdminHomepageState extends ConsumerState<AdminHomepage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(onPressed: ParkService().seedParks, child: Text("Seed Parks")),
+                const SizedBox(height: 16),
+                ElevatedButton(onPressed: AchievementService().seedAchievements, child: Text("Seed Achievements")),
+                const SizedBox(height: 16),
+                ElevatedButton(onPressed: AchievementService().deleteAllAchievements, child: Text("Delete All Achievements")),
+                const SizedBox(height: 16),
+                ElevatedButton(onPressed: AchievementService().resetAndSeedAchievements, child: Text("Reset Achievements")),
               ],
             ),
           ),
@@ -51,4 +58,6 @@ class _AdminHomepageState extends ConsumerState<AdminHomepage> {
   Widget build(BuildContext context) {
     return _mainScreen();
   }
+
+
 }
