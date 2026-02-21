@@ -11,7 +11,7 @@ class ParkService {
   );
   final FirebaseStorage _storage = FirebaseStorage.instance;
 
-/// Lists all files in a Storage folder and returns a map of
+  /// Lists all files in a Storage folder and returns a map of
   /// { normalized filename without extension -> download URL }.
   Future<Map<String, String>> _buildImageLookup(String folderPath) async {
     final lookup = <String, String>{};

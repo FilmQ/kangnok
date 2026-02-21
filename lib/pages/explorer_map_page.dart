@@ -5,8 +5,8 @@ import 'package:kangnok/models/parks/park.dart';
 import 'package:kangnok/providers/park_provider.dart';
 import 'package:latlong2/latlong.dart';
 
-// TODO: Refine this god damn map 
-// TASK: 
+// TODO: Refine this god damn map
+// TASK:
 //  make the card actually a content that displays at the center
 //  add the bottom nav bar to navigate back to user's page
 //  that should be it i think :broken-heart:
@@ -17,7 +17,6 @@ class ExplorerMapPage extends ConsumerStatefulWidget {
 
   @override
   ConsumerState<ExplorerMapPage> createState() => _ExplorerMapPageState();
-  
 }
 
 class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
@@ -30,7 +29,7 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
   @override
   void initState() {
     super.initState();
-  
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _mapController.mapEventStream.listen((event) {
         if (mounted) {
@@ -53,21 +52,30 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
     }
   }
 
-  Widget _universityButton() {
-    return FloatingActionButton(onPressed: () {}, child: Text("KU"));
+  Widget _universityButton(List<Park> parks) {
+    return FloatingActionButton.small(
+      onPressed: () {
+        Navigator.pushNamed(
+          context,
+          '/park',
+          arguments: parks.firstWhere((p) => p.name == "Kasetsart University"),
+        );
+      },
+      child: Text("KU"),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final parksAsync = ref.watch(parksStreamProvider);
-    
+
     return Scaffold(
       //appBar: AppBar(title: const Text(""), centerTitle: true, backgroundColor: Color(0x44000000)),
       body: parksAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('Error loading parks: $e')),
         data: (parks) => _buildMap(parks),
-      )
+      ),
     );
   }
 
@@ -119,10 +127,13 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
             MarkerLayer(
               markers: parks.map((park) {
                 final latLng = _parseCoordinate(park.coordinate);
-                if (latLng == null) return Marker(point: LatLng(0,0), child: Container());
+                if (latLng == null)
+                  return Marker(point: LatLng(0, 0), child: Container());
 
                 double currentZoom = 0.0;
-                try { currentZoom = _mapController.camera.zoom; } catch (_) {}
+                try {
+                  currentZoom = _mapController.camera.zoom;
+                } catch (_) {}
 
                 final bool showCard = currentZoom > 10.0;
 
@@ -140,7 +151,7 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        if (currentZoom > 10.0) 
+                        if (currentZoom > 10.0)
                           AnimatedOpacity(
                             opacity: currentZoom > 10.0 ? 1.0 : 0.0,
                             duration: const Duration(milliseconds: 700),
@@ -151,7 +162,9 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
                           const SizedBox(height: 0),
                         Icon(
                           Icons.location_on,
-                          color: _selectedPark?.name == park.name ? Colors.red : Colors.blue.shade900,
+                          color: _selectedPark?.name == park.name
+                              ? Colors.red
+                              : Colors.blue.shade900,
                           size: _selectedPark?.name == park.name ? 40 : 30,
                         ),
                       ],
@@ -160,8 +173,8 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
                 );
               }).toList(),
             ),
-            ],
-          ),
+          ],
+        ),
         Positioned(
           top: 50,
           right: 12,
@@ -173,20 +186,7 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
             child: const Icon(Icons.my_location),
           ),
         ),
-        Positioned(
-          top: 100,
-          right: 12,
-          child: FloatingActionButton.small(
-            heroTag: 'ku',
-            onPressed: () {
-              final ku = parks.where((p) => p.name == 'Kasetsart University').firstOrNull;
-              if (ku != null) {
-                Navigator.pushNamed(context, '/park', arguments: ku);
-              }
-            },
-            child: Text("KU"),
-          ),
-        ),
+        Positioned(top: 100, right: 12, child: _universityButton(parks)),
         if (_selectedPark != null) _buildParkCard(_selectedPark!),
       ],
     );
@@ -301,7 +301,8 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
         border: Border.all(color: Colors.green.shade200, width: 1),
       ),
       child: Row(
-        mainAxisSize: MainAxisSize.min, // ทำให้ Container กว้างเท่ากับเนื้อหาข้างใน
+        mainAxisSize:
+            MainAxisSize.min, // ทำให้ Container กว้างเท่ากับเนื้อหาข้างใน
         children: [
           const Icon(Icons.park, size: 14, color: Colors.green),
           const SizedBox(width: 6),

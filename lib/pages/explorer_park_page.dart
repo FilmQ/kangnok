@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kangnok/models/parks/park.dart';
+import 'package:kangnok/services/announcement_service.dart';
 
 // TODO: by order:
 // TODO: add the park's functionality here
@@ -15,6 +17,20 @@ class ExplorerParkPage extends StatefulWidget {
 class _ExplorerParkPageState extends State<ExplorerParkPage> {
   int _currentPage = 0;
   final int _totalPages = 2;
+  Stream<QuerySnapshot>? _announcementService;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_announcementService == null) {
+      final park = ModalRoute.of(context)!.settings.arguments as Park?;
+      if (park?.id != null) {
+        _announcementService = AnnouncementService().getAnnouncementsForPark(
+          park!.id!,
+        );
+      }
+    }
+  }
 
   // This function builds a widget that creates the green dot image locator.
   Widget _placeImageLocatorDots() {
@@ -42,7 +58,7 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
         .toList();
   }
 
-  Widget _buildDescription(Park park) {
+  Widget _buildDescriptionTab(Park park) {
     return ListView(
       padding: EdgeInsets.all(16),
       children: [
@@ -114,42 +130,60 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
               children: [
                 Text("Faunas", style: TextStyle(fontSize: 30)),
                 SizedBox(height: 10),
-                ...park.faunas.map((fauna) => Padding(
-                  padding: EdgeInsets.only(bottom: 8),
-                  child: Card(
-                    child: Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Row(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: SizedBox(
-                              width: 70,
-                              height: 70,
-                              child: fauna.imageUrl.isNotEmpty
-                                  ? Image.network(fauna.imageUrl, fit: BoxFit.cover)
-                                  : Container(
-                                      color: Colors.grey.shade300,
-                                      child: Icon(Icons.pets, color: Colors.grey.shade600),
+                ...park.faunas.map(
+                  (fauna) => Padding(
+                    padding: EdgeInsets.only(bottom: 8),
+                    child: Card(
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Row(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: SizedBox(
+                                width: 70,
+                                height: 70,
+                                child: fauna.imageUrl.isNotEmpty
+                                    ? Image.network(
+                                        fauna.imageUrl,
+                                        fit: BoxFit.cover,
+                                      )
+                                    : Container(
+                                        color: Colors.grey.shade300,
+                                        child: Icon(
+                                          Icons.pets,
+                                          color: Colors.grey.shade600,
+                                        ),
+                                      ),
+                              ),
+                            ),
+                            SizedBox(width: 12),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    fauna.name,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
                                     ),
+                                  ),
+                                  SizedBox(height: 4),
+                                  Text(
+                                    fauna.description,
+                                    maxLines: 3,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 12),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(fauna.name, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                                SizedBox(height: 4),
-                                Text(fauna.description, maxLines: 3, overflow: TextOverflow.ellipsis),
-                              ],
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                )),
+                ),
               ],
             ),
           ),
@@ -163,42 +197,60 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
               children: [
                 Text("Floras", style: TextStyle(fontSize: 30)),
                 SizedBox(height: 10),
-                ...park.floras.map((flora) => Padding(
-                  padding: EdgeInsets.only(bottom: 8),
-                  child: Card(
-                    child: Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Row(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: SizedBox(
-                              width: 70,
-                              height: 70,
-                              child: flora.imageUrl.isNotEmpty
-                                  ? Image.network(flora.imageUrl, fit: BoxFit.cover)
-                                  : Container(
-                                      color: Colors.grey.shade300,
-                                      child: Icon(Icons.local_florist, color: Colors.grey.shade600),
+                ...park.floras.map(
+                  (flora) => Padding(
+                    padding: EdgeInsets.only(bottom: 8),
+                    child: Card(
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Row(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: SizedBox(
+                                width: 70,
+                                height: 70,
+                                child: flora.imageUrl.isNotEmpty
+                                    ? Image.network(
+                                        flora.imageUrl,
+                                        fit: BoxFit.cover,
+                                      )
+                                    : Container(
+                                        color: Colors.grey.shade300,
+                                        child: Icon(
+                                          Icons.local_florist,
+                                          color: Colors.grey.shade600,
+                                        ),
+                                      ),
+                              ),
+                            ),
+                            SizedBox(width: 12),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    flora.name,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
                                     ),
+                                  ),
+                                  SizedBox(height: 4),
+                                  Text(
+                                    flora.description,
+                                    maxLines: 3,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 12),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(flora.name, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                                SizedBox(height: 4),
-                                Text(flora.description, maxLines: 3, overflow: TextOverflow.ellipsis),
-                              ],
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                )),
+                ),
               ],
             ),
           ),
@@ -207,11 +259,50 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
     );
   }
 
+  Widget _buildAnnouncementTab() {
+    return StreamBuilder(
+      stream: _announcementService,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          final announcements = snapshot.data?.docs ?? [];
+          return ListView.builder(
+            itemCount: announcements.length,
+            itemBuilder: (context, index) {
+              DocumentSnapshot document = announcements[index];
+              String docId = document.id;
+
+              Map<String, dynamic> data =
+                  document.data() as Map<String, dynamic>;
+
+              String rangerName = data['rangerName'];
+              String title = data['title'];
+              String content = data['content'];
+              DateTime createdAt = data['createdAt'];
+
+              return Card(
+                child: Column(
+                  mainAxisAlignment: .center,
+                  children: [
+                    Text(title),
+                    Text(rangerName),
+                    Text(content),
+                    Text(createdAt.toString()),
+                  ],
+                ),
+              );
+            },
+          );
+        } else {
+          return Center(child: Text("No announcement has been made yet!"));
+        }
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final park = ModalRoute.of(context)!.settings.arguments as Park?;
     final parkName = park?.name ?? "Park's page";
-
     return DefaultTabController(
       length: 4,
       child: Scaffold(
@@ -266,12 +357,8 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
           // PLACEHOLDER DATA. CHANGE LATER.
           body: TabBarView(
             children: [
-              ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) =>
-                    ListTile(title: Text("Announcement ${index + 1}")),
-              ),
-              _buildDescription(park!),
+              _buildAnnouncementTab(),
+              _buildDescriptionTab(park!),
               ListView.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) =>
