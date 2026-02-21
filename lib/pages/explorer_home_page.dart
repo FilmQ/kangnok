@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kangnok/pages/explorer_achievement_page.dart';
 import 'package:kangnok/pages/explorer_map_page.dart';
 import '../services/weather_service.dart';

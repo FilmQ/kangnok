@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Review {
+  String? id; 
   String authorId;
+  String authorName;
   String parkId;
   String content;
   List<String> imageUrls;
@@ -10,7 +12,9 @@ class Review {
   DateTime createdAt;
 
   Review({
+    this.id,
     required this.authorId,
+    required this.authorName,
     required this.parkId,
     required this.content,
     required this.imageUrls,
@@ -21,6 +25,7 @@ class Review {
 
   Map<String, dynamic> toJson() => {
     'authorId': authorId,
+    'authorName': authorName,
     'parkId': parkId,
     'content': content,
     'imageUrls': imageUrls,
@@ -29,8 +34,10 @@ class Review {
     'createdAt': Timestamp.fromDate(createdAt),
   };
 
-  factory Review.fromJson(Map<String, dynamic> json) => Review(
+  factory Review.fromJson(Map<String, dynamic> json, {String? id}) => Review(
+    id: id,
     authorId: json['authorId'] as String,
+    authorName: json['authorName'] as String,
     parkId: json['parkId'] as String,
     content: json['content'] as String,
     imageUrls: List<String>.from(json['imageUrls'] as List),
