@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:kangnok/models/parks/announcement.dart';
 import 'package:kangnok/models/parks/park.dart';
 import 'package:kangnok/models/parks/review.dart';
+import 'package:kangnok/models/roles/ranger.dart';
 import 'package:kangnok/services/announcement_service.dart';
+import 'package:kangnok/services/ranger_service.dart';
 import 'package:kangnok/services/review_service.dart';
 
 // TODO: by order:
@@ -22,17 +24,21 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
   final int _totalPages = 2;
   Stream<QuerySnapshot>? _announcementService;
   Stream<QuerySnapshot>? _reviewService;
+  Stream<QuerySnapshot>? _rangerService;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (_announcementService == null || _reviewService == null) {
+    if (_announcementService == null ||
+        _reviewService == null ||
+        _rangerService == null) {
       final park = ModalRoute.of(context)!.settings.arguments as Park?;
       if (park?.id != null) {
         _announcementService = AnnouncementService().getAnnouncementsFromPark(
           park!.id!,
         );
         _reviewService = ReviewService().getReviewsFromPark(park.id!);
+        _rangerService = RangerService().getRangersFromPark(park.id!);
       }
     }
   }
@@ -312,6 +318,116 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
     );
   }
 
+  Widget _buildImageGrid(List<String> imageUrls) {
+    const double gap = 2;
+    const double gridHeight = 200;
+
+    Widget image(String url) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(4),
+        child: Image.network(
+          url,
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,
+        ),
+      );
+    }
+
+    if (imageUrls.length == 1) {
+      return SizedBox(
+        height: gridHeight,
+        width: double.infinity,
+        child: image(imageUrls[0]),
+      );
+    }
+
+    if (imageUrls.length == 2) {
+      return SizedBox(
+        height: gridHeight,
+        child: Row(
+          children: [
+            Expanded(child: image(imageUrls[0])),
+            SizedBox(width: gap),
+            Expanded(child: image(imageUrls[1])),
+          ],
+        ),
+      );
+    }
+
+    if (imageUrls.length == 3) {
+      return SizedBox(
+        height: gridHeight,
+        child: Row(
+          children: [
+            Expanded(child: image(imageUrls[0])),
+            SizedBox(width: gap),
+            Expanded(
+              child: Column(
+                children: [
+                  Expanded(child: image(imageUrls[1])),
+                  SizedBox(height: gap),
+                  Expanded(child: image(imageUrls[2])),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    // 4+ images: 2x2 grid
+    final remaining = imageUrls.length - 4;
+    return SizedBox(
+      height: gridHeight,
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              children: [
+                Expanded(child: image(imageUrls[0])),
+                SizedBox(height: gap),
+                Expanded(child: image(imageUrls[2])),
+              ],
+            ),
+          ),
+          SizedBox(width: gap),
+          Expanded(
+            child: Column(
+              children: [
+                Expanded(child: image(imageUrls[1])),
+                SizedBox(height: gap),
+                Expanded(
+                  child: remaining > 0
+                      ? Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            image(imageUrls[3]),
+                            Container(
+                              color: Colors.black54,
+                              child: Center(
+                                child: Text(
+                                  '+$remaining',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      : image(imageUrls[3]),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildReviewTab() {
     return StreamBuilder(
       stream: _reviewService,
@@ -321,16 +437,18 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
         }
         if (snapshot.hasError) {
           return Center(
-            child: Card(
-              child: Column(
-                mainAxisAlignment: .center,
-                children: [
-                  Icon(Icons.warning),
-                  Text(
-                    "We cannot load the reviews right now. Sorry for the inconvenience!",
-                    textAlign: .center,
-                  ),
-                ],
+            child: Center(
+              child: Card(
+                child: Column(
+                  mainAxisAlignment: .center,
+                  children: [
+                    Icon(Icons.warning),
+                    Text(
+                      "We cannot load the reviews right now. Sorry for the inconvenience!",
+                      textAlign: .center,
+                    ),
+                  ],
+                ),
               ),
             ),
           );
@@ -352,11 +470,29 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
                 id: reviews[index].id,
               );
               return Card(
-                child: Row(
+                clipBehavior: Clip.antiAlias,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(review.authorName),
-                    Text(review.content),
-                    Text(review.likeCount.toString()),
+                    if (review.imageUrls != null &&
+                        review.imageUrls!.isNotEmpty)
+                      _buildImageGrid(review.imageUrls!),
+                    Padding(
+                      padding: EdgeInsets.all(12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            review.authorName,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: 4),
+                          Text(review.content),
+                          SizedBox(height: 4),
+                          Text(review.likeCount.toString()),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               );
@@ -367,6 +503,77 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
         return Center(
           child: Text(
             "This shouldn't happen... but we couldn't load the reviews",
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildRangerTab() {
+    return StreamBuilder(
+      stream: _rangerService,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == .waiting) {
+          return CircularProgressIndicator();
+        }
+
+        if (snapshot.hasError) {
+          return Center(
+            child: Center(
+              child: Card(
+                child: Column(
+                  mainAxisAlignment: .center,
+                  children: [
+                    Icon(Icons.warning),
+                    Text(
+                      "We cannot load the reviews right now. Sorry for the inconvenience!",
+                      textAlign: .center,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        }
+
+        if (snapshot.hasData) {
+          final rangers = snapshot.data?.docs ?? [];
+
+          if (rangers.isEmpty) {
+            return Center(
+              child: Text(
+                "No rangers for this park are announced as of yet",
+                textAlign: .center,
+              ),
+            );
+          }
+
+          return ListView.builder(
+            itemCount: rangers.length,
+            itemBuilder: (context, index) {
+              final ranger = Ranger.fromJson(
+                rangers[index] as Map<String, dynamic>,
+                id: rangers[index].id,
+              );
+              return Center(
+                child: Card(
+                  child: Row(
+                    children: [
+                      if (ranger.profileImageUrl != null)
+                        Image.network(ranger.profileImageUrl!),
+                      Text(ranger.title),
+                      Text(ranger.email),
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
+        }
+        return Center(
+          child: Text(
+            "This shouldn't happen, \nbut we couldn't load the rangers right now!",
+            textAlign: .center,
           ),
         );
       },
@@ -428,20 +635,12 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
               ),
             ];
           },
-          // PLACEHOLDER DATA. CHANGE LATER.
           body: TabBarView(
             children: [
               _buildAnnouncementTab(),
               _buildDescriptionTab(park!),
               _buildReviewTab(),
-              ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) => ListTile(
-                  leading: CircleAvatar(child: Text("${index + 1}")),
-                  title: Text("Ranger ${index + 1}"),
-                  subtitle: Text("Station staff"),
-                ),
-              ),
+              _buildRangerTab(),
             ],
           ),
         ),

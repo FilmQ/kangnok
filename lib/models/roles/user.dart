@@ -22,7 +22,7 @@ abstract class User {
   String get email => _email;
   set email(String newEmail) {
     if (!Validator.isValidEmail(newEmail)) {
-      throw ArgumentError("$email is not a valid email.");
+      throw ArgumentError("$newEmail is not a valid email.");
     }
     _email = newEmail;
   }

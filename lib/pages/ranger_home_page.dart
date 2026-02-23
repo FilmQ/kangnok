@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:kangnok/services/achievement_service.dart';
 
 class RangerHomePage extends ConsumerWidget {
   const RangerHomePage({super.key});

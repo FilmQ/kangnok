@@ -6,7 +6,7 @@ class Review {
   String authorName;
   String parkId;
   String content;
-  List<String> imageUrls;
+  List<String>? imageUrls;
   int likeCount;
   List<String> likedBy;
   DateTime createdAt;
@@ -17,7 +17,7 @@ class Review {
     required this.authorName,
     required this.parkId,
     required this.content,
-    required this.imageUrls,
+    this.imageUrls,
     required this.likeCount,
     required this.likedBy,
     required this.createdAt,
@@ -40,7 +40,9 @@ class Review {
     authorName: json['authorName'] as String,
     parkId: json['parkId'] as String,
     content: json['content'] as String,
-    imageUrls: List<String>.from(json['imageUrls'] as List),
+    imageUrls: json['imageUrls'] != null
+        ? List<String>.from(json['imageUrls'] as List)
+        : null,
     likeCount: json['likeCount'] as int,
     likedBy: List<String>.from(json['likedBy'] as List),
     createdAt: (json['createdAt'] as Timestamp).toDate(),

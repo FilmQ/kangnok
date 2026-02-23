@@ -1,1 +1,56 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"kangnok-232fa","appId":"1:100421617321:android:24ee423b90fa1d6b070bb8","fileOutput":"android/app/google-services.json"}},"ios":{"default":{"projectId":"kangnok-232fa","appId":"1:100421617321:ios:8e9126c60dc17d48070bb8","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"kangnok-232fa","configurations":{"android":"1:100421617321:android:24ee423b90fa1d6b070bb8","ios":"1:100421617321:ios:8e9126c60dc17d48070bb8"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "kangnok-232fa",
+          "appId": "1:100421617321:android:24ee423b90fa1d6b070bb8",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "kangnok-232fa",
+          "appId": "1:100421617321:ios:8e9126c60dc17d48070bb8",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "kangnok-232fa",
+          "configurations": {
+            "android": "1:100421617321:android:24ee423b90fa1d6b070bb8",
+            "ios": "1:100421617321:ios:8e9126c60dc17d48070bb8"
+          }
+        }
+      }
+    }
+  },
+  "firestore": {
+    "database": "(default)",
+    "location": "asia-southeast3",
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "disallowLegacyRuntimeConfig": true,
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ],
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run lint"
+      ]
+    }
+  ],
+  "storage": {
+    "rules": "storage.rules"
+  }
+}
