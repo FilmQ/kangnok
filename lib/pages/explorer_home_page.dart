@@ -5,6 +5,7 @@ import 'package:kangnok/pages/explorer_achievement_page.dart';
 import 'package:kangnok/pages/explorer_map_page.dart';
 import '../services/weather_service.dart';
 import 'package:kangnok/providers/explorer_profile_provider.dart';
+import 'package:kangnok/widgets/promote_park_box.dart';
 
 enum WidgetType { pollution, weather }
 
@@ -177,7 +178,7 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
                           style: TextStyle(color: Colors.grey),
                         ),
                         Text(
-                          explorer.name, // ✅ ดึงจาก explorer.name (ตรงกับใน DB)
+                          explorer.name,
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -195,10 +196,7 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  "Quick Info",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
+                const Text("Quick Info", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 Row(
                   children: [
                     IconButton(
@@ -258,7 +256,17 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
                 );
               },
             ),
+
             const SizedBox(height: 30),
+            // PROMOTE BOX
+            const Text(
+              "Recommended Parks",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
+            const PromoteParkBox(), // เรียกใช้ Widget ที่เราเพิ่งสร้าง
+            const SizedBox(height: 30),
+
             const Text(
               "Your Journey",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -276,6 +284,8 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
                 child: Icon(Icons.map_outlined, size: 50, color: Colors.grey),
               ),
             ),
+
+            const SizedBox(height: 20),
           ],
         ),
       ),
