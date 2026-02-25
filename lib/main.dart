@@ -11,7 +11,7 @@ import 'package:kangnok/pages/explorer_map_page.dart';
 import 'package:kangnok/pages/explorer_park_page.dart';
 import 'package:kangnok/pages/ranger_auth_page.dart';
 import 'package:kangnok/pages/explorer_profile_page.dart';
-import 'package:kangnok/pages/ranger_home_page.dart';
+import 'package:kangnok/pages/ranger/ranger_home_page.dart';
 import 'package:kangnok/pages/signup_page.dart';
 import 'pages/welcome_page.dart';
 import 'pages/explorer_add_post_page.dart';

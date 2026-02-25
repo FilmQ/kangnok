@@ -15,7 +15,9 @@ class _PromoteParkBoxState extends State<PromoteParkBox> {
 
   // Mock รูปภาพอุทยาน (คุณสามารถเปลี่ยนเป็น URL จริงจาก Firebase ได้ในอนาคต)
   final List<String> _bannerImages = [
-    ''
+    'https://firebasestorage.googleapis.com/v0/b/kangnok-232fa.firebasestorage.app/o/parks%2Fbua_tong_waterfall_seven_colors_spring%2Ffront_page_images%2Fbuatong_sign.jpg?alt=media&token=587891f5-926d-42af-876b-3cc4f503bc19', 
+    'https://firebasestorage.googleapis.com/v0/b/kangnok-232fa.firebasestorage.app/o/parks%2Fbua_tong_waterfall_seven_colors_spring%2Ffront_page_images%2Fpond1-fpi.jpeg?alt=media&token=32a881c1-c6ff-458a-8c09-e1060fd32cc6', 
+    'https://firebasestorage.googleapis.com/v0/b/kangnok-232fa.firebasestorage.app/o/parks%2Fbua_tong_waterfall_seven_colors_spring%2Ffront_page_images%2Fwaterfall1-fpi.jpg?alt=media&token=d553efea-20b7-435e-9ad7-f1fce341e228',
   ];
 
   @override

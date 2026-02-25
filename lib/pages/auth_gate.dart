@@ -6,7 +6,7 @@ import 'package:kangnok/models/roles/explorer.dart';
 import 'package:kangnok/models/roles/ranger.dart';
 import 'package:kangnok/pages/admin/admin_homepage.dart';
 import 'package:kangnok/pages/explorer_home_page.dart';
-import 'package:kangnok/pages/ranger_home_page.dart';
+import 'package:kangnok/pages/ranger/ranger_home_page.dart';
 import 'package:kangnok/pages/signup_page.dart';
 import 'package:kangnok/pages/welcome_page.dart';
 import 'package:kangnok/providers/user_provider.dart';
