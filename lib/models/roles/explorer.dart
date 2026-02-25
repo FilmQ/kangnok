@@ -17,8 +17,9 @@ class Explorer extends User {
     required List<String> parkVisited,
     required int reviewCount,
     required int reviewLikes,
-    String? bio,              
-    String? profileImageUrl,  
+    
+    String? bio,
+    String? profileImageUrl,
   }) : _name = name,
        _parkVisited = parkVisited,
        _reviewCount = reviewCount,
@@ -51,8 +52,8 @@ class Explorer extends User {
       parkVisited: List<String>.from(json['parkVisited'] ?? []),
       reviewCount: json['reviewCount'] as int? ?? 0,
       reviewLikes: json['reviewLikes'] as int? ?? 0,
-      bio: json['bio'] as String?,                     
-      profileImageUrl: json['profileImageUrl'] as String?,   
+      bio: json['bio'] as String?,
+      profileImageUrl: json['profileImageUrl'] as String?,
     );
   }
 
@@ -65,8 +66,8 @@ class Explorer extends User {
       'parkVisited': parkVisited,
       'reviewCount': reviewCount,
       'reviewLikes': reviewLikes,
-      'bio': bio,                       
-      'profileImageUrl': profileImageUrl, 
+      'bio': bio,
+      'profileImageUrl': profileImageUrl,
     };
   }
 }

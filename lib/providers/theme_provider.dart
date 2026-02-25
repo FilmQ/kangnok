@@ -16,6 +16,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kangnok/providers/achievement_provider.dart';
 
 class ExplorerThemeData {
   final Color backgroundColor;
@@ -58,4 +59,12 @@ final explorerThemeProvider = NotifierProvider<ExplorerThemeNotifier, String>(
 final explorerThemeDataProvider = Provider<ExplorerThemeData>((ref) {
   final themeName = ref.watch(explorerThemeProvider);
   return explorerThemes[themeName] ?? explorerThemes["Default"]!;
+});
+
+/// Themes available to the current user: "Default" is always included,
+/// plus any themes unlocked via achievements.
+final unlockedThemeNamesProvider = Provider.autoDispose<Set<String>>((ref) {
+  final progress = ref.watch(userProgressStreamProvider).value ?? {};
+  final unlocked = progress['unlockedThemes'] as List<dynamic>? ?? [];
+  return {"Default", ...unlocked.cast<String>()};
 });

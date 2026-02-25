@@ -60,4 +60,27 @@ class AchievementService {
     await deleteAllAchievements(); // ลบของเก่าก่อน
     await seedAchievements();      // ลงของใหม่ตาม JSON
   }
+
+  /// Claims an achievement for the user: records the title and applies the
+  /// reward (theme unlock or badge) atomically on the user document.
+  Future<void> claimAchievement(String uid, Achievement achievement) async {
+    final userRef = _db.collection('users').doc(uid);
+    final updates = <String, dynamic>{
+      'completedAchievements': FieldValue.arrayUnion([achievement.title]),
+    };
+
+    final reward = achievement.reward;
+    if (reward != null) {
+      switch (reward.type) {
+        case 'theme':
+          updates['unlockedThemes'] = FieldValue.arrayUnion([reward.value]);
+          break;
+        case 'badge':
+          updates['badges'] = FieldValue.arrayUnion([reward.value]);
+          break;
+      }
+    }
+
+    await userRef.update(updates);
+  }
 }

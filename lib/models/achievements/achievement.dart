@@ -1,4 +1,5 @@
 import 'package:kangnok/models/achievements/criterion.dart';
+import 'package:kangnok/models/achievements/reward.dart';
 
 class Achievement {
   String title;
@@ -6,6 +7,7 @@ class Achievement {
   String thumbnail;
   bool achieved;
   List<Criterion> criterias;
+  Reward? reward;
 
   Achievement({
     required this.title,
@@ -13,6 +15,7 @@ class Achievement {
     required this.thumbnail,
     required this.achieved,
     required this.criterias,
+    this.reward,
   });
 
   Map<String, dynamic> toJson() => {
@@ -21,6 +24,7 @@ class Achievement {
     'thumbnail': thumbnail,
     'achieved': achieved,
     'criterias': criterias.map((c) => c.toJson()).toList(),
+    if (reward != null) 'reward': reward!.toJson(),
   };
 
   factory Achievement.fromJson(Map<String, dynamic> json) => Achievement(
@@ -31,6 +35,9 @@ class Achievement {
     criterias: (json['criterias'] as List)
         .map((c) => CriterionFactory.fromJson(c as Map<String, dynamic>))
         .toList(),
+    reward: json['reward'] != null
+        ? Reward.fromJson(json['reward'] as Map<String, dynamic>)
+        : null,
   );
 
   bool isUnlocked(Map<String, dynamic> userProgress) {

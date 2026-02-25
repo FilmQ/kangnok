@@ -6,6 +6,7 @@ import 'package:kangnok/models/parks/park.dart';
 import 'package:kangnok/models/parks/review.dart';
 import 'package:kangnok/models/roles/ranger.dart';
 import 'package:kangnok/services/announcement_service.dart';
+import 'package:kangnok/services/checkin_service.dart';
 import 'package:kangnok/services/ranger_service.dart';
 import 'package:kangnok/services/review_service.dart';
 
@@ -429,6 +430,30 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
     );
   }
 
+  Future<void> _checkIn(Park park) async {
+    final uid = FirebaseAuth.instance.currentUser?.uid;
+    if (uid == null || park.id == null) return;
+
+    final result = await CheckInService().checkIn(
+      uid: uid,
+      parkId: park.id!,
+      parkCoordinate: park.coordinate,
+    );
+
+    if (!mounted) return;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(result.message ?? ''),
+        backgroundColor: result.isSuccess
+            ? Colors.green
+            : result.isAlreadyVisited
+                ? Colors.orange
+                : Colors.red,
+      ),
+    );
+  }
+
   Widget _buildReviewTab(Park park) {
     return Column(
       children: [
@@ -692,6 +717,13 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
                 title: Text(parkName),
                 expandedHeight: 450,
                 floating: false,
+                actions: [
+                  IconButton(
+                    onPressed: () => _checkIn(park),
+                    icon: Icon(Icons.location_on),
+                    tooltip: "Check in",
+                  ),
+                ],
                 flexibleSpace: FlexibleSpaceBar(
                   background: SafeArea(
                     child: Padding(

@@ -6,13 +6,17 @@
     "criterias": [
       {
         "type": "park_visit_name",
-        "requiredName": "Doi Inthanon" 
+        "requiredName": "Doi Inthanon"
       },
       {
         "type": "review_count",
         "requiredCount": 1
       }
-    ]
+    ],
+    "reward": {
+      "type": "theme",
+      "value": "Forest"
+    }
   },
 
   {
@@ -24,6 +28,10 @@
         "type": "review_count",
         "requiredCount": 1
       }
-    ]
+    ],
+    "reward": {
+      "type": "badge",
+      "value": "first_step"
+    }
   }
 ]
