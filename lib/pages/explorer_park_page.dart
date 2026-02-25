@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kangnok/models/parks/announcement.dart';
 import 'package:kangnok/models/parks/park.dart';
@@ -428,84 +429,32 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
     );
   }
 
-  Widget _buildReviewTab() {
-    return StreamBuilder(
-      stream: _reviewService,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == .waiting) {
-          return CircularProgressIndicator();
-        }
-        if (snapshot.hasError) {
-          return Center(
-            child: Center(
-              child: Card(
-                child: Column(
-                  mainAxisAlignment: .center,
-                  children: [
-                    Icon(Icons.warning),
-                    Text(
-                      "We cannot load the reviews right now. Sorry for the inconvenience!",
-                      textAlign: .center,
-                    ),
-                  ],
+  Widget _buildReviewTab(Park park) {
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          child: Row(
+            children: [
+              Spacer(),
+              ElevatedButton(
+                child: Text("Post a review"),
+                onPressed: () => Navigator.pushNamed(
+                  context,
+                  "/explorer_add_post",
+                  arguments: park.id,
                 ),
               ),
-            ),
-          );
-        }
-        if (snapshot.hasData) {
-          final reviews = snapshot.data?.docs ?? [];
-
-          if (reviews.isEmpty) {
-            return Center(
-              child: Text("Be the first person to review this place!"),
-            );
-          }
-
-          return ListView.builder(
-            itemCount: reviews.length,
-            itemBuilder: (context, index) {
-              final review = Review.fromJson(
-                reviews[index].data() as Map<String, dynamic>,
-                id: reviews[index].id,
-              );
-              return Card(
-                clipBehavior: Clip.antiAlias,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (review.imageUrls != null &&
-                        review.imageUrls!.isNotEmpty)
-                      _buildImageGrid(review.imageUrls!),
-                    Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            review.authorName,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(height: 4),
-                          Text(review.content),
-                          SizedBox(height: 4),
-                          Text(review.likeCount.toString()),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
-        }
-
-        return Center(
-          child: Text(
-            "This shouldn't happen... but we couldn't load the reviews",
+              IconButton(
+                icon: Icon(Icons.sort),
+                tooltip: "Sort reviews",
+                onPressed: () {},
+              ),
+            ],
           ),
-        );
-      },
+        ),
+        Expanded(child: _buildUserReviewElements()),
+      ],
     );
   }
 
@@ -580,6 +529,155 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
     );
   }
 
+  Widget _buildUserReviewElements() {
+    return StreamBuilder(
+      stream: _reviewService,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == .waiting) {
+          return CircularProgressIndicator();
+        }
+        if (snapshot.hasError) {
+          return Center(
+            child: Card(
+              child: Column(
+                mainAxisAlignment: .center,
+                children: [
+                  Icon(Icons.warning),
+                  Text(
+                    "We cannot load the reviews right now. Sorry for the inconvenience!",
+                    textAlign: .center,
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+        if (snapshot.hasData) {
+          final reviews = snapshot.data?.docs ?? [];
+
+          if (reviews.isEmpty) {
+            return Center(
+              child: Text("Be the first person to review this place!"),
+            );
+          }
+
+          return ListView.builder(
+            itemCount: reviews.length,
+            itemBuilder: (context, index) {
+              final review = Review.fromJson(
+                reviews[index].data() as Map<String, dynamic>,
+                id: reviews[index].id,
+              );
+              return Card(
+                clipBehavior: Clip.antiAlias,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (review.imageUrls != null &&
+                        review.imageUrls!.isNotEmpty)
+                      _buildImageGrid(review.imageUrls!),
+                    Padding(
+                      padding: EdgeInsets.all(12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            review.authorName,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: 4),
+                          Text(review.content),
+                          SizedBox(height: 4),
+                          Row(
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  final uid = FirebaseAuth
+                                      .instance.currentUser?.uid;
+                                  if (uid != null && review.id != null) {
+                                    ReviewService()
+                                        .toggleLike(review.id!, uid);
+                                  }
+                                },
+                                icon: Icon(
+                                  review.likedBy.contains(
+                                        FirebaseAuth
+                                            .instance.currentUser?.uid,
+                                      )
+                                      ? Icons.thumb_up
+                                      : Icons.thumb_up_outlined,
+                                  color: review.likedBy.contains(
+                                        FirebaseAuth
+                                            .instance.currentUser?.uid,
+                                      )
+                                      ? Colors.blue
+                                      : null,
+                                ),
+                              ),
+                              Text(review.likeCount.toString()),
+                              Spacer(),
+                              if (review.authorId ==
+                                  FirebaseAuth.instance.currentUser?.uid)
+                                IconButton(
+                                  onPressed: () async {
+                                    final confirm = await showDialog<bool>(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                        title: Text("Delete Review"),
+                                        content: Text(
+                                          "Are you sure you want to delete this review?",
+                                        ),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () =>
+                                                Navigator.pop(context, false),
+                                            child: Text("Cancel"),
+                                          ),
+                                          TextButton(
+                                            onPressed: () =>
+                                                Navigator.pop(context, true),
+                                            child: Text(
+                                              "Delete",
+                                              style: TextStyle(
+                                                color: Colors.red,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                    if (confirm == true && review.id != null) {
+                                      await ReviewService()
+                                          .deleteReview(review.id!);
+                                    }
+                                  },
+                                  icon: Icon(
+                                    Icons.delete_outline,
+                                    color: Colors.red,
+                                  ),
+                                  tooltip: "Delete review",
+                                ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+        }
+
+        return Center(
+          child: Text(
+            "This shouldn't happen... but we couldn't load the reviews",
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final park = ModalRoute.of(context)!.settings.arguments as Park?;
@@ -639,7 +737,7 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
             children: [
               _buildAnnouncementTab(),
               _buildDescriptionTab(park!),
-              _buildReviewTab(),
+              _buildReviewTab(park),
               _buildRangerTab(),
             ],
           ),

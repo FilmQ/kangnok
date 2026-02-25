@@ -38,6 +38,29 @@ class ReviewService {
     }
   }
 
+  // LIKE/UNLIKE:
+  Future<void> toggleLike(String reviewId, String uid) async {
+    try {
+      final doc = await collections.doc(reviewId).get();
+      final data = doc.data() as Map<String, dynamic>?;
+      final likedBy = List<String>.from(data?['likedBy'] ?? []);
+
+      if (likedBy.contains(uid)) {
+        await collections.doc(reviewId).update({
+          'likeCount': FieldValue.increment(-1),
+          'likedBy': FieldValue.arrayRemove([uid]),
+        });
+      } else {
+        await collections.doc(reviewId).update({
+          'likeCount': FieldValue.increment(1),
+          'likedBy': FieldValue.arrayUnion([uid]),
+        });
+      }
+    } on FirebaseException catch (e) {
+      debugPrint("Cannot toggle like due to: $e");
+    }
+  }
+
   // DELETE:
   Future<void> deleteReview(String reviewId) async {
     try {

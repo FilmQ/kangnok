@@ -1,41 +1,62 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:kangnok/models/parks/review.dart';
+import 'package:kangnok/providers/explorer_profile_provider.dart';
+import 'package:kangnok/services/review_service.dart';
 
-class AddPostPage extends StatefulWidget {
+class AddPostPage extends ConsumerStatefulWidget {
   const AddPostPage({super.key});
 
   @override
-  State<AddPostPage> createState() => _AddPostPageState();
+  ConsumerState<AddPostPage> createState() => _AddPostPageState();
 }
 
-class _AddPostPageState extends State<AddPostPage> {
-  File? _image;
+class _AddPostPageState extends ConsumerState<AddPostPage> {
+  final List<File> _images = [];
   final _captionController = TextEditingController();
+  final _reviewService = ReviewService();
   bool _isLoading = false;
 
-  // --- ฟังก์ชันเลือกรูปจากมือถือ ---
-  Future<void> _pickImage() async {
-    final pickedFile = await ImagePicker().pickImage(
-      source: ImageSource.gallery,
-      imageQuality: 70, // ลดขนาดรูปเพื่อความประหยัด Storage
+  late final String _parkId =
+      ModalRoute.of(context)!.settings.arguments as String;
+
+  Future<void> _pickImages() async {
+    final pickedFiles = await ImagePicker().pickMultiImage(
+      imageQuality: 70,
     );
 
-    if (pickedFile != null) {
+    if (pickedFiles.isNotEmpty) {
       setState(() {
-        _image = File(pickedFile.path);
+        _images.addAll(pickedFiles.map((f) => File(f.path)));
       });
     }
   }
 
-  // --- ฟังก์ชันอัปโหลดข้อมูลทั้งหมดไป Firebase ---
+  Future<List<String>> _uploadImages() async {
+    final List<String> downloadUrls = [];
+
+    for (final image in _images) {
+      final fileName =
+          'reviews/${DateTime.now().millisecondsSinceEpoch}_${_images.indexOf(image)}.jpg';
+      final snapshot = await FirebaseStorage.instance
+          .ref()
+          .child(fileName)
+          .putFile(image);
+      final url = await snapshot.ref.getDownloadURL();
+      downloadUrls.add(url);
+    }
+
+    return downloadUrls;
+  }
+
   Future<void> _uploadPost() async {
-    if (_image == null || _captionController.text.isEmpty) {
+    if (_captionController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please select an image and write a caption")),
+        const SnackBar(content: Text("Please write something for your review")),
       );
       return;
     }
@@ -44,86 +65,137 @@ class _AddPostPageState extends State<AddPostPage> {
 
     try {
       final user = FirebaseAuth.instance.currentUser!;
-      
-      // 1. อัปโหลดรูปลง Firebase Storage
-      String fileName = 'posts/${DateTime.now().millisecondsSinceEpoch}.jpg';
-      TaskSnapshot snapshot = await FirebaseStorage.instance
-          .ref()
-          .child(fileName)
-          .putFile(_image!);
-      
-      // 2. รับลิงก์รูปภาพ (Download URL)
-      String downloadUrl = await snapshot.ref.getDownloadURL();
+      final explorer = ref.read(explorerProfileProvider).value;
 
-      // 3. บันทึกข้อมูลลง Firestore
-      await FirebaseFirestore.instance.collection('posts').add({
-        'userId': user.uid,
-        'userName': user.displayName ?? "Anonymous", // อย่าลืมเซ็ตชื่อตอนสมัคร
-        'imageUrl': downloadUrl,
-        'caption': _captionController.text,
-        'likesCount': 0,
-        'createdAt': FieldValue.serverTimestamp(),
-      });
+      List<String>? imageUrls;
+      if (_images.isNotEmpty) {
+        imageUrls = await _uploadImages();
+      }
 
-      if (mounted) Navigator.pop(context); // กลับหน้า Feed
+      final review = Review(
+        authorId: user.uid,
+        authorName: explorer?.name ?? "Anonymous",
+        parkId: _parkId,
+        content: _captionController.text,
+        imageUrls: imageUrls,
+        likeCount: 0,
+        likedBy: [],
+        createdAt: DateTime.now(),
+      );
+
+      await _reviewService.createReview(review);
+
+      if (mounted) Navigator.pop(context);
     } catch (e) {
-      print(e);
+      debugPrint("Failed to upload post: $e");
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Failed to upload review. Please try again.")),
+        );
+      }
     } finally {
-      setState(() => _isLoading = false);
+      if (mounted) setState(() => _isLoading = false);
     }
+  }
+
+  void _removeImage(int index) {
+    setState(() {
+      _images.removeAt(index);
+    });
+  }
+
+  @override
+  void dispose() {
+    _captionController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Create New Post"),
+        title: const Text("Write a Review"),
         actions: [
           if (!_isLoading)
-            IconButton(onPressed: _uploadPost, icon: const Icon(Icons.send, color: Colors.blue))
+            IconButton(
+              onPressed: _uploadPost,
+              icon: const Icon(Icons.send),
+            ),
         ],
       ),
-      body: _isLoading 
-        ? const Center(child: CircularProgressIndicator()) 
-        : SingleChildScrollView(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
-                // ส่วนแสดงรูปที่เลือก
-                GestureDetector(
-                  onTap: _pickImage,
-                  child: Container(
-                    height: 250,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: Colors.grey[400]!),
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextField(
+                    controller: _captionController,
+                    maxLines: 5,
+                    decoration: const InputDecoration(
+                      hintText: "Share your experience at this park...",
+                      border: OutlineInputBorder(),
                     ),
-                    child: _image == null
-                        ? const Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [Icon(Icons.add_a_photo, size: 50), Text("Tap to select photo")],
-                          )
-                        : ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
-                            child: Image.file(_image!, fit: BoxFit.cover),
-                          ),
                   ),
-                ),
-                const SizedBox(height: 20),
-                // ช่องกรอกแคปชั่น
-                TextField(
-                  controller: _captionController,
-                  maxLines: 3,
-                  decoration: const InputDecoration(
-                    hintText: "Write a caption about your journey...",
-                    border: OutlineInputBorder(),
+                  const SizedBox(height: 16),
+                  if (_images.isNotEmpty) ...[
+                    SizedBox(
+                      height: 120,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: _images.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 8),
+                            child: Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(8),
+                                  child: Image.file(
+                                    _images[index],
+                                    width: 120,
+                                    height: 120,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Positioned(
+                                  top: 4,
+                                  right: 4,
+                                  child: GestureDetector(
+                                    onTap: () => _removeImage(index),
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                        color: Colors.black54,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      padding: const EdgeInsets.all(4),
+                                      child: const Icon(
+                                        Icons.close,
+                                        color: Colors.white,
+                                        size: 16,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                  ],
+                  OutlinedButton.icon(
+                    onPressed: _pickImages,
+                    icon: const Icon(Icons.add_a_photo),
+                    label: Text(
+                      _images.isEmpty ? "Add photos" : "Add more photos",
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
     );
   }
 }
