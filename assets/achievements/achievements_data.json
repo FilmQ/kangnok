@@ -1,16 +1,12 @@
 [
   {
-    "title": "Chiang Mai Explorer",
-    "description": "Visit Doi Inthanon.",
+    "title": "Visit Doi Inthanon",
+    "description": "Check in to Doi Inthanon.",
     "thumbnail": "https://firebasestorage.googleapis.com/v0/b/kangnok-232fa.firebasestorage.app/o/achievements%2Funfinish%2Fimage.png?alt=media&token=98b1b3c6-2f07-4de1-b3dc-e88f326cbc94",
     "criterias": [
       {
         "type": "park_visit_name",
-        "requiredName": "Doi Inthanon"
-      },
-      {
-        "type": "review_count",
-        "requiredCount": 1
+        "requiredName": "Doi Inthanon National Park"
       }
     ],
     "reward": {
@@ -25,13 +21,28 @@
     "thumbnail": "https://firebasestorage.googleapis.com/v0/b/kangnok-232fa.firebasestorage.app/o/achievements%2Funfinish%2Fimage.png?alt=media&token=98b1b3c6-2f07-4de1-b3dc-e88f326cbc94",
     "criterias": [
       {
-        "type": "review_count",
+        "type": "park_visit_count",
         "requiredCount": 1
       }
     ],
     "reward": {
       "type": "badge",
       "value": "first_step"
+    }
+  },
+  {
+    "title": "The devs were here!",
+    "description": "Check-in at Kasetsart University",
+    "thumbnail": "https://firebasestorage.googleapis.com/v0/b/kangnok-232fa.firebasestorage.app/o/achievements%2Funfinish%2Fimage.png?alt=media&token=98b1b3c6-2f07-4de1-b3dc-e88f326cbc94",
+    "criterias": [
+      {
+        "type": "park_visit_name",
+        "requiredName": "Kasetsart University"
+      }
+    ],
+    "reward": {
+      "type": "badge",
+      "value": "the_codex"
     }
   }
 ]

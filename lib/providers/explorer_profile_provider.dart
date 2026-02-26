@@ -13,6 +13,8 @@ final explorerProfileProvider = StreamProvider.autoDispose<Explorer?>((ref) {
       .snapshots()
       .map((snapshot) {
     if (!snapshot.exists || snapshot.data() == null) return null;
-    return Explorer.fromJson(snapshot.data()!);
+    final explorer = Explorer.fromJson(snapshot.data()!);
+    explorer.uid = snapshot.id;
+    return explorer;
   });
 });

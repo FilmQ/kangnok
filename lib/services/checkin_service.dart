@@ -86,18 +86,26 @@ class CheckInService {
         );
       }
 
-      // Check if already visited
+      // Fetch the park document to get its name
+      final parkDoc = await _parks.doc(parkId).get();
+      final parkData = parkDoc.data() as Map<String, dynamic>?;
+      if (parkData == null) {
+        return CheckInResult.failure('Park not found.');
+      }
+      final parkName = parkData['name'] as String;
+
+      // Check if already visited (by park name)
       final userDoc = await _users.doc(uid).get();
       final userData = userDoc.data() as Map<String, dynamic>?;
       final parkVisited = List<String>.from(userData?['parkVisited'] ?? []);
 
-      if (parkVisited.contains(parkId)) {
+      if (parkVisited.contains(parkName)) {
         return CheckInResult.alreadyVisited();
       }
 
-      // Add park to visited list and increment park's visitor count
+      // Add park name to visited list and increment park's visitor count
       await _users.doc(uid).update({
-        'parkVisited': FieldValue.arrayUnion([parkId]),
+        'parkVisited': FieldValue.arrayUnion([parkName]),
       });
       await _parks.doc(parkId).update({
         'visitorCount': FieldValue.increment(1),

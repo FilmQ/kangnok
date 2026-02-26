@@ -12,7 +12,11 @@ import 'package:kangnok/services/validator.dart';
 abstract class User {
   late String _email;
 
-  User({required String email}) {
+  /// The Firestore document ID (Firebase Auth UID).
+  /// Not serialized — it comes from the document ID, not the document data.
+  String? uid;
+
+  User({required String email, this.uid}) {
     if (!Validator.isValidEmail(email)) {
       throw ArgumentError("$email is not a valid email.");
     }

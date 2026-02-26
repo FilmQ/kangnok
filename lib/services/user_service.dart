@@ -22,7 +22,9 @@ class UserService {
   Future<User?> getUser(String uid, {String? email}) async {
     final doc = await _usersCollection.doc(uid).get();
     if (doc.exists && doc.data() != null) {
-      return UserFactory.fromJson(doc.data()!);
+      final user = UserFactory.fromJson(doc.data()!);
+      user.uid = uid;
+      return user;
     }
 
     // Fallback: query by email if UID lookup fails (e.g. after account recreation)
@@ -36,7 +38,9 @@ class UserService {
         final data = query.docs.first.data();
         await _usersCollection.doc(uid).set(data);
         await _usersCollection.doc(query.docs.first.id).delete();
-        return UserFactory.fromJson(data);
+        final user = UserFactory.fromJson(data);
+        user.uid = uid;
+        return user;
       }
     }
 
@@ -51,6 +55,7 @@ class UserService {
       reviewCount: 0,
       reviewLikes: 0,
     );
+    explorer.uid = uid;
     await saveUser(uid, explorer);
     return explorer;
   }
@@ -62,6 +67,7 @@ class UserService {
     String title,
   ) async {
     final ranger = Ranger(email: email, parkId: parkId, title: title);
+    ranger.uid = uid;
     await saveUser(uid, ranger);
     return ranger;
   }

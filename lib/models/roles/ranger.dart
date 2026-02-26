@@ -4,13 +4,12 @@ class Ranger extends User {
   @override
   String get type => 'ranger';
 
-  String? id; // Firestore document ID (usually the Firebase Auth UID)
   String _parkId;
   String _title;
   String? _profileImageUrl;
 
   Ranger({
-    this.id,
+    super.uid,
     required super.email,
     required String parkId,
     required String title,
@@ -39,7 +38,7 @@ class Ranger extends User {
   };
 
   factory Ranger.fromJson(Map<String, dynamic> json, {String? id}) => Ranger(
-    id: id,
+    uid: id,
     email: json['email'] as String,
     parkId: (json['parkId'] ?? json['parkStation']) as String,
     title: json['title'] as String,

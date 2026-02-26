@@ -98,15 +98,15 @@ class AchievementPage extends ConsumerWidget {
 
     // Gradient colours per state
     final List<Color> gradientColors = switch (state) {
-      _AchState.claimed   => [Colors.white, Colors.blue.shade50],
+      _AchState.claimed => [Colors.white, Colors.blue.shade50],
       _AchState.claimable => [Colors.white, Colors.amber.shade50],
-      _AchState.locked    => [Colors.grey.shade50, Colors.grey.shade100],
+      _AchState.locked => [Colors.grey.shade50, Colors.grey.shade100],
     };
 
     final Color shadowColor = switch (state) {
-      _AchState.claimed   => Colors.blue.withValues(alpha: 0.1),
+      _AchState.claimed => Colors.blue.withValues(alpha: 0.1),
       _AchState.claimable => Colors.amber.withValues(alpha: 0.12),
-      _AchState.locked    => Colors.black.withValues(alpha: 0.03),
+      _AchState.locked => Colors.black.withValues(alpha: 0.03),
     };
 
     return Container(
@@ -119,7 +119,11 @@ class AchievementPage extends ConsumerWidget {
           colors: gradientColors,
         ),
         boxShadow: [
-          BoxShadow(color: shadowColor, blurRadius: 10, offset: const Offset(0, 4)),
+          BoxShadow(
+            color: shadowColor,
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
         ],
       ),
       child: Stack(
@@ -149,24 +153,41 @@ class AchievementPage extends ConsumerWidget {
                     color: isActive ? Colors.white : Colors.grey.shade200,
                     borderRadius: BorderRadius.circular(16),
                     boxShadow: isActive
-                        ? [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 5)]
+                        ? [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.05),
+                              blurRadius: 5,
+                            ),
+                          ]
                         : [],
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16),
                     child: ColorFiltered(
                       colorFilter: isActive
-                          ? const ColorFilter.mode(Colors.transparent, BlendMode.multiply)
-                          : const ColorFilter.mode(Colors.grey, BlendMode.saturation),
+                          ? const ColorFilter.mode(
+                              Colors.transparent,
+                              BlendMode.multiply,
+                            )
+                          : const ColorFilter.mode(
+                              Colors.grey,
+                              BlendMode.saturation,
+                            ),
                       child: Image.network(
                         ach.thumbnail,
                         fit: BoxFit.cover,
                         loadingBuilder: (context, child, loadingProgress) {
                           if (loadingProgress == null) return child;
-                          return const Center(child: CircularProgressIndicator(strokeWidth: 2));
+                          return const Center(
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          );
                         },
                         errorBuilder: (context, error, stackTrace) =>
-                            const Icon(Icons.military_tech, size: 40, color: Colors.grey),
+                            const Icon(
+                              Icons.military_tech,
+                              size: 40,
+                              color: Colors.grey,
+                            ),
                       ),
                     ),
                   ),
@@ -185,7 +206,9 @@ class AchievementPage extends ConsumerWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
-                          color: isActive ? Colors.blue.shade900 : Colors.grey.shade800,
+                          color: isActive
+                              ? Colors.blue.shade900
+                              : Colors.grey.shade800,
                         ),
                       ),
                       const SizedBox(height: 4),
@@ -195,7 +218,9 @@ class AchievementPage extends ConsumerWidget {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: 12,
-                          color: isActive ? Colors.blue.shade700 : Colors.grey.shade500,
+                          color: isActive
+                              ? Colors.blue.shade700
+                              : Colors.grey.shade500,
                         ),
                       ),
                       if (ach.reward != null) ...[
@@ -288,10 +313,15 @@ class AchievementPage extends ConsumerWidget {
               backgroundColor: Colors.amber.shade600,
               foregroundColor: Colors.white,
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
               elevation: 2,
             ),
-            child: const Text("Claim", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+            child: const Text(
+              "Claim",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+            ),
           ),
         );
 
@@ -318,7 +348,11 @@ class AchievementPage extends ConsumerWidget {
     }
   }
 
-  Future<void> _onClaim(BuildContext context, WidgetRef ref, Achievement ach) async {
+  Future<void> _onClaim(
+    BuildContext context,
+    WidgetRef ref,
+    Achievement ach,
+  ) async {
     final uid = FirebaseAuth.instance.currentUser?.uid;
     if (uid == null) return;
 
@@ -329,7 +363,7 @@ class AchievementPage extends ConsumerWidget {
 
     final reward = ach.reward;
     final rewardText = reward != null
-        ? 'You earned: ${reward.type == "theme" ? "Theme" : "Badge"} -- ${reward.value}'
+        ? 'You earned: ${reward.type == "theme" ? "Theme:" : "Badge:"} ${reward.value}'
         : 'Achievement completed!';
 
     ScaffoldMessenger.of(context).showSnackBar(

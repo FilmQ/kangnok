@@ -1,27 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kangnok/models/parks/announcement.dart';
 import 'package:kangnok/models/parks/park.dart';
 import 'package:kangnok/models/parks/review.dart';
+import 'package:kangnok/models/roles/explorer.dart';
 import 'package:kangnok/models/roles/ranger.dart';
+import 'package:kangnok/providers/user_provider.dart';
 import 'package:kangnok/services/announcement_service.dart';
 import 'package:kangnok/services/checkin_service.dart';
 import 'package:kangnok/services/ranger_service.dart';
 import 'package:kangnok/services/review_service.dart';
 
-// TODO: by order:
-// TODO: add the park's functionality here
-// TODO: connect the park to firebase storage AND firestore
-// TODO: refine the park's look
-class ExplorerParkPage extends StatefulWidget {
+// i think this file is a bit long but idk man
+class ExplorerParkPage extends ConsumerStatefulWidget {
   const ExplorerParkPage({super.key});
 
   @override
-  State<ExplorerParkPage> createState() => _ExplorerParkPageState();
+  ConsumerState<ExplorerParkPage> createState() => _ExplorerParkPageState();
 }
 
-class _ExplorerParkPageState extends State<ExplorerParkPage> {
+class _ExplorerParkPageState extends ConsumerState<ExplorerParkPage> {
   int _currentPage = 0;
   final int _totalPages = 2;
   Stream<QuerySnapshot>? _announcementService;
@@ -431,7 +430,8 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
   }
 
   Future<void> _checkIn(Park park) async {
-    final uid = FirebaseAuth.instance.currentUser?.uid;
+    final user = ref.read(currentUserProvider).value;
+    final uid = user?.uid;
     if (uid == null || park.id == null) return;
 
     final result = await CheckInService().checkIn(
@@ -448,13 +448,14 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
         backgroundColor: result.isSuccess
             ? Colors.green
             : result.isAlreadyVisited
-                ? Colors.orange
-                : Colors.red,
+            ? Colors.orange
+            : Colors.red,
       ),
     );
   }
 
   Widget _buildReviewTab(Park park) {
+    final user = ref.read(currentUserProvider).value as Explorer;
     return Column(
       children: [
         Padding(
@@ -463,12 +464,38 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
             children: [
               Spacer(),
               ElevatedButton(
-                child: Text("Post a review"),
-                onPressed: () => Navigator.pushNamed(
-                  context,
-                  "/explorer_add_post",
-                  arguments: park.id,
+                onPressed: user.parkVisited.contains(park.name)
+                    ? () {
+                        Navigator.pushNamed(
+                          context,
+                          "/explorer_add_post",
+                          arguments: park.id,
+                        );
+                      }
+                    : () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text("Check in required"),
+                              content: Text(
+                                "You must check in to this park first before posting a review.",
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: Text("OK"),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                style: ElevatedButton.styleFrom(
+                  disabledBackgroundColor: Colors.grey.shade300,
+                  disabledForegroundColor: Colors.grey.shade500,
                 ),
+                child: Text("Post a review"),
               ),
               IconButton(
                 icon: Icon(Icons.sort),
@@ -555,6 +582,8 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
   }
 
   Widget _buildUserReviewElements() {
+    final uid = ref.watch(currentUserProvider).value?.uid;
+
     return StreamBuilder(
       stream: _reviewService,
       builder: (context, snapshot) {
@@ -593,6 +622,9 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
                 reviews[index].data() as Map<String, dynamic>,
                 id: reviews[index].id,
               );
+              final isLiked = review.likedBy.contains(uid);
+              final isAuthor = review.authorId == uid;
+
               return Card(
                 clipBehavior: Clip.antiAlias,
                 child: Column(
@@ -617,32 +649,20 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
                             children: [
                               IconButton(
                                 onPressed: () {
-                                  final uid = FirebaseAuth
-                                      .instance.currentUser?.uid;
                                   if (uid != null && review.id != null) {
-                                    ReviewService()
-                                        .toggleLike(review.id!, uid);
+                                    ReviewService().toggleLike(review.id!, uid);
                                   }
                                 },
                                 icon: Icon(
-                                  review.likedBy.contains(
-                                        FirebaseAuth
-                                            .instance.currentUser?.uid,
-                                      )
+                                  isLiked
                                       ? Icons.thumb_up
                                       : Icons.thumb_up_outlined,
-                                  color: review.likedBy.contains(
-                                        FirebaseAuth
-                                            .instance.currentUser?.uid,
-                                      )
-                                      ? Colors.blue
-                                      : null,
+                                  color: isLiked ? Colors.blue : null,
                                 ),
                               ),
                               Text(review.likeCount.toString()),
                               Spacer(),
-                              if (review.authorId ==
-                                  FirebaseAuth.instance.currentUser?.uid)
+                              if (isAuthor)
                                 IconButton(
                                   onPressed: () async {
                                     final confirm = await showDialog<bool>(
@@ -672,8 +692,9 @@ class _ExplorerParkPageState extends State<ExplorerParkPage> {
                                       ),
                                     );
                                     if (confirm == true && review.id != null) {
-                                      await ReviewService()
-                                          .deleteReview(review.id!);
+                                      await ReviewService().deleteReview(
+                                        review.id!,
+                                      );
                                     }
                                   },
                                   icon: Icon(

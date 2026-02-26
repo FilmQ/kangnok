@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:kangnok/models/parks/review.dart';
 import 'package:kangnok/providers/explorer_profile_provider.dart';
 import 'package:kangnok/services/review_service.dart';
@@ -64,8 +63,10 @@ class _AddPostPageState extends ConsumerState<AddPostPage> {
     setState(() => _isLoading = true);
 
     try {
-      final user = FirebaseAuth.instance.currentUser!;
       final explorer = ref.read(explorerProfileProvider).value;
+      if (explorer?.uid == null) {
+        throw Exception("User not loaded");
+      }
 
       List<String>? imageUrls;
       if (_images.isNotEmpty) {
@@ -73,8 +74,8 @@ class _AddPostPageState extends ConsumerState<AddPostPage> {
       }
 
       final review = Review(
-        authorId: user.uid,
-        authorName: explorer?.name ?? "Anonymous",
+        authorId: explorer!.uid!,
+        authorName: explorer.name,
         parkId: _parkId,
         content: _captionController.text,
         imageUrls: imageUrls,
