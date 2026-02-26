@@ -5,6 +5,7 @@ import 'package:kangnok/pages/explorer_achievement_page.dart';
 import 'package:kangnok/pages/explorer_map_page.dart';
 import '../services/weather_service.dart';
 import 'package:kangnok/providers/explorer_profile_provider.dart';
+import 'package:kangnok/providers/theme_provider.dart';
 import 'package:kangnok/widgets/promote_park_box.dart';
 
 enum WidgetType { pollution, weather }
@@ -109,7 +110,10 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
       const Center(child: Text("Profile Settings")), 
     ];
 
+    final themeData = ref.watch(explorerThemeDataProvider);
+
     return Scaffold(
+      backgroundColor: themeData.backgroundColor,
       body: IndexedStack(index: _selectedIndex, children: pages),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
@@ -122,7 +126,7 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
           setState(() => _selectedIndex = index);
         },
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.blueAccent,
+        selectedItemColor: themeData.appBarColor,
         unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),

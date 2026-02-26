@@ -287,7 +287,7 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                                 ref.read(explorerThemeProvider.notifier).setTheme(value);
                               }
                             },
-                            items: explorerThemes.keys
+                            items: ref.watch(unlockedThemeNamesProvider)
                                 .map((t) => DropdownMenuItem(
                                       value: t,
                                       child: Text(t, style: const TextStyle(fontWeight: FontWeight.w500)),

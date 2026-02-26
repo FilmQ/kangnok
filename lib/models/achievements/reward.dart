@@ -17,20 +17,20 @@ abstract class Reward {
 
 class RewardFactory {
   static Reward fromJson(Map<String, dynamic> json) {
-    switch (json['type']) {
+    final type = json['type'] as String? ?? '';
+    final value = json['value'] as String? ?? '';
+
+    switch (type) {
       case 'badge':
         return Badge(
-          type: json['type'],
-          value: json['value'],
-          imageUrl: json['imageUrl'],
+          type: type,
+          value: value,
+          imageUrl: json['imageUrl'] as String? ?? '',
         );
       case 'theme':
-        return ThemeReward(
-          type: json['type'],
-          value: json['value'],
-        );
+        return ThemeReward(type: type, value: value);
       default:
-        throw Exception("Cannot create a reward of type ${json['type']}");
+        throw Exception("Cannot create a reward of type $type");
     }
   }
 }

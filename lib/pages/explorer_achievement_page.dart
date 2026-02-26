@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kangnok/models/achievements/achievement.dart';
 import 'package:kangnok/providers/achievement_provider.dart';
+import 'package:kangnok/providers/theme_provider.dart';
 
 /// Three visual states for each achievement card.
 enum _AchState { locked, claimable, claimed }
@@ -16,8 +17,10 @@ class AchievementPage extends ConsumerWidget {
     final progressAsync = ref.watch(userProgressStreamProvider);
     final claimed = ref.watch(completedAchievementTitlesProvider);
 
+    final themeData = ref.watch(explorerThemeDataProvider);
+
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: themeData.backgroundColor,
       appBar: AppBar(
         title: const Text(
           "My Achievements",
@@ -25,8 +28,8 @@ class AchievementPage extends ConsumerWidget {
         ),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
+        backgroundColor: themeData.appBarColor,
+        foregroundColor: Colors.white,
       ),
       body: progressAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
@@ -34,7 +37,10 @@ class AchievementPage extends ConsumerWidget {
         data: (userProgress) {
           return achievementsAsync.when(
             loading: () => const Center(child: CircularProgressIndicator()),
-            error: (e, _) => Center(child: Text("Error: $e")),
+            error: (e, _) {
+              
+              return Center(child: Text("Error: $e"));
+            },
             data: (achievements) {
               if (achievements.isEmpty) {
                 return _buildEmptyState();

@@ -27,7 +27,8 @@
     ],
     "reward": {
       "type": "badge",
-      "value": "first_step"
+      "value": "First Step",
+      "imageUrl": ""
     }
   },
   {
@@ -42,7 +43,8 @@
     ],
     "reward": {
       "type": "badge",
-      "value": "the_codex"
+      "value": "The Codex",
+      "imageUrl": ""
     }
   }
 ]

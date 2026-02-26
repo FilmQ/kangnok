@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kangnok/models/parks/park.dart';
 import 'package:kangnok/providers/park_provider.dart';
+import 'package:kangnok/providers/theme_provider.dart';
 import 'package:latlong2/latlong.dart';
 
 // TODO: Refine this god damn map
@@ -68,6 +69,7 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
   @override
   Widget build(BuildContext context) {
     final parksAsync = ref.watch(parksStreamProvider);
+    final themeData = ref.watch(explorerThemeDataProvider);
 
     return Scaffold(
       //appBar: AppBar(title: const Text(""), centerTitle: true, backgroundColor: Color(0x44000000)),
@@ -193,6 +195,7 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
   }
 
   Widget _buildParkCard(Park park) {
+    final themeData = ref.watch(explorerThemeDataProvider);
     final hasImage = park.imageUrl.isNotEmpty && park.imageUrl.first.isNotEmpty;
 
     return Positioned(
@@ -264,6 +267,10 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: themeData.appBarColor,
+                          foregroundColor: Colors.white,
+                        ),
                         onPressed: () {
                           Navigator.pushNamed(
                             context,

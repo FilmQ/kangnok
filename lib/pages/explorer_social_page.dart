@@ -1,26 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kangnok/providers/theme_provider.dart';
 import 'explorer_add_post_page.dart';
 
-class SocialPage extends StatefulWidget {
+class SocialPage extends ConsumerStatefulWidget {
   const SocialPage({super.key});
 
   @override
-  State<SocialPage> createState() => _SocialPageState();
+  ConsumerState<SocialPage> createState() => _SocialPageState();
 }
 
-class _SocialPageState extends State<SocialPage> {
+class _SocialPageState extends ConsumerState<SocialPage> {
   @override
   Widget build(BuildContext context) {
+    final themeData = ref.watch(explorerThemeDataProvider);
+
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: themeData.backgroundColor,
       appBar: AppBar(
         title: const Text(
           "Explorer Community",
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: themeData.appBarColor,
+        foregroundColor: Colors.white,
         elevation: 0.5,
       ),
       

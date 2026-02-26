@@ -6,6 +6,7 @@ import 'package:kangnok/models/parks/park.dart';
 import 'package:kangnok/models/parks/review.dart';
 import 'package:kangnok/models/roles/explorer.dart';
 import 'package:kangnok/models/roles/ranger.dart';
+import 'package:kangnok/providers/theme_provider.dart';
 import 'package:kangnok/providers/user_provider.dart';
 import 'package:kangnok/services/announcement_service.dart';
 import 'package:kangnok/services/checkin_service.dart';
@@ -728,13 +729,17 @@ class _ExplorerParkPageState extends ConsumerState<ExplorerParkPage> {
   Widget build(BuildContext context) {
     final park = ModalRoute.of(context)!.settings.arguments as Park?;
     final parkName = park?.name ?? "Park's page";
+    final themeData = ref.watch(explorerThemeDataProvider);
     return DefaultTabController(
       length: 4,
       child: Scaffold(
+        backgroundColor: themeData.backgroundColor,
         body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
               SliverAppBar(
+                backgroundColor: themeData.appBarColor,
+                foregroundColor: Colors.white,
                 title: Text(parkName),
                 expandedHeight: 450,
                 floating: false,
