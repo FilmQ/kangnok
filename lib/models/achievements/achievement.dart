@@ -36,7 +36,7 @@ class Achievement {
         .map((c) => CriterionFactory.fromJson(c as Map<String, dynamic>))
         .toList(),
     reward: json['reward'] != null
-        ? Reward.fromJson(json['reward'] as Map<String, dynamic>)
+        ? RewardFactory.fromJson(json['reward'] as Map<String, dynamic>)
         : null,
   );
 
