@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:firebase_auth/firebase_auth.dart'; // อย่าลืม import ตัวนี้นะครับ
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:kangnok/pages/ranger/ranger_post_announcement_page.dart';
+import 'package:kangnok/pages/ranger/ranger_reviews_history_page.dart'; 
 import 'package:kangnok/providers/ranger_profile_provider.dart';
 import 'package:kangnok/models/roles/ranger.dart';
 
@@ -10,7 +12,8 @@ class RangerHomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final rangerAsync = ref.watch(rangerProfileProvider);
-
+    final parkNameAsync = ref.watch(rangerParkNameProvider);
+  
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
@@ -21,15 +24,15 @@ class RangerHomePage extends ConsumerWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.all(8), 
-            child: InkWell(
-              onTap: () => _showLogoutConfirmDialog(context),
-              child: Container(
-                width: 50,
-                height: 50,
-                alignment: Alignment.center,
-                child: Icon(Icons.logout_sharp),
-              ),
-            ),
+                child: InkWell(
+                  onTap: () => _showLogoutConfirmDialog(context),
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    alignment: Alignment.center,
+                    child: Icon(Icons.logout_sharp, size: 40,),
+                  ),
+                ),
           ),
         ],
       ),
@@ -43,7 +46,13 @@ class RangerHomePage extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildRangerHeader(ranger),
+                  _buildRangerHeader(ranger, 
+                    parkNameAsync.maybeWhen(
+                      data: (name) => name,
+                      orElse: () => "Loading...",
+                    ),
+                  ),
+
                   const SizedBox(height: 32),
                   const Text(
                     "Park Management",
@@ -106,7 +115,7 @@ class RangerHomePage extends ConsumerWidget {
   }
 
   // --- ส่วน Header แสดงโปรไฟล์ของ Ranger ---
-  Widget _buildRangerHeader(Ranger? ranger) {
+  Widget _buildRangerHeader(Ranger? ranger, String parkName) {
     if (ranger == null) return const SizedBox();
 
     return Row(
@@ -136,7 +145,7 @@ class RangerHomePage extends ConsumerWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                "Station: ${ranger.parkId}",
+                "Station: $parkName",
                 style: TextStyle(color: Colors.green[700], fontSize: 13, fontWeight: FontWeight.w500),
               ),
             ],
@@ -164,7 +173,13 @@ class RangerHomePage extends ConsumerWidget {
           subtitle: "Broadcast news, alerts, and events to explorers",
           icon: Icons.campaign,
           gradientColors: [Colors.yellow.shade600, Colors.orange],
-          onTap: () { /* Navigate */ },
+          onTap: () {
+          Navigator.push(context,
+            MaterialPageRoute(
+              builder: (context) => const RangerPostAnnouncementPage(), 
+            ),
+          );
+          },
         ),
         const SizedBox(height: 16),
 
@@ -173,7 +188,13 @@ class RangerHomePage extends ConsumerWidget {
           subtitle: "Check explorer's reviews and experiences of the park",
           icon: Icons.comment_rounded,
           gradientColors: [Colors.lightGreen, Colors.blue],
-          onTap: () { /* Navigate */ },
+          onTap: () {
+            Navigator.push(context,
+            MaterialPageRoute(
+              builder: (context) => const RangerReviewsHistoryPage(), 
+            ),
+          );
+          },
         ),
         const SizedBox(height: 16),
         
