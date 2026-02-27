@@ -41,6 +41,14 @@ const Map<String, ExplorerThemeData> explorerThemes = {
     backgroundColor: Color(0xFFE3F2FD),
     appBarColor: Color(0xFF0D47A1),
   ),
+  "Starry": ExplorerThemeData(
+    appBarColor: Color.fromARGB(95, 104, 0, 240),
+    backgroundColor: Color.fromARGB(255, 85, 57, 144),
+  ),
+  "Cherry": ExplorerThemeData(
+    appBarColor: Color.fromARGB(255, 171, 79, 159),
+    backgroundColor: Color.fromARGB(255, 237, 135, 208),
+  ),
 };
 
 class ExplorerThemeNotifier extends Notifier<String> {

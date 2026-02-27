@@ -12,6 +12,7 @@ import 'package:kangnok/services/announcement_service.dart';
 import 'package:kangnok/services/checkin_service.dart';
 import 'package:kangnok/services/ranger_service.dart';
 import 'package:kangnok/services/review_service.dart';
+import 'package:marquee/marquee.dart';
 
 // i think this file is a bit long but idk man
 class ExplorerParkPage extends ConsumerStatefulWidget {
@@ -738,9 +739,19 @@ class _ExplorerParkPageState extends ConsumerState<ExplorerParkPage> {
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
               SliverAppBar(
-                backgroundColor: themeData.appBarColor,
-                foregroundColor: Colors.white,
-                title: Text(parkName),
+                backgroundColor: themeData.appBarColor.withAlpha(50),
+                title: SizedBox(
+                  height: 24,
+                  child: Marquee(
+                    text: parkName,
+                    velocity: 30,
+                    blankSpace: 60,
+                    pauseAfterRound: Duration(seconds: 2),
+                    startAfter: Duration(seconds: 1),
+                    fadingEdgeStartFraction: 0.1,
+                    fadingEdgeEndFraction: 0.1,
+                  ),
+                ),
                 expandedHeight: 450,
                 floating: false,
                 actions: [

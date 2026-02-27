@@ -1,12 +1,13 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart' hide User; // ซ่อน User ของ Firebase ไม่ให้ชนกับ Model ของคุณ
+import 'package:firebase_auth/firebase_auth.dart'
+    hide User; // ซ่อน User ของ Firebase ไม่ให้ชนกับ Model ของคุณ
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kangnok/providers/theme_provider.dart';
 import 'package:kangnok/providers/explorer_profile_provider.dart';
-
 
 class ExplorerProfilePage extends ConsumerStatefulWidget {
   const ExplorerProfilePage({super.key});
@@ -19,9 +20,10 @@ class ExplorerProfilePage extends ConsumerStatefulWidget {
 class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
   File? _profileImage;
   final ImagePicker _picker = ImagePicker();
-  
+
   final String? uid = FirebaseAuth.instance.currentUser?.uid;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
+  final _firebaseStorage = FirebaseStorage.instance.ref();
 
   // ฟังก์ชันอัปเดตข้อมูล (ไม่ต้องใช้ setState แล้ว เพราะ Riverpod จะจัดการให้)
   Future<void> _updateProfileData(String field, String value) async {
@@ -30,25 +32,42 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
       await _db.collection('users').doc(uid).update({field: value});
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Profile updated successfully!'), duration: Duration(seconds: 2)),
+          const SnackBar(
+            content: Text('Profile updated successfully!'),
+            duration: Duration(seconds: 2),
+          ),
         );
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error: $e')));
       }
     }
   }
 
   Future<void> _pickImage() async {
     final XFile? picked = await _picker.pickImage(source: ImageSource.gallery);
-    if (picked != null) {
-      setState(() => _profileImage = File(picked.path));
-      
-      // TODO: หากต้องการเซฟรูป ให้เพิ่มฟังก์ชันอัปโหลดไปที่ Firebase Storage 
-      // แล้วเอา URL มาบันทึกลง Firestore (field: 'profileImageUrl')
+    if (picked == null || uid == null) return;
+
+    setState(() => _profileImage = File(picked.path));
+
+    // save to firestore and save the url to firestore
+    try {
+      final storageRef = _firebaseStorage.child('profile_pics/$uid.jpg');
+      await storageRef.putFile(_profileImage!);
+      final downloadUrl = await storageRef.getDownloadURL();
+      await _db.collection('users').doc(uid).update({
+        'profileImageUrl': downloadUrl,
+      });
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Profile picture updated!')),
+        );
+      }
+    } on FirebaseException catch (e) {
+      debugPrint("Cannot store profile picture: $e");
     }
   }
 
@@ -78,7 +97,9 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
             ),
             onPressed: () => Navigator.pop(context, controller.text),
             child: const Text("Save"),
@@ -97,7 +118,7 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
   Widget build(BuildContext context) {
     final themeName = ref.watch(explorerThemeProvider);
     final themeData = ref.watch(explorerThemeDataProvider);
-    
+
     // 🌟 ดึงข้อมูลจาก Provider แทน StreamBuilder
     final profileAsyncValue = ref.watch(explorerProfileProvider);
 
@@ -110,7 +131,10 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
       appBar: AppBar(
         backgroundColor: themeData.appBarColor,
         foregroundColor: Colors.white,
-        title: const Text("Profile", style: TextStyle(fontWeight: FontWeight.bold)),
+        title: const Text(
+          "Profile",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         elevation: 0,
       ),
@@ -124,9 +148,11 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
           }
 
           // จัดการค่าเริ่มต้นในกรณีที่ไม่มีข้อมูล
-          final String displayName = explorer.name.isNotEmpty ? explorer.name : "New Explorer";
-          final String bioText = explorer.bio?.isNotEmpty == true 
-              ? explorer.bio! 
+          final String displayName = explorer.name.isNotEmpty
+              ? explorer.name
+              : "New Explorer";
+          final String bioText = explorer.bio?.isNotEmpty == true
+              ? explorer.bio!
               : "Nature enthusiast and wildlife photographer. Love exploring national parks.";
 
           return SingleChildScrollView(
@@ -146,10 +172,17 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                           backgroundImage: _profileImage != null
                               ? FileImage(_profileImage!)
                               : (explorer.profileImageUrl != null
-                                  ? NetworkImage(explorer.profileImageUrl!) as ImageProvider
-                                  : null),
-                          child: (_profileImage == null && explorer.profileImageUrl == null)
-                              ? const Icon(Icons.person, size: 60, color: Colors.white)
+                                    ? NetworkImage(explorer.profileImageUrl!)
+                                          as ImageProvider
+                                    : null),
+                          child:
+                              (_profileImage == null &&
+                                  explorer.profileImageUrl == null)
+                              ? const Icon(
+                                  Icons.person,
+                                  size: 60,
+                                  color: Colors.white,
+                                )
                               : null,
                         ),
                         Container(
@@ -159,7 +192,11 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                             shape: BoxShape.circle,
                             border: Border.all(color: Colors.white, width: 3),
                           ),
-                          child: const Icon(Icons.camera_alt, size: 20, color: Colors.white),
+                          child: const Icon(
+                            Icons.camera_alt,
+                            size: 20,
+                            color: Colors.white,
+                          ),
                         ),
                       ],
                     ),
@@ -170,14 +207,16 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                 // --- 2. Display Name ---
                 Center(
                   child: GestureDetector(
-                    behavior: HitTestBehavior.opaque, // ช่วยให้กดติดง่ายขึ้นแม้จะกดโดนช่องว่าง
+                    behavior: HitTestBehavior
+                        .opaque, // ช่วยให้กดติดง่ายขึ้นแม้จะกดโดนช่องว่าง
                     onTap: () => _editField(
                       title: "Name",
                       dbField: "name",
                       currentValue: displayName,
                     ),
                     child: Row(
-                      mainAxisSize: MainAxisSize.min, // ให้แถวมีขนาดเท่าที่จำเป็น
+                      mainAxisSize:
+                          MainAxisSize.min, // ให้แถวมีขนาดเท่าที่จำเป็น
                       children: [
                         // Fake Icon for padding
                         Opacity(
@@ -187,18 +226,25 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                             child: Icon(Icons.edit_rounded, size: 20),
                           ),
                         ),
-                        
+
                         Flexible(
                           child: Text(
                             displayName,
-                            style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+                            style: const TextStyle(
+                              fontSize: 26,
+                              fontWeight: FontWeight.bold,
+                            ),
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        
+
                         Padding(
                           padding: const EdgeInsets.only(left: 8.0),
-                          child: Icon(Icons.edit_rounded, size: 20, color: Colors.grey.shade600),
+                          child: Icon(
+                            Icons.edit_rounded,
+                            size: 20,
+                            color: Colors.grey.shade600,
+                          ),
                         ),
                       ],
                     ),
@@ -209,7 +255,9 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                 // --- 3. Bio Card ---
                 Card(
                   elevation: 2,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
@@ -220,7 +268,10 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                           children: [
                             const Text(
                               "About Me",
-                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             IconButton(
                               onPressed: () => _editField(
@@ -228,7 +279,10 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                                 dbField: "bio",
                                 currentValue: bioText, // โยนค่าจริงจาก Provider
                               ),
-                              icon: Icon(Icons.edit_note, color: Colors.grey.shade600),
+                              icon: Icon(
+                                Icons.edit_note,
+                                color: Colors.grey.shade600,
+                              ),
                               constraints: const BoxConstraints(),
                               padding: EdgeInsets.zero,
                             ),
@@ -237,7 +291,11 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                         const SizedBox(height: 10),
                         Text(
                           bioText,
-                          style: TextStyle(fontSize: 15, color: Colors.grey.shade700, height: 1.5),
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.grey.shade700,
+                            height: 1.5,
+                          ),
                         ),
                       ],
                     ),
@@ -248,7 +306,9 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                 // --- 4. Stats & Settings Card ---
                 Card(
                   elevation: 2,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   child: Column(
                     children: [
                       ListTile(
@@ -258,12 +318,22 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                             color: Colors.green.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: const Icon(Icons.park_rounded, color: Colors.green),
+                          child: const Icon(
+                            Icons.park_rounded,
+                            color: Colors.green,
+                          ),
                         ),
-                        title: const Text("Parks Visited", style: TextStyle(fontWeight: FontWeight.w500)),
+                        title: const Text(
+                          "Parks Visited",
+                          style: TextStyle(fontWeight: FontWeight.w500),
+                        ),
                         trailing: Text(
                           "${explorer.parkVisited.length}",
-                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.green),
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green,
+                          ),
                         ),
                       ),
                       const Divider(height: 1, indent: 60),
@@ -274,9 +344,15 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                             color: Colors.deepPurple.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: const Icon(Icons.palette_rounded, color: Colors.deepPurple),
+                          child: const Icon(
+                            Icons.palette_rounded,
+                            color: Colors.deepPurple,
+                          ),
                         ),
-                        title: const Text("App Theme", style: TextStyle(fontWeight: FontWeight.w500)),
+                        title: const Text(
+                          "App Theme",
+                          style: TextStyle(fontWeight: FontWeight.w500),
+                        ),
                         trailing: DropdownButtonHideUnderline(
                           child: DropdownButton<String>(
                             value: themeName,
@@ -284,14 +360,24 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                             icon: const Icon(Icons.keyboard_arrow_down_rounded),
                             onChanged: (value) {
                               if (value != null) {
-                                ref.read(explorerThemeProvider.notifier).setTheme(value);
+                                ref
+                                    .read(explorerThemeProvider.notifier)
+                                    .setTheme(value);
                               }
                             },
-                            items: ref.watch(unlockedThemeNamesProvider)
-                                .map((t) => DropdownMenuItem(
-                                      value: t,
-                                      child: Text(t, style: const TextStyle(fontWeight: FontWeight.w500)),
-                                    ))
+                            items: ref
+                                .watch(unlockedThemeNamesProvider)
+                                .map(
+                                  (t) => DropdownMenuItem(
+                                    value: t,
+                                    child: Text(
+                                      t,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                )
                                 .toList(),
                           ),
                         ),
@@ -309,13 +395,25 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                     style: OutlinedButton.styleFrom(
                       foregroundColor: Colors.red,
                       side: const BorderSide(color: Colors.red, width: 1.5),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
                     ),
                     icon: const Icon(Icons.logout_rounded),
-                    label: const Text("Logout", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                    label: const Text(
+                      "Logout",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     onPressed: () {
                       FirebaseAuth.instance.signOut();
-                      Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        '/',
+                        (route) => false,
+                      );
                     },
                   ),
                 ),

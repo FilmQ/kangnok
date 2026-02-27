@@ -101,13 +101,13 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // 1. กำหนดหน้าที่จะแสดงในแต่ละ Tab ให้ตรงกับ Label ด้านล่าง 
+    // 1. กำหนดหน้าที่จะแสดงในแต่ละ Tab ให้ตรงกับ Label ด้านล่าง
     final List<Widget> pages = [
-      _buildHomeContent(ref),                      // Index 0: Home
-      const AchievementPage(),        // Index 1: Achievement
-      const ExplorerMapPage(),        // Index 2: Map
-      const Center(child: Text("Cosmetics Page")),  // Index 3: Cosmetics
-      const Center(child: Text("Profile Settings")), 
+      _buildHomeContent(ref), // Index 0: Home
+      const AchievementPage(), // Index 1: Achievement
+      const ExplorerMapPage(), // Index 2: Map
+      const Center(child: Text("Cosmetics Page")), // Index 3: Cosmetics
+      const Center(child: Text("Profile Settings")),
     ];
 
     final themeData = ref.watch(explorerThemeDataProvider);
@@ -130,7 +130,10 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
         unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.people), label: "Achievement"), 
+          BottomNavigationBarItem(
+            icon: Icon(Icons.people),
+            label: "Achievement",
+          ),
           BottomNavigationBarItem(icon: Icon(Icons.map), label: "Map"),
           BottomNavigationBarItem(
             icon: Icon(Icons.auto_awesome),
@@ -143,7 +146,8 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
   }
 
   // --- หน้าเนื้อหาหลัก (Home Content) ---
-  Widget _buildHomeContent(WidgetRef ref) { // เพิ่ม WidgetRef เข้ามา
+  Widget _buildHomeContent(WidgetRef ref) {
+    // เพิ่ม WidgetRef เข้ามา
     final profileAsyncValue = ref.watch(explorerProfileProvider);
 
     return SafeArea(
@@ -157,7 +161,8 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
                 height: 50,
                 child: Center(child: CircularProgressIndicator()),
               ),
-              error: (err, stack) => _buildGuestHeader(), // ถ้า error ให้โชว์แบบ Guest
+              error: (err, stack) =>
+                  _buildGuestHeader(), // ถ้า error ให้โชว์แบบ Guest
               data: (explorer) {
                 if (explorer == null) return _buildGuestHeader();
 
@@ -200,7 +205,10 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text("Quick Info", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const Text(
+                  "Quick Info",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
                 Row(
                   children: [
                     IconButton(
@@ -383,7 +391,10 @@ Widget _buildGuestHeader() {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text("Welcome,", style: TextStyle(color: Colors.grey)),
-          const Text("Explorer", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          const Text(
+            "Explorer",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
         ],
       ),
     ],

@@ -49,6 +49,7 @@ dependencies:
   latlong2: ^0.9.1
   cloud_functions: ^6.0.6
   geolocator: ^14.0.2
+  marquee: ^2.3.0
 
 dev_dependencies:
   flutter_test:
