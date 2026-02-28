@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:kangnok/pages/explorer_achievement_page.dart';
 import 'package:kangnok/pages/explorer_map_page.dart';
 import '../services/weather_service.dart';
@@ -20,7 +19,6 @@ class ExplorerHomePage extends ConsumerStatefulWidget {
 class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
   // --- State Variables ---
   WidgetType _currentWidget = WidgetType.pollution;
-  final String _uid = FirebaseAuth.instance.currentUser?.uid ?? "";
   int _selectedIndex = 0;
 
   final WeatherService _weatherService = WeatherService();
@@ -68,7 +66,7 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
         ];
 
         _cachedPollutionData = {
-          'value': 'Level ${aqi}',
+          'value': 'Level ${aqi} (${statusLabels[aqi]})',
           'status': statusLabels[aqi],
           'detail': 'Chiang Mai Air Quality Index',
         };
@@ -149,6 +147,7 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
   Widget _buildHomeContent(WidgetRef ref) {
     // เพิ่ม WidgetRef เข้ามา
     final profileAsyncValue = ref.watch(explorerProfileProvider);
+    final themeData = ref.watch(explorerThemeDataProvider);
 
     return SafeArea(
       child: SingleChildScrollView(
@@ -162,9 +161,9 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
                 child: Center(child: CircularProgressIndicator()),
               ),
               error: (err, stack) =>
-                  _buildGuestHeader(), // ถ้า error ให้โชว์แบบ Guest
+                  _buildGuestHeader(themeData), // ถ้า error ให้โชว์แบบ Guest
               data: (explorer) {
-                if (explorer == null) return _buildGuestHeader();
+                if (explorer == null) return _buildGuestHeader(themeData);
 
                 return Row(
                   children: [
@@ -182,15 +181,18 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
+                        Text(
                           "Welcome back",
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyle(
+                            color: themeData.textColor.withOpacity(0.6),
+                          ),
                         ),
                         Text(
                           explorer.name,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
+                            color: themeData.textColor,
                           ),
                         ),
                       ],
@@ -205,9 +207,13 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   "Quick Info",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: themeData.textColor,
+                  ),
                 ),
                 Row(
                   children: [
@@ -271,17 +277,25 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
 
             const SizedBox(height: 30),
             // PROMOTE BOX
-            const Text(
+            Text(
               "Recommended Parks",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: themeData.textColor,
+              ),
             ),
             const SizedBox(height: 12),
             const PromoteParkBox(), // เรียกใช้ Widget ที่เราเพิ่งสร้าง
             const SizedBox(height: 30),
 
-            const Text(
+            Text(
               "Your Journey",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: themeData.textColor,
+              ),
             ),
             const SizedBox(height: 12),
             // Placeholder สำหรับข้อมูลอื่นๆ ในหน้า Home
@@ -326,6 +340,8 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
     required Color color,
     required String detail,
   }) {
+    final themeData = ref.watch(explorerThemeDataProvider);
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(24),
@@ -360,14 +376,18 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
                 const SizedBox(height: 4),
                 Text(
                   value,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
+                    color: themeData.textColor,
                   ),
                 ),
                 Text(
                   detail,
-                  style: const TextStyle(fontSize: 13, color: Colors.black54),
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: themeData.textColor.withOpacity(0.5),
+                  ),
                 ),
               ],
             ),
@@ -378,7 +398,7 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
   }
 }
 
-Widget _buildGuestHeader() {
+Widget _buildGuestHeader(ExplorerThemeData themeData) {
   return Row(
     children: [
       const CircleAvatar(
@@ -390,10 +410,17 @@ Widget _buildGuestHeader() {
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Welcome,", style: TextStyle(color: Colors.grey)),
-          const Text(
+          Text(
+            "Welcome,",
+            style: TextStyle(color: themeData.textColor.withOpacity(0.6)),
+          ),
+          Text(
             "Explorer",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: themeData.textColor,
+            ),
           ),
         ],
       ),

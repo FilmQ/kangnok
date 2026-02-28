@@ -69,7 +69,6 @@ class _ExplorerMapPageState extends ConsumerState<ExplorerMapPage> {
   @override
   Widget build(BuildContext context) {
     final parksAsync = ref.watch(parksStreamProvider);
-    final themeData = ref.watch(explorerThemeDataProvider);
 
     return Scaffold(
       //appBar: AppBar(title: const Text(""), centerTitle: true, backgroundColor: Color(0x44000000)),

@@ -29,13 +29,25 @@ class _AdminHomepageState extends ConsumerState<AdminHomepage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(onPressed: ParkService().seedParks, child: Text("Seed Parks")),
+                ElevatedButton(
+                  onPressed: ParkService().seedParks,
+                  child: Text("Seed Parks"),
+                ),
                 const SizedBox(height: 16),
-                ElevatedButton(onPressed: AchievementService().seedAchievements, child: Text("Seed Achievements")),
+                ElevatedButton(
+                  onPressed: AchievementService().seedAchievements,
+                  child: Text("Seed Achievements"),
+                ),
                 const SizedBox(height: 16),
-                ElevatedButton(onPressed: AchievementService().deleteAllAchievements, child: Text("Delete All Achievements")),
+                ElevatedButton(
+                  onPressed: AchievementService().deleteAllAchievements,
+                  child: Text("Delete All Achievements"),
+                ),
                 const SizedBox(height: 16),
-                ElevatedButton(onPressed: AchievementService().resetAndSeedAchievements, child: Text("Reset Achievements")),
+                ElevatedButton(
+                  onPressed: AchievementService().resetAndSeedAchievements,
+                  child: Text("Reset Achievements"),
+                ),
               ],
             ),
           ),
@@ -45,7 +57,11 @@ class _AdminHomepageState extends ConsumerState<AdminHomepage> {
               children: [
                 ElevatedButton(onPressed: () {}, child: Text("Seed Rangers")),
                 const SizedBox(height: 16),
-                ElevatedButton(onPressed: () => Navigator.pushNamed(context, '/admin_create_ranger'), child: Text("Create ranger...")),
+                ElevatedButton(
+                  onPressed: () =>
+                      Navigator.pushNamed(context, '/admin_create_ranger'),
+                  child: Text("Create ranger..."),
+                ),
               ],
             ),
           ),
@@ -58,6 +74,4 @@ class _AdminHomepageState extends ConsumerState<AdminHomepage> {
   Widget build(BuildContext context) {
     return _mainScreen();
   }
-
-
 }

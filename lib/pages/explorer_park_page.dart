@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kangnok/models/parks/announcement.dart';
@@ -24,7 +25,7 @@ class ExplorerParkPage extends ConsumerStatefulWidget {
 
 class _ExplorerParkPageState extends ConsumerState<ExplorerParkPage> {
   int _currentPage = 0;
-  final int _totalPages = 2;
+  int _totalPages = 0;
   Stream<QuerySnapshot>? _announcementService;
   Stream<QuerySnapshot>? _reviewService;
   Stream<QuerySnapshot>? _rangerService;
@@ -37,8 +38,9 @@ class _ExplorerParkPageState extends ConsumerState<ExplorerParkPage> {
         _rangerService == null) {
       final park = ModalRoute.of(context)!.settings.arguments as Park?;
       if (park?.id != null) {
+        _totalPages = park!.imageUrl.length;
         _announcementService = AnnouncementService().getAnnouncementsFromPark(
-          park!.id!,
+          park.id!,
         );
         _reviewService = ReviewService().getReviewsFromPark(park.id!);
         _rangerService = RangerService().getRangersFromPark(park.id!);
@@ -444,6 +446,11 @@ class _ExplorerParkPageState extends ConsumerState<ExplorerParkPage> {
 
     if (!mounted) return;
 
+    // we must invalidate the provider once the user just checked in
+    if (result.isSuccess) {
+      ref.invalidate(currentUserProvider);
+    }
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(result.message ?? ''),
@@ -457,7 +464,7 @@ class _ExplorerParkPageState extends ConsumerState<ExplorerParkPage> {
   }
 
   Widget _buildReviewTab(Park park) {
-    final user = ref.read(currentUserProvider).value as Explorer;
+    final user = ref.watch(currentUserProvider).value as Explorer;
     return Column(
       children: [
         Padding(
@@ -475,6 +482,9 @@ class _ExplorerParkPageState extends ConsumerState<ExplorerParkPage> {
                         );
                       }
                     : () {
+                        debugPrint(
+                          "User has not checked in to: ${park.id} yet",
+                        );
                         showDialog(
                           context: context,
                           builder: (context) {
@@ -555,18 +565,65 @@ class _ExplorerParkPageState extends ConsumerState<ExplorerParkPage> {
             itemCount: rangers.length,
             itemBuilder: (context, index) {
               final ranger = Ranger.fromJson(
-                rangers[index] as Map<String, dynamic>,
+                rangers[index].data() as Map<String, dynamic>,
                 id: rangers[index].id,
               );
-              return Center(
+              return Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 4,
+                ),
                 child: Card(
-                  child: Row(
-                    children: [
-                      if (ranger.profileImageUrl != null)
-                        Image.network(ranger.profileImageUrl!),
-                      Text(ranger.title),
-                      Text(ranger.email),
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 48,
+                          height: 48,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade300,
+                            borderRadius: BorderRadius.circular(8),
+                            image: ranger.profileImageUrl != null
+                                ? DecorationImage(
+                                    image: NetworkImage(
+                                      ranger.profileImageUrl!,
+                                    ),
+                                    fit: BoxFit.cover,
+                                  )
+                                : null,
+                          ),
+                          child: ranger.profileImageUrl == null
+                              ? Icon(
+                                  Icons.person,
+                                  color: Colors.grey.shade600,
+                                  size: 28,
+                                )
+                              : null,
+                        ),
+                        const SizedBox(width: 12),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              ranger.title,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                              ),
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              ranger.email,
+                              style: TextStyle(
+                                color: Colors.grey.shade600,
+                                fontSize: 13,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );
@@ -734,7 +791,6 @@ class _ExplorerParkPageState extends ConsumerState<ExplorerParkPage> {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        backgroundColor: themeData.backgroundColor,
         body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [

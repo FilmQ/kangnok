@@ -119,7 +119,6 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
     final themeName = ref.watch(explorerThemeProvider);
     final themeData = ref.watch(explorerThemeDataProvider);
 
-    // 🌟 ดึงข้อมูลจาก Provider แทน StreamBuilder
     final profileAsyncValue = ref.watch(explorerProfileProvider);
 
     if (uid == null) {
@@ -138,7 +137,6 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
         centerTitle: true,
         elevation: 0,
       ),
-      // 🌟 ใช้ .when() ของ Riverpod จัดการ State (Loading, Data, Error)
       body: profileAsyncValue.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, stack) => Center(child: Text('Error: $error')),
@@ -230,9 +228,10 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                         Flexible(
                           child: Text(
                             displayName,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 26,
                               fontWeight: FontWeight.bold,
+                              color: themeData.textColor,
                             ),
                             textAlign: TextAlign.center,
                           ),
@@ -243,7 +242,7 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                           child: Icon(
                             Icons.edit_rounded,
                             size: 20,
-                            color: Colors.grey.shade600,
+                            color: themeData.textColor.withOpacity(0.5),
                           ),
                         ),
                       ],

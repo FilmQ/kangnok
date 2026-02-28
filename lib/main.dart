@@ -10,6 +10,7 @@ import 'package:kangnok/pages/explorer_home_page.dart';
 import 'package:kangnok/pages/explorer_map_page.dart';
 import 'package:kangnok/pages/explorer_park_page.dart';
 import 'package:kangnok/pages/ranger/ranger_post_announcement_page.dart';
+import 'package:kangnok/pages/ranger/ranger_profile_page.dart';
 import 'package:kangnok/pages/ranger/ranger_reviews_history_page.dart';
 import 'package:kangnok/pages/ranger_auth_page.dart';
 import 'package:kangnok/pages/explorer_profile_page.dart';
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
         '/admin_create_ranger': (context) => AdminCreateRangerPage(),
         '/ranger_post_announcement': (context) => RangerPostAnnouncementPage(),
         '/ranger_reviews_history': (context) => RangerReviewsHistoryPage(),
+        '/ranger_profile_page': (context) => RangerProfilePage(),
       },
     );
   }

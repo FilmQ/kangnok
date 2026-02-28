@@ -10,6 +10,7 @@ class Explorer extends User {
   int _reviewLikes;
   String? _bio;
   String? _profileImageUrl;
+  String _selectedTheme;
 
   Explorer({
     required super.email,
@@ -17,15 +18,17 @@ class Explorer extends User {
     required List<String> parkVisited,
     required int reviewCount,
     required int reviewLikes,
-    
+
     String? bio,
     String? profileImageUrl,
+    String selectedTheme = "Default",
   }) : _name = name,
        _parkVisited = parkVisited,
        _reviewCount = reviewCount,
        _reviewLikes = reviewLikes,
        _bio = bio,
-       _profileImageUrl = profileImageUrl;
+       _profileImageUrl = profileImageUrl,
+       _selectedTheme = selectedTheme;
 
   String get name => _name;
   set name(String newName) => _name = newName;
@@ -45,6 +48,9 @@ class Explorer extends User {
   String? get profileImageUrl => _profileImageUrl;
   set profileImageUrl(String? newUrl) => _profileImageUrl = newUrl;
 
+  String get selectedTheme => _selectedTheme;
+  set selectedTheme(String value) => _selectedTheme = value;
+
   factory Explorer.fromJson(Map<String, dynamic> json) {
     return Explorer(
       email: json['email'] as String,
@@ -54,6 +60,7 @@ class Explorer extends User {
       reviewLikes: json['reviewLikes'] as int? ?? 0,
       bio: json['bio'] as String?,
       profileImageUrl: json['profileImageUrl'] as String?,
+      selectedTheme: json['selectedTheme'] as String? ?? "Default",
     );
   }
 
@@ -68,6 +75,7 @@ class Explorer extends User {
       'reviewLikes': reviewLikes,
       'bio': bio,
       'profileImageUrl': profileImageUrl,
+      'selectedTheme': selectedTheme,
     };
   }
 }

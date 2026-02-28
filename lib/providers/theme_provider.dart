@@ -14,17 +14,22 @@
 //
 //   // Add a new theme: add an entry to [explorerThemes] map below.
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kangnok/providers/achievement_provider.dart';
+import 'package:kangnok/providers/explorer_profile_provider.dart';
 
 class ExplorerThemeData {
   final Color backgroundColor;
   final Color appBarColor;
+  final Color textColor;
 
   const ExplorerThemeData({
     required this.backgroundColor,
     required this.appBarColor,
+    this.textColor = Colors.black,
   });
 }
 
@@ -36,6 +41,7 @@ const Map<String, ExplorerThemeData> explorerThemes = {
   "Forest": ExplorerThemeData(
     backgroundColor: Colors.green,
     appBarColor: Color(0xFF1B5E20),
+    textColor: Colors.white,
   ),
   "Ocean": ExplorerThemeData(
     backgroundColor: Color(0xFFE3F2FD),
@@ -43,7 +49,8 @@ const Map<String, ExplorerThemeData> explorerThemes = {
   ),
   "Starry": ExplorerThemeData(
     appBarColor: Color.fromARGB(95, 104, 0, 240),
-    backgroundColor: Color.fromARGB(255, 85, 57, 144),
+    backgroundColor: Color.fromARGB(255, 34, 23, 58),
+    textColor: Colors.white,
   ),
   "Cherry": ExplorerThemeData(
     appBarColor: Color.fromARGB(255, 171, 79, 159),
@@ -53,10 +60,19 @@ const Map<String, ExplorerThemeData> explorerThemes = {
 
 class ExplorerThemeNotifier extends Notifier<String> {
   @override
-  String build() => "Default";
+  String build() {
+    final explorer = ref.watch(explorerProfileProvider).value;
+    return explorer?.selectedTheme ?? "Default";
+  }
 
   void setTheme(String theme) {
     state = theme;
+    final uid = FirebaseAuth.instance.currentUser?.uid;
+    if (uid != null) {
+      FirebaseFirestore.instance.collection('users').doc(uid).update({
+        'selectedTheme': theme,
+      });
+    }
   }
 }
 
@@ -74,5 +90,5 @@ final explorerThemeDataProvider = Provider<ExplorerThemeData>((ref) {
 final unlockedThemeNamesProvider = Provider.autoDispose<Set<String>>((ref) {
   final progress = ref.watch(userProgressStreamProvider).value ?? {};
   final unlocked = progress['unlockedThemes'] as List<dynamic>? ?? [];
-  return {"Default", ...unlocked.cast<String>()};
+  return {"Default", "Starry",...unlocked.cast<String>()};
 });

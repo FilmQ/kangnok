@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:kangnok/pages/ranger/ranger_post_announcement_page.dart';
-import 'package:kangnok/pages/ranger/ranger_reviews_history_page.dart'; 
+import 'package:kangnok/pages/ranger/ranger_reviews_history_page.dart';
 import 'package:kangnok/providers/ranger_profile_provider.dart';
 import 'package:kangnok/models/roles/ranger.dart';
 
@@ -13,31 +13,39 @@ class RangerHomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final rangerAsync = ref.watch(rangerProfileProvider);
     final parkNameAsync = ref.watch(rangerParkNameProvider);
-  
+
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
-        title: const Text('Ranger Dashboard', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: const Text(
+          'Ranger Dashboard',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Colors.green[700],
         foregroundColor: Colors.white,
         elevation: 0,
         actions: [
+          IconButton(
+            onPressed: () => Navigator.pushNamed(context, "/ranger_profile_page"),
+            icon: Icon(Icons.person),
+          ),
           Padding(
-            padding: const EdgeInsets.all(8), 
-                child: InkWell(
-                  onTap: () => _showLogoutConfirmDialog(context),
-                  child: Container(
-                    width: 50,
-                    height: 50,
-                    alignment: Alignment.center,
-                    child: Icon(Icons.logout_sharp, size: 40,),
-                  ),
-                ),
+            padding: const EdgeInsets.all(8),
+            child: InkWell(
+              onTap: () => _showLogoutConfirmDialog(context),
+              child: Container(
+                width: 50,
+                height: 50,
+                alignment: Alignment.center,
+                child: Icon(Icons.logout_sharp, size: 40),
+              ),
+            ),
           ),
         ],
       ),
       body: rangerAsync.when(
-        loading: () => const Center(child: CircularProgressIndicator(color: Colors.green)),
+        loading: () =>
+            const Center(child: CircularProgressIndicator(color: Colors.green)),
         error: (err, stack) => Center(child: Text("Error: $err")),
         data: (ranger) {
           return SafeArea(
@@ -46,7 +54,8 @@ class RangerHomePage extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildRangerHeader(ranger, 
+                  _buildRangerHeader(
+                    ranger,
                     parkNameAsync.maybeWhen(
                       data: (name) => name,
                       orElse: () => "Loading...",
@@ -57,7 +66,7 @@ class RangerHomePage extends ConsumerWidget {
                   const Text(
                     "Park Management",
                     style: TextStyle(
-                      fontSize: 18, 
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 0.5,
                     ),
@@ -69,7 +78,6 @@ class RangerHomePage extends ConsumerWidget {
             ),
           );
         },
-        
       ),
     );
   }
@@ -82,7 +90,9 @@ class RangerHomePage extends ConsumerWidget {
         return AlertDialog(
           title: const Text('Logout'),
           content: const Text('Are you sure you want to log out?'),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(dialogContext).pop(), // ปิด Popup
@@ -92,18 +102,22 @@ class RangerHomePage extends ConsumerWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.redAccent,
                 foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
               ),
               onPressed: () async {
                 // ปิด Popup ก่อน
-                Navigator.of(dialogContext).pop(); 
-                
+                Navigator.of(dialogContext).pop();
+
                 // สั่ง Sign out จาก Firebase
                 await FirebaseAuth.instance.signOut();
-                
+
                 // เด้งกลับไปหน้า Login และเคลียร์ประวัติหน้าจอ (ปรับชื่อ Route ตามของคุณได้เลย)
                 if (context.mounted) {
-                  Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
+                  Navigator.of(
+                    context,
+                  ).pushNamedAndRemoveUntil('/', (route) => false);
                 }
               },
               child: const Text('Logout'),
@@ -123,11 +137,11 @@ class RangerHomePage extends ConsumerWidget {
         CircleAvatar(
           radius: 30,
           backgroundColor: Colors.green[100],
-          backgroundImage: ranger.profileImageUrl != null 
-              ? NetworkImage(ranger.profileImageUrl!) 
+          backgroundImage: ranger.profileImageUrl != null
+              ? NetworkImage(ranger.profileImageUrl!)
               : null,
-          child: ranger.profileImageUrl == null 
-              ? Icon(Icons.shield, color: Colors.green[700], size: 30) 
+          child: ranger.profileImageUrl == null
+              ? Icon(Icons.shield, color: Colors.green[700], size: 30)
               : null,
         ),
         const SizedBox(width: 16),
@@ -141,12 +155,19 @@ class RangerHomePage extends ConsumerWidget {
               ),
               Text(
                 ranger.title.isNotEmpty ? ranger.title : "Park Ranger",
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 4),
               Text(
                 "Station: $parkName",
-                style: TextStyle(color: Colors.green[700], fontSize: 13, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                  color: Colors.green[700],
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ],
           ),
@@ -164,21 +185,24 @@ class RangerHomePage extends ConsumerWidget {
           subtitle: "Update status, capacity, and current weather",
           icon: Icons.edit_location_alt,
           gradientColors: [Colors.orange, Colors.red],
-          onTap: () { /* Navigate */ },
+          onTap: () {
+            /* Navigate */
+          },
         ),
         const SizedBox(height: 16),
-        
+
         _menuCard(
           title: "Post Announcement",
           subtitle: "Broadcast news, alerts, and events to explorers",
           icon: Icons.campaign,
           gradientColors: [Colors.yellow.shade600, Colors.orange],
           onTap: () {
-          Navigator.push(context,
-            MaterialPageRoute(
-              builder: (context) => const RangerPostAnnouncementPage(), 
-            ),
-          );
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const RangerPostAnnouncementPage(),
+              ),
+            );
           },
         ),
         const SizedBox(height: 16),
@@ -189,21 +213,24 @@ class RangerHomePage extends ConsumerWidget {
           icon: Icons.comment_rounded,
           gradientColors: [Colors.lightGreen, Colors.blue],
           onTap: () {
-            Navigator.push(context,
-            MaterialPageRoute(
-              builder: (context) => const RangerReviewsHistoryPage(), 
-            ),
-          );
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const RangerReviewsHistoryPage(),
+              ),
+            );
           },
         ),
         const SizedBox(height: 16),
-        
+
         _menuCard(
           title: "Check-In History",
           subtitle: "View recent visitor logs and submitted reports",
           icon: Icons.fact_check,
           gradientColors: [Colors.indigo, Colors.purple],
-          onTap: () { /* Navigate */ },
+          onTap: () {
+            /* Navigate */
+          },
         ),
       ],
     );
@@ -231,7 +258,7 @@ class RangerHomePage extends ConsumerWidget {
             spreadRadius: 2,
             blurRadius: 10,
             offset: const Offset(0, 4),
-          )
+          ),
         ],
       ),
       child: Material(
@@ -259,7 +286,7 @@ class RangerHomePage extends ConsumerWidget {
                       Text(
                         title,
                         style: const TextStyle(
-                          fontSize: 16, 
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
@@ -268,7 +295,7 @@ class RangerHomePage extends ConsumerWidget {
                       Text(
                         subtitle,
                         style: TextStyle(
-                          fontSize: 13, 
+                          fontSize: 13,
                           color: Colors.white.withOpacity(0.8),
                           height: 1.3,
                         ),
@@ -276,7 +303,11 @@ class RangerHomePage extends ConsumerWidget {
                     ],
                   ),
                 ),
-                const Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
+                const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.white70,
+                  size: 16,
+                ),
               ],
             ),
           ),
