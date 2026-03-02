@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kangnok/models/parks/announcement.dart';
@@ -323,18 +322,74 @@ class _ExplorerParkPageState extends ConsumerState<ExplorerParkPage> {
     );
   }
 
+  void _showAllImages(List<String> urls) {
+    showDialog(
+      context: context,
+      barrierColor: Colors.black87,
+      builder: (context) {
+        return GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: Center(
+            child: GestureDetector(
+              onTap: () {},
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * 0.7,
+                child: PageView.builder(
+                  itemCount: urls.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.network(urls[index], fit: BoxFit.contain),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _showFocusedImage(String url) {
+    showDialog(
+      context: context,
+      barrierColor: Colors.black87,
+      builder: (context) {
+        return GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.network(url, fit: BoxFit.contain),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   Widget _buildImageGrid(List<String> imageUrls) {
     const double gap = 2;
     const double gridHeight = 200;
 
     Widget image(String url) {
-      return ClipRRect(
-        borderRadius: BorderRadius.circular(4),
-        child: Image.network(
-          url,
-          fit: BoxFit.cover,
-          width: double.infinity,
-          height: double.infinity,
+      return GestureDetector(
+        onTap: () => _showFocusedImage(url),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(4),
+          child: Image.network(
+            url,
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+          ),
         ),
       );
     }
@@ -404,24 +459,35 @@ class _ExplorerParkPageState extends ConsumerState<ExplorerParkPage> {
                 SizedBox(height: gap),
                 Expanded(
                   child: remaining > 0
-                      ? Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            image(imageUrls[3]),
-                            Container(
-                              color: Colors.black54,
-                              child: Center(
-                                child: Text(
-                                  '+$remaining',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
+                      ? GestureDetector(
+                          onTap: () => _showAllImages(imageUrls.sublist(3)),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(4),
+                                child: Image.network(
+                                  imageUrls[3],
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                ),
+                              ),
+                              Container(
+                                color: Colors.black54,
+                                child: Center(
+                                  child: Text(
+                                    '+$remaining',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         )
                       : image(imageUrls[3]),
                 ),
@@ -612,6 +678,8 @@ class _ExplorerParkPageState extends ConsumerState<ExplorerParkPage> {
                                 fontSize: 15,
                               ),
                             ),
+                            const SizedBox(height: 2),
+                            Text("${ranger.firstName} ${ranger.lastName}"),
                             const SizedBox(height: 2),
                             Text(
                               ranger.email,

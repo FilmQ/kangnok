@@ -39,12 +39,12 @@ abstract class User {
 }
 
 class UserFactory {
-  static User fromJson(Map<String, dynamic> json) {
+  static User fromJson(Map<String, dynamic> json, {String? id}) {
     switch (json['type']) {
       case 'explorer':
-        return Explorer.fromJson(json);
+        return Explorer.fromJson(json, id: id);
       case 'ranger':
-        return Ranger.fromJson(json);
+        return Ranger.fromJson(json, id: id);
       default:
         throw ArgumentError("Unknown instance of: ${json['type']}");
     }

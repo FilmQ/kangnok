@@ -28,7 +28,7 @@
     "reward": {
       "type": "badge",
       "value": "First Step",
-      "imageUrl": ""
+      "imageUrl": "assets/achievements/badges/first_step.png"
     }
   },
   {
@@ -44,7 +44,7 @@
     "reward": {
       "type": "badge",
       "value": "The Codex",
-      "imageUrl": ""
+      "imageUrl": "assets/achievements/badges/codex.png"
     }
   }
 ]

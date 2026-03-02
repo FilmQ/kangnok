@@ -3,9 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart'
     hide User; // ซ่อน User ของ Firebase ไม่ให้ชนกับ Model ของคุณ
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Badge;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kangnok/models/achievements/badge.dart';
+import 'package:kangnok/providers/achievement_provider.dart';
 import 'package:kangnok/providers/theme_provider.dart';
 import 'package:kangnok/providers/explorer_profile_provider.dart';
 
@@ -118,8 +120,8 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
   Widget build(BuildContext context) {
     final themeName = ref.watch(explorerThemeProvider);
     final themeData = ref.watch(explorerThemeDataProvider);
-
     final profileAsyncValue = ref.watch(explorerProfileProvider);
+    final achievementsAsync = ref.watch(achievementsStreamProvider);
 
     if (uid == null) {
       return const Scaffold(body: Center(child: Text("Please log in first.")));
@@ -385,6 +387,84 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                   ),
                 ),
                 const SizedBox(height: 40),
+
+                // -- 4. Badge Zone ---
+                Card(
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Badges",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        achievementsAsync.when(
+                          loading: () => const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                          error: (e, _) =>
+                              const Text("Could not load badges."),
+                          data: (achievements) {
+                            final badgeRewards = achievements
+                                .where((a) => a.reward?.type == 'badge')
+                                .map((a) => a.reward as Badge)
+                                .toList();
+
+                            if (badgeRewards.isEmpty) {
+                              return const Text("No badges available yet.");
+                            }
+
+                            final ownedValues = explorer.badges
+                                .map((b) => b.value)
+                                .toSet();
+
+                            return GridView.count(
+                              crossAxisCount: 5,
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              mainAxisSpacing: 8,
+                              crossAxisSpacing: 8,
+                              children: badgeRewards.map((badge) {
+                                final isOwned =
+                                    ownedValues.contains(badge.value);
+                                Widget img = Image.asset(
+                                  badge.imageUrl,
+                                  fit: BoxFit.contain,
+                                );
+                                if (!isOwned) {
+                                  img = ColorFiltered(
+                                    colorFilter: const ColorFilter.matrix(
+                                      <double>[
+                                        0.2126, 0.7152, 0.0722, 0, 0,
+                                        0.2126, 0.7152, 0.0722, 0, 0,
+                                        0.2126, 0.7152, 0.0722, 0, 0,
+                                        0,      0,      0,      1, 0,
+                                      ],
+                                    ),
+                                    child: img,
+                                  );
+                                }
+                                return Tooltip(
+                                  message: badge.value,
+                                  child: img,
+                                );
+                              }).toList(),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
 
                 // --- 5. Logout Button ---
                 SizedBox(

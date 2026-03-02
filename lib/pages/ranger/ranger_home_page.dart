@@ -26,7 +26,8 @@ class RangerHomePage extends ConsumerWidget {
         elevation: 0,
         actions: [
           IconButton(
-            onPressed: () => Navigator.pushNamed(context, "/ranger_profile_page"),
+            onPressed: () =>
+                Navigator.pushNamed(context, "/ranger_profile_page"),
             icon: Icon(Icons.person),
           ),
           Padding(
@@ -154,7 +155,7 @@ class RangerHomePage extends ConsumerWidget {
                 style: TextStyle(color: Colors.grey[600], fontSize: 14),
               ),
               Text(
-                ranger.title.isNotEmpty ? ranger.title : "Park Ranger",
+                "Ranger ${ranger.firstName}",
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,

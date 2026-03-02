@@ -116,7 +116,7 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: (index) {
-          if (index == 4) {
+          if (index == 3) {
             Navigator.pushNamed(context, '/explorer_profile');
             return;
           }
@@ -133,10 +133,6 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
             label: "Achievement",
           ),
           BottomNavigationBarItem(icon: Icon(Icons.map), label: "Map"),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.auto_awesome),
-            label: "Cosmetics",
-          ), // เปลี่ยน icon ให้ดูเป็นสายบิวตี้
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
         ],
       ),

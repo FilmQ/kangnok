@@ -6,6 +6,9 @@ class Ranger extends User {
 
   String _parkId;
   String _title;
+  String firstName;
+  String lastName;
+
   String? _profileImageUrl;
 
   Ranger({
@@ -13,6 +16,8 @@ class Ranger extends User {
     required super.email,
     required String parkId,
     required String title,
+    required this.firstName,
+    required this.lastName,
     String? profileImageUrl,
   }) : _parkId = parkId,
        _title = title,
@@ -34,6 +39,8 @@ class Ranger extends User {
     'type': 'ranger',
     'parkId': parkId,
     'title': title,
+    'firstName': firstName,
+    'lastName': lastName,
     'profileImageUrl': profileImageUrl,
   };
 
@@ -42,6 +49,8 @@ class Ranger extends User {
     email: json['email'] as String,
     parkId: (json['parkId'] ?? json['parkStation']) as String,
     title: json['title'] as String,
+    firstName: json['firstName'] as String,
+    lastName: json['lastName'] as String,
     profileImageUrl: json['profileImageUrl'] as String?,
   );
 }

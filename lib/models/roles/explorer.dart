@@ -1,3 +1,4 @@
+import 'package:kangnok/models/achievements/badge.dart';
 import 'package:kangnok/models/roles/user.dart';
 
 class Explorer extends User {
@@ -11,24 +12,27 @@ class Explorer extends User {
   String? _bio;
   String? _profileImageUrl;
   String _selectedTheme;
+  List<Badge> badges;
 
   Explorer({
+    super.uid,
     required super.email,
     required String name,
     required List<String> parkVisited,
     required int reviewCount,
     required int reviewLikes,
-
     String? bio,
     String? profileImageUrl,
     String selectedTheme = "Default",
+    List<Badge> badges = const [],
   }) : _name = name,
        _parkVisited = parkVisited,
        _reviewCount = reviewCount,
        _reviewLikes = reviewLikes,
        _bio = bio,
        _profileImageUrl = profileImageUrl,
-       _selectedTheme = selectedTheme;
+       _selectedTheme = selectedTheme,
+       badges = List<Badge>.from(badges);
 
   String get name => _name;
   set name(String newName) => _name = newName;
@@ -51,8 +55,9 @@ class Explorer extends User {
   String get selectedTheme => _selectedTheme;
   set selectedTheme(String value) => _selectedTheme = value;
 
-  factory Explorer.fromJson(Map<String, dynamic> json) {
+  factory Explorer.fromJson(Map<String, dynamic> json, {String? id}) {
     return Explorer(
+      uid: id,
       email: json['email'] as String,
       name: json['name'] as String,
       parkVisited: List<String>.from(json['parkVisited'] ?? []),
@@ -61,6 +66,16 @@ class Explorer extends User {
       bio: json['bio'] as String?,
       profileImageUrl: json['profileImageUrl'] as String?,
       selectedTheme: json['selectedTheme'] as String? ?? "Default",
+      badges: (json['badges'] as List<dynamic>?)
+              ?.map((b) => b is Map<String, dynamic>
+                    ? Badge(
+                        type: b['type'] as String,
+                        value: b['value'] as String,
+                        imageUrl: b['imageUrl'] as String? ?? '',
+                      )
+                    : Badge(type: 'badge', value: b as String, imageUrl: ''))
+              .toList() ??
+          [],
     );
   }
 
@@ -76,6 +91,7 @@ class Explorer extends User {
       'bio': bio,
       'profileImageUrl': profileImageUrl,
       'selectedTheme': selectedTheme,
+      'badges': badges.map((b) => b.toJson()).toList(),
     };
   }
 }

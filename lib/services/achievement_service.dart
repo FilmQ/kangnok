@@ -76,7 +76,7 @@ class AchievementService {
           updates['unlockedThemes'] = FieldValue.arrayUnion([reward.value]);
           break;
         case 'badge':
-          updates['badges'] = FieldValue.arrayUnion([reward.value]);
+          updates['badges'] = FieldValue.arrayUnion([reward.toJson()]);
           break;
       }
     }

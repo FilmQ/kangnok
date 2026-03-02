@@ -5,7 +5,7 @@ import 'package:kangnok/models/roles/user.dart';
 
 /// Handles user persistence with Firestore.
 ///
-/// Provides methods to save, retrieve, and create (empty) users 
+/// Provides methods to save, retrieve, and create (empty) users
 /// (Explorer or Ranger)
 /// in the 'users' collection. Uses [UserFactory] to deserialize users based
 /// on their stored role type.
@@ -65,8 +65,16 @@ class UserService {
     String email,
     String parkId,
     String title,
+    String firstName,
+    String lastName,
   ) async {
-    final ranger = Ranger(email: email, parkId: parkId, title: title);
+    final ranger = Ranger(
+      email: email,
+      parkId: parkId,
+      title: title,
+      firstName: firstName,
+      lastName: lastName,
+    );
     ranger.uid = uid;
     await saveUser(uid, ranger);
     return ranger;

@@ -19,6 +19,8 @@ class AdminCreateRangerPage extends StatefulWidget {
 class _AdminCreateRangerPageState extends State<AdminCreateRangerPage> {
   final TextEditingController _rangerEmailTextbox = TextEditingController();
   final TextEditingController _rangerPasswordTextbox = TextEditingController();
+  final TextEditingController _rangerFirstNameTextbox = TextEditingController();
+  final TextEditingController _rangerLastNameTextbox = TextEditingController();
   String? _selectedParkId;
   String? _selectedParkName;
 
@@ -26,16 +28,22 @@ class _AdminCreateRangerPageState extends State<AdminCreateRangerPage> {
   void dispose() {
     _rangerEmailTextbox.dispose();
     _rangerPasswordTextbox.dispose();
+    _rangerFirstNameTextbox.dispose();
+    _rangerLastNameTextbox.dispose();
     super.dispose();
   }
 
   Future<void> onFinishButtonClick() async {
     final email = _rangerEmailTextbox.text.trim();
     final password = _rangerPasswordTextbox.text.trim();
+    final firstName = _rangerFirstNameTextbox.text.trim();
+    final lastName = _rangerLastNameTextbox.text.trim();
 
     if (!Validator.isValidEmail(email) ||
         email.isEmpty ||
         password.isEmpty ||
+        firstName.isEmpty ||
+        lastName.isEmpty ||
         _selectedParkId == null) {
       if (!mounted) return;
       showDialog(
@@ -74,9 +82,12 @@ class _AdminCreateRangerPageState extends State<AdminCreateRangerPage> {
       await secondaryApp.delete();
 
       final ranger = Ranger(
+        uid: uid,
         email: email,
         parkId: _selectedParkId!,
         title: 'Ranger',
+        firstName: firstName,
+        lastName: lastName,
       );
 
       await UserService().createRanger(
@@ -84,6 +95,8 @@ class _AdminCreateRangerPageState extends State<AdminCreateRangerPage> {
         email,
         _selectedParkId!,
         'Ranger',
+        firstName,
+        lastName
       );
       await ParkService().addRangerToPark(_selectedParkId!, ranger);
 
@@ -189,6 +202,16 @@ class _AdminCreateRangerPageState extends State<AdminCreateRangerPage> {
               controller: _rangerPasswordTextbox,
               decoration: const InputDecoration(labelText: 'Password'),
               obscureText: true,
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: _rangerFirstNameTextbox,
+              decoration: const InputDecoration(labelText: 'First Name'),
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: _rangerLastNameTextbox,
+              decoration: const InputDecoration(labelText: 'Last Name'),
             ),
             const SizedBox(height: 16),
             parkSelectorDropDown(),
