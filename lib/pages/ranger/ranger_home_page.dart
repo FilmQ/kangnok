@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:kangnok/pages/ranger/ranger_checkin_history_page.dart';
 import 'package:kangnok/pages/ranger/ranger_post_announcement_page.dart';
 import 'package:kangnok/pages/ranger/ranger_reviews_history_page.dart';
 import 'package:kangnok/providers/ranger_profile_provider.dart';
@@ -38,7 +39,7 @@ class RangerHomePage extends ConsumerWidget {
                 width: 50,
                 height: 50,
                 alignment: Alignment.center,
-                child: Icon(Icons.logout_sharp, size: 40),
+                child: Icon(Icons.logout_sharp, size: 32),
               ),
             ),
           ),
@@ -230,7 +231,12 @@ class RangerHomePage extends ConsumerWidget {
           icon: Icons.fact_check,
           gradientColors: [Colors.indigo, Colors.purple],
           onTap: () {
-            /* Navigate */
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const RangerCheckInHistoryPage(),
+              ),
+            );
           },
         ),
       ],

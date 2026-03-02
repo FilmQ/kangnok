@@ -54,69 +54,96 @@ class CheckInService {
   /// Attempts to check in the user at the given park.
   ///
   /// Returns a [CheckInResult] indicating success or the reason for failure.
-  Future<CheckInResult> checkIn({
+Future<CheckInResult> checkIn({
     required String uid,
     required String parkId,
     required String parkCoordinate,
   }) async {
     try {
       final position = await _getCurrentPosition();
-
       final parsed = _parseCoordinate(parkCoordinate);
-      if (parsed == null) {
-        return CheckInResult.failure('Unable to read park coordinates.');
-      }
+      
+      if (parsed == null) return CheckInResult.failure('Invalid park coordinates.');
 
       final (parkLat, parkLng) = parsed;
-      debugPrint(
-        'Check-in debug: user=(${position.latitude}, ${position.longitude}), '
-        'park=($parkLat, $parkLng), raw="$parkCoordinate"',
-      );
       final distanceInMeters = Geolocator.distanceBetween(
-        position.latitude,
-        position.longitude,
-        parkLat,
-        parkLng,
+        position.latitude, position.longitude, parkLat, parkLng,
       );
 
+      // 1. ตรวจสอบระยะทางก่อนเข้า Transaction (เพื่อความเร็ว)
       if (distanceInMeters > checkInRadiusMeters) {
-        return CheckInResult.failure(
-          'You are ${(distanceInMeters / 1000).toStringAsFixed(1)} km away. '
-          'You need to be within ${(checkInRadiusMeters / 1000).toStringAsFixed(1)} km of the park to check in.',
-        );
+        return CheckInResult.failure('You are too far from the park.');
       }
 
-      // Fetch the park document to get its name
-      final parkDoc = await _parks.doc(parkId).get();
-      final parkData = parkDoc.data() as Map<String, dynamic>?;
-      if (parkData == null) {
-        return CheckInResult.failure('Park not found.');
+      // 2. ใช้ Firestore Transaction เพื่อป้องกันการเช็คอินซ้ำซ้อน (กดรัวๆ)
+      return await FirebaseFirestore.instance.runTransaction((transaction) async {
+
+      final now = DateTime.now();
+      final startOfToday = DateTime(now.year, now.month, now.day);
+
+      // 2. Query หาว่าวันนี้ User คนนี้เคยเช็คอินที่อุทยานนี้ไปหรือยัง
+      final existingCheckIn = await FirebaseFirestore.instance
+          .collection('checkins')
+          .where('uid', isEqualTo: uid)
+          .where('parkId', isEqualTo: parkId)
+          .where('checkInTime', isGreaterThanOrEqualTo: startOfToday)
+          .get();
+
+      // 3. ถ้าเจอข้อมูล แปลว่าวันนี้เช็คอินไปแล้ว ให้ส่ง Failure กลับไป
+      if (existingCheckIn.docs.isNotEmpty) {
+        return CheckInResult.failure('You have already checked in today. Please come back tomorrow!');
       }
-      final parkName = parkData['name'] as String;
+      
+        final userDocRef = _users.doc(uid);
+        final parkDocRef = _parks.doc(parkId);
+        
+        final userSnapshot = await transaction.get(userDocRef);
+        final parkSnapshot = await transaction.get(parkDocRef);
 
-      // Check if already visited (by park name)
-      final userDoc = await _users.doc(uid).get();
-      final userData = userDoc.data() as Map<String, dynamic>?;
-      final parkVisited = List<String>.from(userData?['parkVisited'] ?? []);
+        if (!userSnapshot.exists || !parkSnapshot.exists) {
+          throw Exception('User or Park not found.');
+        }
 
-      if (parkVisited.contains(parkName)) {
-        return CheckInResult.alreadyVisited();
-      }
+        final userData = userSnapshot.data() as Map<String, dynamic>;
+        final parkData = parkSnapshot.data() as Map<String, dynamic>;
+        final parkName = parkData['name'] as String;
 
-      // Add park name to visited list and increment park's visitor count
-      await _users.doc(uid).update({
-        'parkVisited': FieldValue.arrayUnion([parkName]),
+        // --- แก้ปัญหาที่ 1: ตรวจสอบจาก parkId แทนชื่อ (แม่นยำกว่า) ---
+        final List<String> visitedIds = List<String>.from(userData['parkVisitedIds'] ?? []);
+        
+        if (visitedIds.contains(parkId)) {
+          return CheckInResult.alreadyVisited();
+        }
+
+        // 3. บันทึกข้อมูลทั้งหมดพร้อมกัน (Atomic Update)
+        // เพิ่ม ID เข้าไปในลิสต์ที่เคยไป
+        transaction.update(userDocRef, {
+          'parkVisitedIds': FieldValue.arrayUnion([parkId]),
+          'parkVisited': FieldValue.arrayUnion([parkName]), // เก็บชื่อไว้โชว์สวยๆ ก็ได้
+        });
+
+        // เพิ่มจำนวน Visitor
+        transaction.update(parkDocRef, {
+          'visitorCount': FieldValue.increment(1),
+        });
+
+        // สร้างประวัติการเช็คอินใน Collection 'checkins'
+        final checkInRef = FirebaseFirestore.instance.collection('checkins').doc();
+        transaction.set(checkInRef, {
+          'uid': uid,
+          'userName': userData['name'] ?? 'Unknown Explorer',
+          'parkId': parkId,
+          'parkName': parkName,
+          'checkInTime': FieldValue.serverTimestamp(),
+          'userPhoto': userData['profileImageUrl'],
+        });
+
+        return CheckInResult.success();
       });
-      await _parks.doc(parkId).update({
-        'visitorCount': FieldValue.increment(1),
-      });
 
-      return CheckInResult.success();
-    } on Exception catch (e) {
-      debugPrint('Check-in failed: $e');
-      return CheckInResult.failure(
-        e.toString().replaceFirst('Exception: ', ''),
-      );
+    } catch (e) {
+      debugPrint('Check-in error: $e');
+      return CheckInResult.failure(e.toString());
     }
   }
 }

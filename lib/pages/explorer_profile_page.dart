@@ -386,7 +386,7 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 16),
 
                 // -- 4. Badge Zone ---
                 Card(
@@ -466,6 +466,7 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                   ),
                 ),
 
+                const SizedBox(height: 16),
                 // --- 5. Logout Button ---
                 SizedBox(
                   width: double.infinity,
