@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart'; // อย่าลืมลงแพ็คเกจ intl ใน pubspec.yaml
+import 'package:intl/intl.dart'; 
 import 'package:kangnok/providers/checkin_history_provider.dart';
 import 'package:kangnok/providers/ranger_profile_provider.dart';
-import 'package:kangnok/providers/park_provider.dart'; // หรือไฟล์ที่เก็บ provider ข้อ 2
 
 class RangerCheckInHistoryPage extends ConsumerWidget {
   const RangerCheckInHistoryPage({super.key});
