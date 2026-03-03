@@ -46,5 +46,213 @@
       "value": "The Codex",
       "imageUrl": "assets/achievements/badges/codex.png"
     }
+  },
+  {
+    "title": "Visit Op Luang",
+    "description": "Check-in at Op Luang National Park",
+    "thumbnail": "assets/achievements/badges/badge.png",
+    "criterias": [
+      {
+        "type": "park_visit_name",
+        "requiredName": "Op Luang National Park"
+      }
+    ],
+    "reward": {
+      "type": "badge",
+      "value": "The Op Luang Gorge",
+      "imageUrl": "assets/achievements/badges/op_luang.png"
+    }
+  },
+  {
+    "title": "Visit Doi Phahom Pok",
+    "description": "Check-in at Doi Phahom Pok National Park",
+    "thumbnail":  "assets/achievements/badges/doi_phahom_pok.png",
+    "criterias": [
+      {
+        "type": "park_visit_name",
+        "requiredName": "Doi Pha Hom Pok National Park"
+      }
+    ],
+    "reward": {
+      "type": "badge",
+      "value": "Phahom Pok Cave Rock",
+      "imageUrl": "assets/achievements/badges/doi_phahom_pok.png"
+    }
+  },
+  {
+    "title": "Visit Si Lanna National Park",
+    "description": "Check-in at Si Lanna National Park",
+    "thumbnail": "assets/achievements/badges/badge.png",
+    "criterias": [
+      {
+        "type": "park_visit_name",
+        "requiredName": "Si Lanna National Park"
+      }
+    ],
+    "reward": {
+      "type": "badge",
+      "value": "The Pillar",
+      "imageUrl": "assets/achievements/badges/badge.png"
+    }
+  },
+  {
+    "title": "Visit Bua Tong Waterfall-Seven Colors Spring",
+    "description": "Check-in at Bua Tong Waterfall-Seven Colors Spring National Park",
+    "thumbnail": "assets/achievements/badges/badge.png",
+    "criterias": [
+      {
+        "type": "park_visit_name",
+        "requiredName": "Bua Tong Waterfall-Seven Colors Spring National Park"
+      }
+    ],
+    "reward": {
+      "type": "badge",
+      "value": "Waterfall Enjoyer",
+      "imageUrl": "assets/achievements/badges/emerald_fountain.png"
+    }
+  },
+  {
+    "title": "Visit Khun Khan",
+    "description": "Check-in at Khun Khan National Park",
+    "thumbnail": "assets/achievements/badges/badge.png",
+    "criterias": [
+      {
+        "type": "park_visit_name",
+        "requiredName": "Khun Khan National Park"
+      }
+    ],
+    "reward": {
+      "type": "badge",
+      "value": "Khun Khan Explorer",
+      "imageUrl": "assets/achievements/badges/badge.png"
+    }
+  },
+  {
+    "title": "Visit Doi Wiang Pha",
+    "description": "Check-in at Doi Wiang Pha National Park",
+    "thumbnail": "assets/achievements/badges/badge.png",
+    "criterias": [
+      {
+        "type": "park_visit_name",
+        "requiredName": "Doi Wiang Pha National Park"
+      }
+    ],
+    "reward": {
+      "type": "badge",
+      "value": "Doi Wiang Pha Explorer",
+      "imageUrl": "assets/achievements/badges/badge.png"
+    }
+  },
+  {
+    "title": "Visit Doi Suthep-Pui",
+    "description": "Check-in at Doi Suthep-Pui National Park",
+    "thumbnail": "assets/achievements/badges/badge.png",
+    "criterias": [
+      {
+        "type": "park_visit_name",
+        "requiredName": "Doi Suthep Pui National Park"
+      }
+    ],
+    "reward": {
+      "type": "badge",
+      "value": "Doi Suthep-Pui Explorer",
+      "imageUrl": "assets/achievements/badges/badge.png"
+    }
+  },
+  {
+    "title": "Visit Pha Daeng",
+    "description": "Check-in at Pha Daeng National Park",
+    "thumbnail": "assets/achievements/badges/badge.png",
+    "criterias": [
+      {
+        "type": "park_visit_name",
+        "requiredName": "Pha Daeng National Park"
+      }
+    ],
+    "reward": {
+      "type": "badge",
+      "value": "Pha Daeng Explorer",
+      "imageUrl": "assets/achievements/badges/badge.png"
+    }
+  },
+  {
+    "title": "Visit Mae Takhrai",
+    "description": "Check-in at Mae Takhrai National Park",
+    "thumbnail": "assets/achievements/badges/badge.png",
+    "criterias": [
+      {
+        "type": "park_visit_name",
+        "requiredName": "Mae Takhrai National Park"
+      }
+    ],
+    "reward": {
+      "type": "badge",
+      "value": "Mae Takhrai Explorer",
+      "imageUrl": "assets/achievements/badges/badge.png"
+    }
+  },
+  {
+    "title": "Visit Mae Tho",
+    "description": "Check-in at Mae Tho National Park",
+    "thumbnail": "assets/achievements/badges/badge.png",
+    "criterias": [
+      {
+        "type": "park_visit_name",
+        "requiredName": "Mae Tho National Park"
+      }
+    ],
+    "reward": {
+      "type": "badge",
+      "value": "Mae Tho Explorer",
+      "imageUrl": "assets/achievements/badges/badge.png"
+    }
+  },
+  {
+    "title": "Visit Mae Wang",
+    "description": "Check-in at Mae Wang National Park",
+    "thumbnail": "assets/achievements/badges/badge.png",
+    "criterias": [
+      {
+        "type": "park_visit_name",
+        "requiredName": "Mae Wang National Park"
+      }
+    ],
+    "reward": {
+      "type": "badge",
+      "value": "Mae Wang Explorer",
+      "imageUrl": "assets/achievements/badges/badge.png"
+    }
+  },
+  {
+    "title": "Visit Huai Nam Dang",
+    "description": "Check-in at Huai Nam Dang National Park",
+    "thumbnail": "assets/achievements/badges/badge.png",
+    "criterias": [
+      {
+        "type": "park_visit_name",
+        "requiredName": "Huai Nam Dang National Park"
+      }
+    ],
+    "reward": {
+      "type": "badge",
+      "value": "Huai Nam Dang Explorer",
+      "imageUrl": "assets/achievements/badges/badge.png"
+    }
+  },
+  {
+    "title": "Visit Op Khan",
+    "description": "Check-in at Op Khan National Park",
+    "thumbnail": "assets/achievements/badges/badge.png",
+    "criterias": [
+      {
+        "type": "park_visit_name",
+        "requiredName": "Op Khan National Park"
+      }
+    ],
+    "reward": {
+      "type": "badge",
+      "value": "Op Khan Explorer",
+      "imageUrl": "assets/achievements/badges/badge.png"
+    }
   }
 ]

@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart' hide Badge;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kangnok/models/achievements/achievement.dart';
 import 'package:kangnok/models/achievements/badge.dart';
 import 'package:kangnok/providers/achievement_provider.dart';
 import 'package:kangnok/providers/theme_provider.dart';
@@ -116,12 +117,81 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
     }
   }
 
+  void _showBadgeDetail(
+    BuildContext context, {
+    required Badge badge,
+    required Achievement achievement,
+    required bool isOwned,
+    required String effectiveUrl,
+  }) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 24),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              width: 80,
+              height: 80,
+              child: effectiveUrl.startsWith('http')
+                  ? Image.network(effectiveUrl, fit: BoxFit.contain)
+                  : Image.asset(effectiveUrl, fit: BoxFit.contain),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              badge.value,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              achievement.description,
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey.shade600,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 12),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              decoration: BoxDecoration(
+                color: isOwned ? Colors.green.shade50 : Colors.grey.shade100,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Text(
+                isOwned ? "Owned" : "Not yet earned",
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: isOwned ? Colors.green.shade700 : Colors.grey.shade500,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeName = ref.watch(explorerThemeProvider);
     final themeData = ref.watch(explorerThemeDataProvider);
     final profileAsyncValue = ref.watch(explorerProfileProvider);
     final achievementsAsync = ref.watch(achievementsStreamProvider);
+    final unlockedThemes = ref.watch(unlockedThemeNamesProvider);
+
+    debugPrint('[PROFILE] build() called');
+    debugPrint('[PROFILE] themeName: $themeName');
+    debugPrint('[PROFILE] unlockedThemes: $unlockedThemes');
+    debugPrint('[PROFILE] profileAsyncValue: $profileAsyncValue');
+    debugPrint('[PROFILE] achievementsAsync state: ${achievementsAsync.isLoading ? "loading" : achievementsAsync.hasError ? "error: ${achievementsAsync.error}" : "data(${achievementsAsync.value?.length} items)"}');
 
     if (uid == null) {
       return const Scaffold(body: Center(child: Text("Please log in first.")));
@@ -414,12 +484,19 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                           error: (e, _) =>
                               const Text("Could not load badges."),
                           data: (achievements) {
-                            final badgeRewards = achievements
+                            debugPrint('[PROFILE] achievements loaded: ${achievements.length}');
+                            for (final a in achievements) {
+                              debugPrint('[PROFILE] achievement: "${a.title}", reward type: ${a.reward?.type}, reward runtimeType: ${a.reward.runtimeType}');
+                              if (a.reward?.type == 'badge') {
+                                final badge = a.reward as Badge;
+                                debugPrint('[PROFILE]   badge imageUrl: "${badge.imageUrl}"');
+                              }
+                            }
+                            final badgeAchievements = achievements
                                 .where((a) => a.reward?.type == 'badge')
-                                .map((a) => a.reward as Badge)
                                 .toList();
 
-                            if (badgeRewards.isEmpty) {
+                            if (badgeAchievements.isEmpty) {
                               return const Text("No badges available yet.");
                             }
 
@@ -433,13 +510,24 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                               physics: const NeverScrollableScrollPhysics(),
                               mainAxisSpacing: 8,
                               crossAxisSpacing: 8,
-                              children: badgeRewards.map((badge) {
+                              children: badgeAchievements.map((ach) {
+                                final badge = ach.reward as Badge;
                                 final isOwned =
                                     ownedValues.contains(badge.value);
-                                Widget img = Image.asset(
-                                  badge.imageUrl,
-                                  fit: BoxFit.contain,
-                                );
+                                final effectiveUrl = badge.imageUrl.isEmpty
+                                    ? 'assets/achievements/badges/badge.png'
+                                    : badge.imageUrl;
+                                Widget img = effectiveUrl.startsWith('http')
+                                    ? Image.network(
+                                        effectiveUrl,
+                                        fit: BoxFit.contain,
+                                        errorBuilder: (_, _, _) =>
+                                            const Icon(Icons.verified, size: 32),
+                                      )
+                                    : Image.asset(
+                                        effectiveUrl,
+                                        fit: BoxFit.contain,
+                                      );
                                 if (!isOwned) {
                                   img = ColorFiltered(
                                     colorFilter: const ColorFilter.matrix(
@@ -453,8 +541,14 @@ class _ExplorerProfilePageState extends ConsumerState<ExplorerProfilePage> {
                                     child: img,
                                   );
                                 }
-                                return Tooltip(
-                                  message: badge.value,
+                                return GestureDetector(
+                                  onTap: () => _showBadgeDetail(
+                                    context,
+                                    badge: badge,
+                                    achievement: ach,
+                                    isOwned: isOwned,
+                                    effectiveUrl: effectiveUrl,
+                                  ),
                                   child: img,
                                 );
                               }).toList(),

@@ -599,8 +599,15 @@ class _ExplorerParkPageState extends ConsumerState<ExplorerParkPage> {
 
     if (!mounted) return;
 
-    // we must invalidate the provider once the user just checked in
+    // Optimistically update the in-memory user so the UI reflects
+    // the check-in immediately, then invalidate the provider so it
+    // eventually re-fetches the confirmed data from Firestore.
     if (result.isSuccess) {
+      final currentUser = ref.read(currentUserProvider).value;
+      if (currentUser is Explorer &&
+          !currentUser.parkVisited.contains(park.name)) {
+        currentUser.parkVisited.add(park.name);
+      }
       ref.invalidate(currentUserProvider);
     }
 

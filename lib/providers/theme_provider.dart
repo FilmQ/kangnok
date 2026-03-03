@@ -86,9 +86,11 @@ final explorerThemeDataProvider = Provider<ExplorerThemeData>((ref) {
 });
 
 /// Themes available to the current user: "Default" is always included,
-/// plus any themes unlocked via achievements.
+/// plus any themes unlocked via achievements and the currently selected theme
+/// (so the DropdownButton never crashes from a missing value).
 final unlockedThemeNamesProvider = Provider.autoDispose<Set<String>>((ref) {
   final progress = ref.watch(userProgressStreamProvider).value ?? {};
   final unlocked = progress['unlockedThemes'] as List<dynamic>? ?? [];
-  return {"Default", "Starry",...unlocked.cast<String>()};
+  final selected = ref.watch(explorerThemeProvider);
+  return {"Default", "Starry", selected, ...unlocked.cast<String>()};
 });

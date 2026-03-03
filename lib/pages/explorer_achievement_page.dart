@@ -38,7 +38,6 @@ class AchievementPage extends ConsumerWidget {
           return achievementsAsync.when(
             loading: () => const Center(child: CircularProgressIndicator()),
             error: (e, _) {
-              
               return Center(child: Text("Error: $e"));
             },
             data: (achievements) {
@@ -170,30 +169,14 @@ class AchievementPage extends ConsumerWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16),
                     child: ColorFiltered(
-                      colorFilter: isActive
-                          ? const ColorFilter.mode(
-                              Colors.transparent,
-                              BlendMode.multiply,
-                            )
-                          : const ColorFilter.mode(
-                              Colors.grey,
-                              BlendMode.saturation,
-                            ),
-                      child: Image.network(
-                        ach.thumbnail,
-                        fit: BoxFit.cover,
-                        loadingBuilder: (context, child, loadingProgress) {
-                          if (loadingProgress == null) return child;
-                          return const Center(
-                            child: CircularProgressIndicator(strokeWidth: 2),
-                          );
-                        },
-                        errorBuilder: (context, error, stackTrace) =>
-                            const Icon(
-                              Icons.military_tech,
-                              size: 40,
-                              color: Colors.grey,
-                            ),
+                      colorFilter: const ColorFilter.mode(
+                        Colors.transparent,
+                        BlendMode.multiply,
+                      ),
+                      child: const Icon(
+                        Icons.military_tech,
+                        size: 40,
+                        color: Colors.grey,
                       ),
                     ),
                   ),
