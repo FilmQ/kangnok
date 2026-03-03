@@ -160,7 +160,9 @@ class ParkService {
 
       parkJson['createdAt'] = Timestamp.now();
 
-      final docRef = park.doc();
+      // Use a deterministic ID so reseeding overwrites the same documents
+      // instead of creating new ones with random IDs.
+      final docRef = park.doc(sanitizedName);
       batch.set(docRef, parkJson);
     }
 
