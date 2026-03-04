@@ -183,17 +183,6 @@ class RangerHomePage extends ConsumerWidget {
     return Column(
       children: [
         _menuCard(
-          title: "Park Update",
-          subtitle: "Update status, capacity, and current weather",
-          icon: Icons.edit_location_alt,
-          gradientColors: [Colors.orange, Colors.red],
-          onTap: () {
-            /* Navigate */
-          },
-        ),
-        const SizedBox(height: 16),
-
-        _menuCard(
           title: "Post Announcement",
           subtitle: "Broadcast news, alerts, and events to explorers",
           icon: Icons.campaign,
