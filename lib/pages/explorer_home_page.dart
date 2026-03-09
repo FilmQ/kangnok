@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kangnok/pages/explorer_achievement_page.dart';
 import 'package:kangnok/pages/explorer_map_page.dart';
+import 'package:kangnok/providers/achievement_provider.dart';
 import '../services/weather_service.dart';
 import 'package:kangnok/providers/explorer_profile_provider.dart';
 import 'package:kangnok/providers/theme_provider.dart';
@@ -97,6 +98,41 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
     });
   }
 
+  void _showBadgeDetail(BuildContext context, {
+    required dynamic badge,
+    required dynamic achievement,
+    required bool isOwned,
+    required String effectiveUrl,
+  }) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: Text(achievement.title, textAlign: TextAlign.center),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              height: 100,
+              child: effectiveUrl.startsWith('http')
+                  ? Image.network(effectiveUrl)
+                  : Image.asset(effectiveUrl),
+            ),
+            const SizedBox(height: 16),
+            Text(achievement.description ?? "You've earned this badge!",
+                textAlign: TextAlign.center),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text("Close"),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // 1. กำหนดหน้าที่จะแสดงในแต่ละ Tab ให้ตรงกับ Label ด้านล่าง
@@ -104,7 +140,6 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
       _buildHomeContent(ref), // Index 0: Home
       const AchievementPage(), // Index 1: Achievement
       const ExplorerMapPage(), // Index 2: Map
-      const Center(child: Text("Cosmetics Page")), // Index 3: Cosmetics
       const Center(child: Text("Profile Settings")),
     ];
 
@@ -295,15 +330,34 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
             ),
             const SizedBox(height: 12),
             // Placeholder สำหรับข้อมูลอื่นๆ ในหน้า Home
-            Container(
-              height: 150,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
+            Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: const Center(
-                child: Icon(Icons.map_outlined, size: 50, color: Colors.grey),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: profileAsyncValue.when(
+                  loading: () => const Center(child: CircularProgressIndicator()),
+                  error: (e, _) => const Text("Could not load journey data."),
+                  data: (explorer) {
+                    if (explorer == null) return const Text("Please login to see your journey.");
+
+                    // ดึง Achievement มาแสดง (ตัวอย่างการกรองเฉพาะที่ได้แล้ว)
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Collected Badges",
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                        const SizedBox(height: 12),
+                        // ส่วนแสดง Badges ที่ได้แล้ว
+                        _buildOwnedBadgesGrid(ref, explorer),
+                      ],
+                    );
+                  },
+                ),
               ),
             ),
 
@@ -390,6 +444,74 @@ class _ExplorerHomePageState extends ConsumerState<ExplorerHomePage> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildOwnedBadgesGrid(WidgetRef ref, dynamic explorer) {
+    // 1. เปลี่ยนมา watch 'achievementsStreamProvider' เพื่อดึงข้อมูล List<Achievement>
+    final achievementsAsync = ref.watch(achievementsStreamProvider); 
+
+    return achievementsAsync.when(
+      loading: () => const Center(child: LinearProgressIndicator()),
+      error: (e, _) => const Text("Badges unavailable."),
+      data: (achievements) {
+        // 2. ดึงค่า badges ที่ user ครอบครองแล้ว (เป็น Set เพื่อความเร็วในการเช็ค)
+        final ownedValues = explorer.badges.map((b) => b.value).toSet();
+        
+        // 3. กรองเฉพาะ Achievement ที่เป็นประเภท badge และ user มีแล้ว
+        final ownedBadgeAchievements = achievements.where((ach) {
+          // ใช้ dynamic เพื่อป้องกัน Error: undefined value/type
+          final dynamic reward = ach.reward;
+          
+          // เช็คว่า reward ไม่เป็น null และมี type เป็น badge
+          if (reward == null || reward.type != 'badge') return false;
+          
+          // เช็คว่าค่า value ของ reward ตรงกับที่ user มีหรือไม่
+          return ownedValues.contains(reward.value);
+        }).toList();
+
+        if (ownedBadgeAchievements.isEmpty) {
+          return const Text(
+            "No badges yet. Start exploring!",
+            style: TextStyle(color: Colors.grey, fontSize: 13),
+          );
+        }
+
+        return GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: ownedBadgeAchievements.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 5,
+            mainAxisSpacing: 8,
+            crossAxisSpacing: 8,
+          ),
+          itemBuilder: (context, index) {
+            final ach = ownedBadgeAchievements[index];
+            
+            // ใช้ dynamic เพื่อป้องกัน Error: undefined imageUrl
+            final dynamic reward = ach.reward; 
+
+            final String? imgUrl = reward.imageUrl; 
+            final effectiveUrl = (imgUrl == null || imgUrl.isEmpty)
+                ? 'assets/achievements/badges/badge.png'
+                : imgUrl;
+
+            return GestureDetector(
+              onTap: () => _showBadgeDetail(
+                context,
+                badge: reward,
+                achievement: ach,
+                isOwned: true,
+                effectiveUrl: effectiveUrl,
+              ),
+              child: effectiveUrl.startsWith('http')
+                  ? Image.network(effectiveUrl, fit: BoxFit.contain)
+                  : Image.asset(effectiveUrl, fit: BoxFit.contain),
+            );
+          },
+        );
+      },
     );
   }
 }
