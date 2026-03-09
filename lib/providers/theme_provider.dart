@@ -39,7 +39,7 @@ const Map<String, ExplorerThemeData> explorerThemes = {
     appBarColor: Colors.blue,
   ),
   "Forest": ExplorerThemeData(
-    backgroundColor: Colors.green,
+    backgroundColor: Color.fromARGB(255, 7, 44, 7),
     appBarColor: Color(0xFF1B5E20),
     textColor: Colors.white,
   ),
@@ -56,6 +56,10 @@ const Map<String, ExplorerThemeData> explorerThemes = {
     appBarColor: Color.fromARGB(255, 171, 79, 159),
     backgroundColor: Color.fromARGB(255, 237, 135, 208),
   ),
+  "Lotus": ExplorerThemeData(
+    appBarColor: Color.fromARGB(255, 248, 255, 117),
+    backgroundColor: Color.fromARGB(255, 53, 77, 39)
+  )
 };
 
 class ExplorerThemeNotifier extends Notifier<String> {

@@ -669,11 +669,6 @@ class _ExplorerParkPageState extends ConsumerState<ExplorerParkPage> {
                 ),
                 child: Text("Post a review"),
               ),
-              IconButton(
-                icon: Icon(Icons.sort),
-                tooltip: "Sort reviews",
-                onPressed: () {},
-              ),
             ],
           ),
         ),

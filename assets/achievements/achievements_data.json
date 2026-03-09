@@ -90,9 +90,8 @@
       }
     ],
     "reward": {
-      "type": "badge",
-      "value": "The Pillar",
-      "imageUrl": "assets/achievements/badges/badge.png"
+      "type": "theme",
+      "value": "Cherry"
     }
   },
   {
@@ -154,9 +153,8 @@
       }
     ],
     "reward": {
-      "type": "badge",
-      "value": "Doi Suthep-Pui Explorer",
-      "imageUrl": "assets/achievements/badges/badge.png"
+      "type": "theme",
+      "value": "Lotus"
     }
   },
   {

@@ -252,12 +252,15 @@ class AchievementPage extends ConsumerWidget {
       children: [
         Icon(icon, size: 13, color: Colors.amber.shade700),
         const SizedBox(width: 4),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 11,
-            color: Colors.amber.shade800,
-            fontWeight: FontWeight.w600,
+        Flexible(
+          child: Text(
+            label,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontSize: 11,
+              color: Colors.amber.shade800,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ],
@@ -302,6 +305,8 @@ class AchievementPage extends ConsumerWidget {
               backgroundColor: Colors.amber.shade600,
               foregroundColor: Colors.white,
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+              minimumSize: Size.zero,
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
