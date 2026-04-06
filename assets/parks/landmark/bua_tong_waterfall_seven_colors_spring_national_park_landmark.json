@@ -1,0 +1,71 @@
+[
+  {
+    "name": "Bua Tong Waterfall",
+    "nameTh": "น้ำตกบัวตอง",
+    "description": "A unique limestone waterfall famous for its 'sticky' surface. The high calcium carbonate content creates a non-slip texture on the rocks, allowing visitors to climb directly up the falls against the water flow.",
+    "descriptionTh": "น้ำตกหินปูนที่มีลักษณะพิเศษคือมีความสากและไม่ลื่นเนื่องจากมีสารแคลเซียมคาร์บอเนตเคลือบผิวหิน ทำให้นักท่องเที่ยวสามารถเดินปีนป่ายทวนกระแสน้ำขึ้นไปได้โดยไม่ลื่น",
+    "parkName": "Namtok Bua Tong-Nam Phu Chet Si National Park",
+    "businessHour": "08:00 - 17:00",
+    "transportOptions": [
+      "Private Car",
+      "Motorcycle",
+      "Songthaew (Yellow Truck from Chang Phueak Gate)",
+      "Chartered Red Truck (Rod Daeng)"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "มอเตอร์ไซค์",
+      "รถสองแถว (รถสองแถวสีเหลืองจากประตูช้างเผือก)",
+      "รถแดงเช่าเหมา"
+    ],
+    "fee": 0,
+    "feeForeigner": 0,
+    "imageUrl": ""
+  },
+  {
+    "name": "Chet Si Fountain",
+    "nameTh": "น้ำพุเจ็ดสี",
+    "description": "A sacred mineral spring and the source of the waterfall. The crystal-clear water reflects a beautiful emerald or rainbow-like glow when sunlight hits the mineral deposits at the bottom of the pool.",
+    "descriptionTh": "บ่อน้ำพุศักดิ์สิทธิ์ที่เป็นต้นกำเนิดของน้ำตกบัวตอง มีน้ำใสสะอาดจนเห็นพื้นทรายด้านล่าง เมื่อแสงแดดตกกระทบจะสะท้อนเป็นสีรุ้งหรือสีเขียวมรกตสวยงาม",
+    "parkName": "Namtok Bua Tong-Nam Phu Chet Si National Park",
+    "businessHour": "08:00 - 17:00",
+    "transportOptions": [
+      "Private Car",
+      "Motorcycle",
+      "Songthaew (Yellow Truck from Chang Phueak Gate)",
+      "Chartered Red Truck (Rod Daeng)"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "มอเตอร์ไซค์",
+      "รถสองแถว (รถสองแถวสีเหลืองจากประตูช้างเผือก)",
+      "รถแดงเช่าเหมา"
+    ],
+    "fee": 0,
+    "feeForeigner": 0,
+    "imageUrl": ""
+  },
+  {
+    "name": "Bua Tong Cave",
+    "nameTh": "ถ้ำบัวตอง (วัดถ้ำบัวตอง)",
+    "description": "A historic limestone cave located near the park entrance. Legend says it was a refuge for Princess Bua Tong during ancient wars. The cave features a natural chamber with a large gilded Buddha statue, reached by climbing a striking blue Naga staircase.",
+    "descriptionTh": "ถ้ำหินปูนเก่าแก่ตั้งอยู่บริเวณก่อนถึงทางเข้าน้ำตก มีตำนานว่าเป็นที่ลี้ภัยของเจ้าหญิงบัวตองในสมัยสงคราม ภายในถ้ำประดิษฐานพระพุทธรูปสีทองขนาดใหญ่ การเข้าชมต้องเดินขึ้นบันไดพญานาคสีฟ้าที่สวยงาม",
+    "parkName": "Namtok Bua Tong-Nam Phu Chet Si National Park",
+    "businessHour": "08:00 - 17:00",
+    "transportOptions": [
+      "Private Car",
+      "Motorcycle",
+      "Songthaew (Yellow Truck from Chang Phueak Gate)",
+      "Chartered Red Truck (Rod Daeng)"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "มอเตอร์ไซค์",
+      "รถสองแถว (รถสองแถวสีเหลืองจากประตูช้างเผือก)",
+      "รถแดงเช่าเหมา"
+    ],
+    "fee": 0,
+    "feeForeigner": 0,
+    "imageUrl": ""
+  }
+]

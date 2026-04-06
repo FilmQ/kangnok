@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Red Junglefowl",
+    "nameTh": "ไก่ป่า",
+    "sciName": "Gallus gallus",
+    "description": "A large tropical game bird native to Southeast Asia that is the primary ancestor of domestic chickens.",
+    "descriptionTh": "นกป่าขนาดใหญ่ที่มีถิ่นกำเนิดในเอเชียตะวันออกเฉียงใต้ เป็นบรรพบุรุษของไก่บ้าน",
+    "imageUrl": ""
+  },
+  {
+    "name": "Great Hornbill",
+    "nameTh": "นกเงือกใหญ่",
+    "sciName": "Buceros bicornis",
+    "description": "A large black and white bird with a massive curved bill, inhabiting dense evergreen forests of Khun Khan.",
+    "descriptionTh": "นกขนาดใหญ่สีดำและขาวที่มีปากโค้งขนาดใหญ่ พบในป่าดิบชื้นของอุทยานแห่งชาติขุนขาน",
+    "imageUrl": ""
+  },
+  {
+    "name": "Wild Boar",
+    "nameTh": "หมูป่า",
+    "sciName": "Sus scrofa",
+    "description": "A sturdy mammal with dark coarse hair and tusks, commonly found rooting in the forest floors of mountainous regions.",
+    "descriptionTh": "สัตว์เลี้ยงลูกด้วยนมที่แข็งแรง มีขนหยาบสีเข้มและงา พบหากินตามพื้นป่าในเขตภูเขา",
+    "imageUrl": ""
+  },
+  {
+    "name": "Malayan Porcupine",
+    "nameTh": "เม่นใหญ่",
+    "sciName": "Hystrix brachyura",
+    "description": "Large nocturnal rodent with sharp quills covering its body, found in dense forests of northern Thailand.",
+    "descriptionTh": "สัตว์ฟันแทะขนาดใหญ่ออกหากินกลางคืน มีหนามแหลมปกคลุมลำตัว พบในป่าทึบภาคเหนือ",
+    "imageUrl": ""
+  },
+  {
+    "name": "Northern Pig-tailed Macaque",
+    "nameTh": "ลิงกังเหนือ",
+    "sciName": "Macaca leonina",
+    "description": "An intelligent primate with a distinctive pig-like tail, living in groups in the mountain forests of Khun Khan.",
+    "descriptionTh": "ลิงฉลาดมีหางสั้นคล้ายหมู อาศัยอยู่รวมกันเป็นฝูงในป่าเขาของอุทยานแห่งชาติขุนขาน",
+    "imageUrl": ""
+  }
+]

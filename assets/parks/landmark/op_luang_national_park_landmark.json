@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Ob Luang Gorge",
+    "nameTh": "ออบหลวง",
+    "description": "A narrow, deep canyon with a pedestrian bridge crossing high above the river. Features prehistoric cave paintings nearby.",
+    "descriptionTh": "ช่องเขาขาดที่มีสะพานเชื่อมหน้าผาสูงชันเหนือลำน้ำแม่แจ่ม และมีภาพเขียนสีก่อนประวัติศาสตร์ในบริเวณใกล้เคียง",
+    "parkName": "Ob Luang National Park",
+    "businessHour": "08:30 - 16:30",
+    "transportOptions": [
+      "Private Car",
+      "Motorbike",
+      "Public Bus"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์",
+      "รถโดยสารประจำทาง"
+    ],
+    "fee": 40,
+    "feeForeigner": 200,
+    "imageUrl": ""
+  },
+  {
+    "name": "Thephana Waterfall",
+    "nameTh": "น้ำตกเทพพนา",
+    "description": "A small tiered waterfall that is especially beautiful during the rainy season, located along the road to Mae Chaem.",
+    "descriptionTh": "น้ำตกขนาดกลางที่สวยงามมากในช่วงฤดูฝน ตั้งอยู่ริมเส้นทางที่มุ่งหน้าไปทางอำเภอแม่แจ่ม",
+    "parkName": "Ob Luang National Park",
+    "businessHour": "08:30 - 16:30",
+    "transportOptions": [
+      "Private Car",
+      "Motorbike"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์"
+    ],
+    "fee": 40,
+    "feeForeigner": 200,
+    "imageUrl": ""
+  }
+]

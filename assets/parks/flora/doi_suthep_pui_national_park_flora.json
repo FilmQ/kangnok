@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Sapria Himalayana",
+    "nameTh": "บัวผุด",
+    "sciName": "Sapria himalayana",
+    "description": "An extremely rare parasitic flowering plant blooming in November with large crimson flowers spotted yellow.",
+    "descriptionTh": "พืชกาฝากหายากมากออกดอกเดือนพฤศจิกายน ดอกสีแดงเข้มมีจุดเหลือง",
+    "imageUrl": ""
+  },
+  {
+    "name": "Oak",
+    "nameTh": "ก่อ",
+    "sciName": "Quercus sp.",
+    "description": "Dominant tree in cool highland forests providing crucial habitat structure and food for wildlife.",
+    "descriptionTh": "ไม้เด่นในป่าดิบเขา ให้ที่อยู่อาศัยและอาหารแก่สัตว์ป่า",
+    "imageUrl": ""
+  },
+  {
+    "name": "Wild Orchid",
+    "nameTh": "กล้วยไม้ป่า",
+    "sciName": "Orchidaceae spp.",
+    "description": "Hundreds of rare orchid species found in cool moist cloud forests, many endemic to the region.",
+    "descriptionTh": "กล้วยไม้ป่าหลายร้อยชนิดพบในป่าเมฆที่เย็นชื้น หลายชนิดเป็นพืชเฉพาะถิ่น",
+    "imageUrl": ""
+  },
+  {
+    "name": "Mountain Magnolia",
+    "nameTh": "จำปาป่า",
+    "sciName": "Magnolia sp.",
+    "description": "Trees with fragrant white or pink blossoms found in mixed cloud forests of the park.",
+    "descriptionTh": "ไม้มีดอกหอมสีขาวหรือชมพู พบในป่าเมฆผสมของอุทยาน",
+    "imageUrl": ""
+  },
+  {
+    "name": "Ferns",
+    "nameTh": "เฟิร์น",
+    "sciName": "Pteridophyta spp.",
+    "description": "Diverse fern species covering the forest floor in misty cloud forest zones, creating dense understory.",
+    "descriptionTh": "เฟิร์นหลากชนิดปกคลุมพื้นป่าในเขตป่าเมฆ สร้างชั้นไม้พื้นล่างหนาแน่น",
+    "imageUrl": ""
+  }
+]

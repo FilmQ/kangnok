@@ -1,0 +1,59 @@
+[
+  {
+    "name": "Doi Pha Hom Pok Summit",
+    "nameTh": "ยอดดอยผ้าห่มปก",
+    "description": "Thailand's second highest peak (2,285m). Famous for 360-degree sea of mist views and rare butterflies.",
+    "descriptionTh": "ยอดเขาที่สูงเป็นอันดับ 2 ของไทย (2,285 เมตร) มีชื่อเสียงด้านจุดชมทะเลหมอก 360 องศาและผีเสื้อหายาก",
+    "parkName": "Doi Pha Hom Pok National Park",
+    "businessHour": "05:00 - 16:30",
+    "transportOptions": [
+      "4WD Vehicle Only",
+      "Chartered Songthaew"
+    ],
+    "transportOptionsTh": [
+      "รถขับเคลื่อน 4 ล้อเท่านั้น",
+      "รถสองแถวเหมา"
+    ],
+    "fee": 50,
+    "feeForeigner": 300,
+    "imageUrl": ""
+  },
+  {
+    "name": "Fang Hot Springs",
+    "nameTh": "บ่อน้ำร้อนฝาง",
+    "description": "Geothermal area with over 50 springs and a geyser that erupts up to 50 meters high every 25-30 minutes.",
+    "descriptionTh": "พื้นที่ความร้อนใต้ภิภพที่มีบ่อน้ำร้อนกว่า 50 บ่อ และมีไกเซอร์พุ่งสูงถึง 50 เมตร ทุกๆ 25-30 นาที",
+    "parkName": "Doi Pha Hom Pok National Park",
+    "businessHour": "08:00 - 18:00",
+    "transportOptions": [
+      "Private Car",
+      "Motorbike"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์"
+    ],
+    "fee": 50,
+    "feeForeigner": 300,
+    "imageUrl": ""
+  },
+  {
+    "name": "Huai Bon Cave",
+    "nameTh": "ถ้ำห้วยบอน",
+    "description": "A large cave located 12km from Fang town, featuring impressive stalagmites and stalactites.",
+    "descriptionTh": "ถ้ำขนาดใหญ่ตั้งอยู่ห่างจากตัวเมืองฝาง 12 กม. มีหินงอกหินย้อยที่สวยงามและน่าประทับใจ",
+    "parkName": "Doi Pha Hom Pok National Park",
+    "businessHour": "08:30 - 16:30",
+    "transportOptions": [
+      "Private Car",
+      "Motorbike"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์"
+    ],
+    "fee": 0,
+    "feeForeigner": 0,
+    "imageUrl": ""
+  }
+]

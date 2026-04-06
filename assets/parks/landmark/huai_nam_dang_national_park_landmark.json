@@ -1,0 +1,63 @@
+[
+  {
+    "name": "Doi Kiew Lom Viewpoint",
+    "nameTh": "จุดชมวิวดอยกิ่วลม",
+    "description": "One of Thailand's most beautiful spots for sunrise and sea of mist, located on the way to Pai.",
+    "descriptionTh": "จุดชมพระอาทิตย์ขึ้นและทะเลหมอกที่สวยที่สุดแห่งหนึ่งในไทย ตั้งอยู่บนเส้นทางไปอำเภอปาย",
+    "parkName": "Huai Nam Dang National Park",
+    "businessHour": "05:00 - 18:00",
+    "transportOptions": [
+      "Private Car",
+      "Motorbike",
+      "Public Bus"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์",
+      "รถโดยสารประจำทาง"
+    ],
+    "fee": 60,
+    "feeForeigner": 300,
+    "imageUrl": ""
+  },
+  {
+    "name": "Pong Dueat Geyser",
+    "nameTh": "โป่งเดือดป่าแป๋",
+    "description": "A high-pressure geyser that erupts 2 meters high, featuring nature trails and mineral soaking facilities.",
+    "descriptionTh": "น้ำพุร้อนประเภทไกเซอร์ที่พุ่งสูงถึง 2 เมตร มีเส้นทางเดินชมธรรมชาติและห้องอาบน้ำแร่บริการ",
+    "parkName": "Huai Nam Dang National Park",
+    "businessHour": "08:00 - 17:00",
+    "transportOptions": [
+      "Private Car",
+      "Motorbike"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์"
+    ],
+    "fee": 60,
+    "feeForeigner": 300,
+    "imageUrl": ""
+  },
+  {
+    "name": "Tha Pai Hot Springs",
+    "nameTh": "บ่อน้ำร้อนท่าปาย",
+    "description": "Located near Pai town, this hot spring stream flows through the forest and offers multiple soaking pools.",
+    "descriptionTh": "บ่อน้ำร้อนธรรมชาติใกล้ตัวเมืองปาย มีลำธารน้ำแร่อุ่นไหลผ่านป่าและบ่อแช่ตัวหลายระดับ",
+    "parkName": "Huai Nam Dang National Park",
+    "businessHour": "08:00 - 18:00",
+    "transportOptions": [
+      "Private Car",
+      "Motorbike",
+      "Bicycle"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์",
+      "จักรยาน"
+    ],
+    "fee": 60,
+    "feeForeigner": 300,
+    "imageUrl": ""
+  }
+]

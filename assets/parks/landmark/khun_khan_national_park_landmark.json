@@ -1,0 +1,59 @@
+[
+  {
+    "name": "Mae Sab Cave",
+    "nameTh": "ถ้ำแม่สาบ",
+    "description": "A unique 'rainbow cave' featuring multi-colored horizontal rock layers created by mineral deposits over thousands of years.",
+    "descriptionTh": "ถ้ำสีรุ้งที่มีลวดลายหินเป็นชั้นสีสวยงามในแนวนอน เกิดจากการสะสมของแร่ธาตุมานานนับพันปี",
+    "parkName": "Khun Khan National Park",
+    "businessHour": "08:30 - 16:30",
+    "transportOptions": [
+      "Private Car",
+      "Motorbike"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์"
+    ],
+    "fee": 20,
+    "feeForeigner": 100,
+    "imageUrl": ""
+  },
+  {
+    "name": "Huai Tat Waterfall",
+    "nameTh": "น้ำตกห้วยตาด",
+    "description": "A year-round 2-step waterfall with a significant 30-meter high section, perfect for relaxing and nature photography.",
+    "descriptionTh": "น้ำตก 2 ชั้นที่มีน้ำไหลตลอดปี โดยชั้นหนึ่งมีความสูงถึง 30 เมตร เหมาะสำหรับการพักผ่อนและถ่ายภาพธรรมชาติ",
+    "parkName": "Khun Khan National Park",
+    "businessHour": "08:30 - 16:30",
+    "transportOptions": [
+      "Private Car",
+      "Motorbike"
+    ],
+    "transportOptionsTh": [
+      "รถยนต์ส่วนตัว",
+      "รถจักรยานยนต์"
+    ],
+    "fee": 20,
+    "feeForeigner": 100,
+    "imageUrl": ""
+  },
+  {
+    "name": "Pha Sam Na Viewpoint",
+    "nameTh": "จุดชมวิวผาสามหน้า",
+    "description": "A three-sided cliff viewpoint at 1,253 meters altitude, offering panoramic vistas of rolling hills and lush forests.",
+    "descriptionTh": "หน้าผาสามด้านที่ความสูง 1,253 เมตร ให้ทัศนียภาพกว้างไกลของทิวเขาและผืนป่าที่อุดมสมบูรณ์",
+    "parkName": "Khun Khan National Park",
+    "businessHour": "06:00 - 18:00",
+    "transportOptions": [
+      "4WD Vehicle",
+      "Hiking"
+    ],
+    "transportOptionsTh": [
+      "รถขับเคลื่อน 4 ล้อ",
+      "เดินเท้า"
+    ],
+    "fee": 0,
+    "feeForeigner": 0,
+    "imageUrl": ""
+  }
+]

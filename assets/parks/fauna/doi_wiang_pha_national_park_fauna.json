@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Sumatran Serow",
+    "nameTh": "เลียงผา",
+    "sciName": "Capricornis sumatraensis",
+    "description": "A goat-antelope with a stocky body and short curved horns, living on steep rocky terrain in mountain forests.",
+    "descriptionTh": "สัตว์คล้ายแพะมีลำตัวกำยำและเขาโค้งสั้น อาศัยบนภูเขาหินชัน",
+    "imageUrl": ""
+  },
+  {
+    "name": "White-rumped Shama",
+    "nameTh": "นกกางเขนดง",
+    "sciName": "Copsychus malabaricus",
+    "description": "A striking black and orange bird with a long tail, known for its beautiful melodious song.",
+    "descriptionTh": "นกสีดำและส้มมีหางยาว มีชื่อเสียงด้านเสียงร้องเพราะ",
+    "imageUrl": ""
+  },
+  {
+    "name": "Asian Palm Civet",
+    "nameTh": "อีเห็นข้างลาย",
+    "sciName": "Paradoxurus hermaphroditus",
+    "description": "A nocturnal mammal with a striped body, climbing through trees at night in search of fruits and insects.",
+    "descriptionTh": "สัตว์เลี้ยงลูกด้วยนมออกหากินกลางคืน มีลายข้างลำตัว ปีนต้นไม้หาผลไม้และแมลง",
+    "imageUrl": ""
+  },
+  {
+    "name": "Red Junglefowl",
+    "nameTh": "ไก่ป่า",
+    "sciName": "Gallus gallus",
+    "description": "A pheasant-like game bird with bright red and gold plumage, foraging on forest floors for seeds and insects.",
+    "descriptionTh": "นกป่าคล้ายไก่ฟ้ามีขนสีแดงและทอง หากินตามพื้นป่า",
+    "imageUrl": ""
+  },
+  {
+    "name": "Common Muntjac",
+    "nameTh": "เก้ง",
+    "sciName": "Muntiacus muntjak",
+    "description": "A small deer with tusks that produces distinctive barking calls, inhabiting mixed deciduous and evergreen forests.",
+    "descriptionTh": "กวางขนาดเล็กมีเขี้ยว ส่งเสียงร้องคล้ายเห่า อาศัยในป่าผสมผลัดใบและป่าดิบ",
+    "imageUrl": ""
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Teak",
+    "nameTh": "สัก",
+    "sciName": "Tectona grandis",
+    "description": "An important hardwood species found in mixed deciduous forests at the park's lower elevations.",
+    "descriptionTh": "ไม้เนื้อแข็งสำคัญพบในป่าผสมผลัดใบบนที่ราบต่ำของอุทยาน",
+    "imageUrl": ""
+  },
+  {
+    "name": "Merkus Pine",
+    "nameTh": "สนสองใบ",
+    "sciName": "Pinus merkusii",
+    "description": "Coniferous trees found on higher elevations and mountain ridges in the park.",
+    "descriptionTh": "ต้นสนพบบนที่สูงและสันเขาในอุทยาน",
+    "imageUrl": ""
+  },
+  {
+    "name": "Dipterocarp",
+    "nameTh": "ยาง",
+    "sciName": "Dipterocarpus spp.",
+    "description": "Large emergent trees characteristic of tropical deciduous and dipterocarp forests.",
+    "descriptionTh": "ไม้ใหญ่ลักษณะเด่นของป่าเต็งรังและป่าผลัดใบเขตร้อน",
+    "imageUrl": ""
+  },
+  {
+    "name": "Hill Evergreen Species",
+    "nameTh": "ไม้ป่าดิบเขา",
+    "sciName": "Various spp.",
+    "description": "Broadleaf evergreen trees dominating montane forest zones of Pha Daeng above 1,000 meters.",
+    "descriptionTh": "ไม้ใบกว้างไม่ผลัดใบที่เป็นไม้เด่นในป่าดิบเขาของผาแดงเหนือ 1,000 เมตร",
+    "imageUrl": ""
+  },
+  {
+    "name": "Siamese Sal",
+    "nameTh": "รัง",
+    "sciName": "Shorea siamensis",
+    "description": "A deciduous hardwood tree found in dry dipterocarp forest, an important canopy species.",
+    "descriptionTh": "ไม้เนื้อแข็งผลัดใบพบในป่าเต็งรัง เป็นไม้ชั้นเรือนยอดที่สำคัญ",
+    "imageUrl": ""
+  }
+]

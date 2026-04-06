@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Ashy-throated Leaf Warbler",
+    "nameTh": "นกกระจิ๊ดคอเทา",
+    "sciName": "Phylloscopus maculipennis",
+    "description": "A small montane warbler with a gray head and white brow stripe, found exclusively at Doi Inthanon in Thailand.",
+    "descriptionTh": "นกขนาดเล็กมีหัวสีเทาและแถบคิ้วสีขาว พบเฉพาะที่ดอยอินทนนท์ในประเทศไทย",
+    "imageUrl": ""
+  },
+  {
+    "name": "Chiang Mai Dwarf Gecko",
+    "nameTh": "จิ้งจกแคระเชียงใหม่",
+    "sciName": "Hemiphyllodactylus chiangmaiensis",
+    "description": "An endemic rock-dwelling gecko known only from Doi Inthanon, measuring only 41mm in snout-to-vent length.",
+    "descriptionTh": "จิ้งจกเฉพาะถิ่นพบเฉพาะที่ดอยอินทนนท์ อาศัยตามหิน ขนาดเล็กมาก",
+    "imageUrl": ""
+  },
+  {
+    "name": "Chiang Mai Newt",
+    "nameTh": "จักจั่นดอยอินทนนท์",
+    "sciName": "Tylototriton uyenoi",
+    "description": "A newt species endemic to Chiang Mai Province, found in Doi Inthanon wetlands during the breeding season.",
+    "descriptionTh": "ซาลาแมนเดอร์เฉพาะถิ่นของจังหวัดเชียงใหม่ พบในพื้นที่ชุ่มน้ำของดอยอินทนนท์",
+    "imageUrl": ""
+  },
+  {
+    "name": "Lar Gibbon",
+    "nameTh": "ชะนีมือขาว",
+    "sciName": "Hylobates lar",
+    "description": "A white-handed primate found in montane forests of Doi Inthanon, known for its loud territorial calls.",
+    "descriptionTh": "ลิงมือขาวพบในป่าเขาของดอยอินทนนท์ มีเสียงร้องดังเพื่อบอกอาณาเขต",
+    "imageUrl": ""
+  },
+  {
+    "name": "Collared Grosbeak",
+    "nameTh": "นกกระติ๊ดใหญ่สร้อยคอเหลือง",
+    "sciName": "Mycerobas affinis",
+    "description": "A large finch species with distinctive coloration found in montane forests of Doi Inthanon.",
+    "descriptionTh": "นกขนาดใหญ่ในวงศ์นกจาบคามีสีสันเด่นชัด พบในป่าเขาของดอยอินทนนท์",
+    "imageUrl": ""
+  }
+]

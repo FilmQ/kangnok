@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "100421617321",
+    "project_id": "kangnok-232fa",
+    "storage_bucket": "kangnok-232fa.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:100421617321:android:24ee423b90fa1d6b070bb8",
+        "android_client_info": {
+          "package_name": "com.example.kangnok"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "100421617321-b4bdb6opjkipqlk254baausjpdj4gcs9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0fmhA4mWe9KVo9rHM6UWBIWpQfZ-78vA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "100421617321-b4bdb6opjkipqlk254baausjpdj4gcs9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

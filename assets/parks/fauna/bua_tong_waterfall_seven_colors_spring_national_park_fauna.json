@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Great Hornbill",
+    "nameTh": "นกกก",
+    "sciName": "Buceros bicornis",
+    "description": "A large black-and-white bird with an iconic yellow casque atop its bill, found in the park's forest areas.",
+    "descriptionTh": "นกขนาดใหญ่สีดำขาวมีหมวกสีเหลืองเด่นบนปาก พบในป่าของอุทยาน",
+    "imageUrl": ""
+  },
+  {
+    "name": "Red Junglefowl",
+    "nameTh": "ไก่ป่า",
+    "sciName": "Gallus gallus",
+    "description": "The wild ancestor of domestic chickens, found throughout the park's forest habitats.",
+    "descriptionTh": "บรรพบุรุษของไก่บ้าน พบทั่วไปในแหล่งที่อยู่อาศัยป่าของอุทยาน",
+    "imageUrl": ""
+  },
+  {
+    "name": "Sambar Deer",
+    "nameTh": "กวางป่า",
+    "sciName": "Rusa unicolor",
+    "description": "Southeast Asia's largest deer species, found in forested areas near water sources throughout the park.",
+    "descriptionTh": "กวางที่ใหญ่ที่สุดในเอเชียตะวันออกเฉียงใต้ พบในป่าใกล้แหล่งน้ำ",
+    "imageUrl": ""
+  },
+  {
+    "name": "Wild Boar",
+    "nameTh": "หมูป่า",
+    "sciName": "Sus scrofa",
+    "description": "A medium-sized wild pig with dark coarse hair, found throughout the mixed deciduous forests of the park.",
+    "descriptionTh": "หมูป่าขนาดกลางมีขนหยาบสีเข้ม พบในป่าผสมผลัดใบของอุทยาน",
+    "imageUrl": ""
+  },
+  {
+    "name": "Long-tailed Macaque",
+    "nameTh": "ลิงแสม",
+    "sciName": "Macaca fascicularis",
+    "description": "A medium-sized primate living in troops within the mixed deciduous and evergreen forests of the park.",
+    "descriptionTh": "ลิงขนาดกลางอาศัยรวมกันเป็นฝูงในป่าผสมผลัดใบและป่าดิบของอุทยาน",
+    "imageUrl": ""
+  }
+]

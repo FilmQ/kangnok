@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Asian Elephant",
+    "nameTh": "ช้างป่า",
+    "sciName": "Elephas maximus",
+    "description": "Large herbivorous mammals occasionally spotted in the dense forests of Mae Wang near waterfalls.",
+    "descriptionTh": "สัตว์กินพืชขนาดใหญ่พบเห็นเป็นครั้งคราวในป่าทึบของแม่วางใกล้น้ำตก",
+    "imageUrl": ""
+  },
+  {
+    "name": "Malayan Porcupine",
+    "nameTh": "เม่นใหญ่",
+    "sciName": "Hystrix brachyura",
+    "description": "A nocturnal spiny rodent with sharp quills for defense, inhabiting forest areas of Mae Wang.",
+    "descriptionTh": "สัตว์ฟันแทะออกหากินกลางคืน มีหนามแหลมป้องกันตัว อาศัยในป่าของแม่วาง",
+    "imageUrl": ""
+  },
+  {
+    "name": "Long-tailed Macaque",
+    "nameTh": "ลิงแสม",
+    "sciName": "Macaca fascicularis",
+    "description": "A medium-sized primate with a long tail found in various habitats throughout Mae Wang.",
+    "descriptionTh": "ลิงขนาดกลางมีหางยาวพบในแหล่งที่อยู่อาศัยต่างๆ ของแม่วาง",
+    "imageUrl": ""
+  },
+  {
+    "name": "Reticulated Python",
+    "nameTh": "งูหลาม",
+    "sciName": "Malayopython reticulatus",
+    "description": "A large non-venomous constrictor snake found in forest areas, known for its reticulated scale patterns.",
+    "descriptionTh": "งูขนาดใหญ่ไม่มีพิษรัดเหยื่อ มีลายตารางบนเกล็ด พบในป่า",
+    "imageUrl": ""
+  },
+  {
+    "name": "Common Muntjac",
+    "nameTh": "เก้ง",
+    "sciName": "Muntiacus muntjak",
+    "description": "A small deer producing barking calls, commonly seen in the park's mixed forest understory.",
+    "descriptionTh": "กวางขนาดเล็กส่งเสียงร้องคล้ายเห่า พบทั่วไปในชั้นไม้พื้นล่างป่าผสม",
+    "imageUrl": ""
+  }
+]

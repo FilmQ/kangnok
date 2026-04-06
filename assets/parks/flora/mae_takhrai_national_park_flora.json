@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Teak",
+    "nameTh": "สัก",
+    "sciName": "Tectona grandis",
+    "description": "A valuable hardwood tree found in mixed deciduous forest zones of the park.",
+    "descriptionTh": "ไม้เนื้อแข็งมีคุณค่าพบในป่าผสมผลัดใบของอุทยาน",
+    "imageUrl": ""
+  },
+  {
+    "name": "Ironwood",
+    "nameTh": "แดง",
+    "sciName": "Xylia xylocarpa",
+    "description": "A dense hardwood tree important for forest structure and wildlife habitat in the park.",
+    "descriptionTh": "ไม้เนื้อแข็งหนาแน่นสำคัญต่อโครงสร้างป่าและที่อยู่อาศัยของสัตว์ป่า",
+    "imageUrl": ""
+  },
+  {
+    "name": "Burma Padauk",
+    "nameTh": "ประดู่",
+    "sciName": "Pterocarpus macrocarpus",
+    "description": "A hardwood tree with valuable timber, found in mixed deciduous forest areas.",
+    "descriptionTh": "ไม้เนื้อแข็งมีคุณค่าสูง พบในป่าผสมผลัดใบ",
+    "imageUrl": ""
+  },
+  {
+    "name": "Dipterocarp",
+    "nameTh": "เหียง",
+    "sciName": "Dipterocarpus intricatus",
+    "description": "A tall emergent tree found in lowland and mid-elevation forests of the park.",
+    "descriptionTh": "ไม้สูงในวงศ์ยางพบในป่าที่ราบและที่สูงปานกลางของอุทยาน",
+    "imageUrl": ""
+  },
+  {
+    "name": "Siamese Sal",
+    "nameTh": "รัง",
+    "sciName": "Shorea siamensis",
+    "description": "A valuable timber tree important for the forest ecosystem within the park.",
+    "descriptionTh": "ไม้มีคุณค่าสำคัญต่อระบบนิเวศป่าภายในอุทยาน",
+    "imageUrl": ""
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Teak",
+    "nameTh": "สัก",
+    "sciName": "Tectona grandis",
+    "description": "A valuable hardwood tree with small fragrant white flowers, found in mixed deciduous forests of the park.",
+    "descriptionTh": "ไม้เนื้อแข็งมีคุณค่า มีดอกสีขาวหอม พบได้ในป่าผสมผลัดใบของอุทยาน",
+    "imageUrl": ""
+  },
+  {
+    "name": "Bamboo",
+    "nameTh": "ไผ่",
+    "sciName": "Bambusa spp.",
+    "description": "Dense bamboo groves throughout the park providing habitat for wildlife and water retention.",
+    "descriptionTh": "กอไผ่หนาแน่นทั่วอุทยาน ให้ที่อยู่อาศัยแก่สัตว์ป่าและช่วยเก็บกักน้ำ",
+    "imageUrl": ""
+  },
+  {
+    "name": "Dipterocarp",
+    "nameTh": "ยาง",
+    "sciName": "Dipterocarpus spp.",
+    "description": "Tall emergent trees of the dipterocarp family important for forest structure in lowland areas.",
+    "descriptionTh": "ไม้สูงในวงศ์ยาง สำคัญต่อโครงสร้างป่าในพื้นที่ราบ",
+    "imageUrl": ""
+  },
+  {
+    "name": "Wild Orchid",
+    "nameTh": "กล้วยไม้ป่า",
+    "sciName": "Orchidaceae spp.",
+    "description": "Colorful flowering orchids growing as epiphytes on tree branches in humid forest environments.",
+    "descriptionTh": "กล้วยไม้ป่าสีสันสดใสที่เกาะอาศัยบนกิ่งไม้ในป่าชื้น",
+    "imageUrl": ""
+  },
+  {
+    "name": "Siamese Sal",
+    "nameTh": "รัง",
+    "sciName": "Shorea siamensis",
+    "description": "A deciduous tree forming the canopy layer in dry dipterocarp forests throughout the park.",
+    "descriptionTh": "ไม้ผลัดใบสร้างชั้นเรือนยอดในป่าเต็งรังทั่วอุทยาน",
+    "imageUrl": ""
+  }
+]

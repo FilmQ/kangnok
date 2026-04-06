@@ -1,0 +1,18 @@
+[
+    {
+        "name": "Nonsri tree",
+        "nameTh": "ต้นนนทรี",
+        "sciName": "Peltophorum pterocarpum",
+        "description": "An evergreen tree with yellow flowers, representing the university's green identity",
+        "descriptionTh": "พืชยืนต้นขนาดใหญ่ซึ่งสื่อถึงอัตลักษณ์สีเขียวของมหาวิทยาลัย",
+        "imageUrl": ""
+    },
+    {
+        "name": "Pink Trumpet tree",
+        "nameTh": "ต้นชมพูพันธ์ทิพย์",
+        "sciName": "Tebebuia rosea",
+        "description": "A medium to large deciduous tree, distinctively blooming pale pink flowers in summer",
+        "descriptionTh": "ไม้ยืนต้นผลัดใบ ขนาดกลางถึงใหญ่ ออกดอกไม้สีชมพูอ่อนเป็นเอกลักษณ์ในฤดูร้อน",
+        "imageUrl": ""
+    }
+]

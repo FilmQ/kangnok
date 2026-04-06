@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Wild Himalayan Cherry",
+    "nameTh": "นางพญาเสือโคร่ง",
+    "sciName": "Prunus cerasoides",
+    "description": "A medium-sized tree with pink blossoms in winter, found in the cool mountain cloud forests.",
+    "descriptionTh": "ไม้ขนาดกลางออกดอกสีชมพูในฤดูหนาว พบในป่าเมฆบนภูเขา",
+    "imageUrl": ""
+  },
+  {
+    "name": "Himalayan Birch",
+    "nameTh": "กำลังเสือโคร่ง",
+    "sciName": "Betula alnoides",
+    "description": "A high-altitude tree with distinctive pale bark, found on misty mountain ridges above 1,500 meters.",
+    "descriptionTh": "ไม้บนที่สูงมีเปลือกสีอ่อนเป็นเอกลักษณ์ พบบนสันเขาที่มีหมอกเหนือ 1,500 เมตร",
+    "imageUrl": ""
+  },
+  {
+    "name": "Rhododendron",
+    "nameTh": "กุหลาบพันปี",
+    "sciName": "Rhododendron delavayi",
+    "description": "A rare alpine shrub found only at high elevations on Doi Pha Hom Pok's summit with red flowers.",
+    "descriptionTh": "ไม้พุ่มหายากพบเฉพาะบนยอดเขาสูงของดอยผ้าห่มปก ดอกสีแดง",
+    "imageUrl": ""
+  },
+  {
+    "name": "Impatiens",
+    "nameTh": "เทียนป่า",
+    "sciName": "Impatiens jurpioides",
+    "description": "A rare delicate flower with showy blooms found only in misty summit areas of the park.",
+    "descriptionTh": "ดอกไม้หายากพบเฉพาะบริเวณยอดเขาที่มีหมอก ดอกสีสดใส",
+    "imageUrl": ""
+  },
+  {
+    "name": "Hopea Odorata",
+    "nameTh": "ตะเคียนทอง",
+    "sciName": "Hopea odorata",
+    "description": "One of the largest trees in the park, with fragrant timber valued for its durability and beauty.",
+    "descriptionTh": "ไม้ใหญ่ที่สุดชนิดหนึ่งของอุทยาน มีเนื้อไม้หอมที่มีคุณค่าด้านความทนทานและความสวยงาม",
+    "imageUrl": ""
+  }
+]

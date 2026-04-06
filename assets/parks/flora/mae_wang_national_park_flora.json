@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Wild Orchid",
+    "nameTh": "กล้วยไม้ป่า",
+    "sciName": "Orchidaceae spp.",
+    "description": "Diverse flowering orchids with delicate blooms found throughout the moist forests of Mae Wang.",
+    "descriptionTh": "กล้วยไม้ป่าหลากชนิดดอกสวยพบทั่วป่าชื้นของแม่วาง",
+    "imageUrl": ""
+  },
+  {
+    "name": "Bamboo",
+    "nameTh": "ไผ่",
+    "sciName": "Dendrocalamus giganteus",
+    "description": "Large woody grass species covering forest understory, providing habitat and food for forest fauna.",
+    "descriptionTh": "หญ้าเนื้อแข็งขนาดใหญ่ปกคลุมชั้นล่างของป่า ให้ที่อยู่และอาหารแก่สัตว์ป่า",
+    "imageUrl": ""
+  },
+  {
+    "name": "Sensitive Plant",
+    "nameTh": "ไมยราบ",
+    "sciName": "Mimosa pudica",
+    "description": "A plant known for its rapid leaflet closure when touched, creating a defensive response against herbivores.",
+    "descriptionTh": "พืชที่ใบหุบเมื่อถูกสัมผัส เป็นการป้องกันตัวจากสัตว์กินพืช",
+    "imageUrl": ""
+  },
+  {
+    "name": "Dipterocarp",
+    "nameTh": "ยาง",
+    "sciName": "Dipterocarpus spp.",
+    "description": "Diverse deciduous canopy trees adapted to seasonal leaf-loss, forming the primary vegetation layer.",
+    "descriptionTh": "ไม้ผลัดใบในวงศ์ยางหลายชนิด สร้างชั้นเรือนยอดหลักของป่า",
+    "imageUrl": ""
+  },
+  {
+    "name": "Blackboard Tree",
+    "nameTh": "ตีนเป็ด",
+    "sciName": "Alstonia scholaris",
+    "description": "A tall tree with milky sap found in tropical forests, traditionally used in folk medicine.",
+    "descriptionTh": "ไม้สูงมียางขาว พบในป่าเขตร้อน ใช้ในการแพทย์พื้นบ้าน",
+    "imageUrl": ""
+  }
+]

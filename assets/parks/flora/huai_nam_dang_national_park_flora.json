@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Yang Na",
+    "nameTh": "ยางนา",
+    "sciName": "Dipterocarpus alatus",
+    "description": "A large resin-producing forest tree reaching up to 60 meters tall, one of Thailand's most important timber species.",
+    "descriptionTh": "ไม้ป่าขนาดใหญ่ให้ยางสูงได้ถึง 60 เมตร เป็นไม้สำคัญที่สุดชนิดหนึ่งของไทย",
+    "imageUrl": ""
+  },
+  {
+    "name": "Siamese Sal",
+    "nameTh": "รัง",
+    "sciName": "Shorea obtusa",
+    "description": "A deciduous hardwood tree adapted to dry deciduous forest habitat, used for structural timbers.",
+    "descriptionTh": "ไม้เนื้อแข็งผลัดใบปรับตัวในป่าเต็งรัง ใช้เป็นไม้โครงสร้าง",
+    "imageUrl": ""
+  },
+  {
+    "name": "Bamboo",
+    "nameTh": "ไผ่",
+    "sciName": "Dendrocalamus giganteus",
+    "description": "Fast-growing woody grass forming dense groves, used for construction and handicrafts.",
+    "descriptionTh": "หญ้าเนื้อแข็งเติบโตเร็วขึ้นเป็นกอหนาแน่น ใช้ในงานก่อสร้างและหัตถกรรม",
+    "imageUrl": ""
+  },
+  {
+    "name": "Hopea Odorata",
+    "nameTh": "ตะเคียนทอง",
+    "sciName": "Hopea odorata",
+    "description": "A valuable dipterocarp tree producing fragrant resin, historically used in timber trade and traditional medicine.",
+    "descriptionTh": "ไม้ในวงศ์ยางมีคุณค่าให้ยางหอม ใช้ในการค้าไม้และการแพทย์แผนโบราณ",
+    "imageUrl": ""
+  },
+  {
+    "name": "Teak",
+    "nameTh": "สัก",
+    "sciName": "Tectona grandis",
+    "description": "The most iconic and commercially valuable timber species of Thailand, with fragrant white flowers.",
+    "descriptionTh": "ไม้ที่เป็นสัญลักษณ์และมีคุณค่าทางเศรษฐกิจสูงสุดของไทย ดอกสีขาวหอม",
+    "imageUrl": ""
+  }
+]

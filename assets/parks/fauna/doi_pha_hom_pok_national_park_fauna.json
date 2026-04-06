@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Sambar Deer",
+    "nameTh": "กวางป่า",
+    "sciName": "Rusa unicolor",
+    "description": "A large dark-colored deer with prominent antlers, found in small populations in the park's mountain forests.",
+    "descriptionTh": "กวางขนาดใหญ่สีเข้มมีเขากลม พบเป็นจำนวนน้อยในป่าเขาของดอยผ้าห่มปก",
+    "imageUrl": ""
+  },
+  {
+    "name": "Common Muntjac",
+    "nameTh": "เก้ง",
+    "sciName": "Muntiacus muntjak",
+    "description": "A small deer with tusks that emits loud barking calls, living in the deciduous and evergreen forests.",
+    "descriptionTh": "กวางขนาดเล็กมีเขี้ยว ส่งเสียงร้องคล้ายสุนัขเห่า พบในป่าผลัดใบและป่าดิบ",
+    "imageUrl": ""
+  },
+  {
+    "name": "Himalayan Cutia",
+    "nameTh": "นกขัติยา",
+    "sciName": "Cutia nipalensis",
+    "description": "A small colorful mountain bird found at high elevations, popular among birdwatchers visiting Doi Pha Hom Pok.",
+    "descriptionTh": "นกขนาดเล็กสีสดใสพบในป่าเขาสูง เป็นที่นิยมของนักดูนกที่มาเยือนดอยผ้าห่มปก",
+    "imageUrl": ""
+  },
+  {
+    "name": "Bengal Slow Loris",
+    "nameTh": "ลิงลม",
+    "sciName": "Nycticebus bengalensis",
+    "description": "A small nocturnal primate with large eyes, moving slowly through forest canopies at night in search of insects and fruit.",
+    "descriptionTh": "สัตว์เลี้ยงลูกด้วยนมขนาดเล็กออกหากินกลางคืน มีตาโต เคลื่อนที่ช้าบนเรือนยอดไม้",
+    "imageUrl": ""
+  },
+  {
+    "name": "Purple Cochoa",
+    "nameTh": "นกจับแมลงสีม่วง",
+    "sciName": "Cochoa purpurea",
+    "description": "A striking purple and blue mountain bird found in high-altitude mixed forests, known for its melodious song.",
+    "descriptionTh": "นกสีม่วงและน้ำเงินที่พบในป่าผสมบนที่สูง มีเสียงร้องเพราะ",
+    "imageUrl": ""
+  }
+]

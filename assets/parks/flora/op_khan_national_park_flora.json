@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Teak",
+    "nameTh": "สัก",
+    "sciName": "Tectona grandis",
+    "description": "A large deciduous tree growing up to 40 meters tall with highly valued golden-brown heartwood.",
+    "descriptionTh": "ไม้ผลัดใบขนาดใหญ่สูงได้ถึง 40 เมตร มีแก่นไม้สีทองน้ำตาลมีคุณค่าสูง",
+    "imageUrl": ""
+  },
+  {
+    "name": "Khasi Pine",
+    "nameTh": "สนสามใบ",
+    "sciName": "Pinus kesiya",
+    "description": "A tropical pine tree with needle-like leaves in bundles of three, important in forest composition.",
+    "descriptionTh": "ต้นสนเขตร้อนมีใบเป็นเข็มเป็นกลุ่มละ 3 ใบ สำคัญต่อองค์ประกอบของป่า",
+    "imageUrl": ""
+  },
+  {
+    "name": "Bamboo",
+    "nameTh": "ไผ่",
+    "sciName": "Thyrsostachys siamensis",
+    "description": "A rapidly growing grass with tall hollow culms, commonly used for food, construction, and crafts.",
+    "descriptionTh": "หญ้าเนื้อแข็งเติบโตเร็วมีลำต้นกลวง ใช้เป็นอาหาร ก่อสร้าง และหัตถกรรม",
+    "imageUrl": ""
+  },
+  {
+    "name": "Terminalia",
+    "nameTh": "สมอไทย",
+    "sciName": "Terminalia chebula",
+    "description": "A deciduous tree with astringent fruits used in traditional medicine.",
+    "descriptionTh": "ไม้ผลัดใบมีผลฝาดใช้ในการแพทย์แผนโบราณ",
+    "imageUrl": ""
+  },
+  {
+    "name": "Lagerstroemia",
+    "nameTh": "ตะแบก",
+    "sciName": "Lagerstroemia speciosa",
+    "description": "An ornamental tree with vibrant pink or purple flowers blooming in clusters.",
+    "descriptionTh": "ไม้ประดับออกดอกสีชมพูหรือม่วงเป็นช่อสวยงาม",
+    "imageUrl": ""
+  }
+]

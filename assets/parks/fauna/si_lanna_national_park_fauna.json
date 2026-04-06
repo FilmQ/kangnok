@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Clouded Leopard",
+    "nameTh": "เสือลายเมฆ",
+    "sciName": "Neofelis nebulosa",
+    "description": "An elusive nocturnal predator with distinctive cloud-like coat patterns and exceptional climbing abilities.",
+    "descriptionTh": "เสือหายากออกล่ากลางคืน มีลายคล้ายเมฆและปีนต้นไม้เก่ง",
+    "imageUrl": ""
+  },
+  {
+    "name": "Asian Elephant",
+    "nameTh": "ช้างป่า",
+    "sciName": "Elephas maximus",
+    "description": "Large herbivorous mammals occasionally spotted in dense forests, the park's most iconic megafauna.",
+    "descriptionTh": "สัตว์กินพืชขนาดใหญ่พบเห็นเป็นครั้งคราวในป่าทึบ เป็นสัตว์ใหญ่ที่โดดเด่นของอุทยาน",
+    "imageUrl": ""
+  },
+  {
+    "name": "Great Hornbill",
+    "nameTh": "นกเงือกใหญ่",
+    "sciName": "Buceros bicornis",
+    "description": "A large bird with distinctive black-and-white plumage and yellow casque, feeding on fruits in tall trees.",
+    "descriptionTh": "นกขนาดใหญ่สีดำขาวมีหมวกสีเหลือง กินผลไม้บนต้นไม้สูง",
+    "imageUrl": ""
+  },
+  {
+    "name": "Red Junglefowl",
+    "nameTh": "ไก่ป่า",
+    "sciName": "Gallus gallus",
+    "description": "The wild ancestor of domestic chickens with vibrant reddish plumage, foraging on forest floors.",
+    "descriptionTh": "บรรพบุรุษของไก่บ้านมีขนสีแดงสดใส หากินบนพื้นป่า",
+    "imageUrl": ""
+  },
+  {
+    "name": "Common Muntjac",
+    "nameTh": "เก้ง",
+    "sciName": "Muntiacus muntjak",
+    "description": "A small reddish-brown deer with distinctive barking calls, frequently encountered in the forest understory.",
+    "descriptionTh": "กวางขนาดเล็กสีน้ำตาลแดงมีเสียงร้องคล้ายเห่า พบบ่อยในชั้นไม้พื้นล่างของป่า",
+    "imageUrl": ""
+  }
+]

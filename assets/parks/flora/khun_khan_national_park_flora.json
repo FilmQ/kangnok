@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Teak",
+    "nameTh": "สัก",
+    "sciName": "Tectona grandis",
+    "description": "A large tropical hardwood tree highly valued for lumber, native to South and Southeast Asian forests.",
+    "descriptionTh": "ไม้เนื้อแข็งเขตร้อนขนาดใหญ่ที่มีคุณค่าทางเศรษฐกิจสูง มีความทนทานมาก",
+    "imageUrl": ""
+  },
+  {
+    "name": "Schima",
+    "nameTh": "ชำมะเลียง",
+    "sciName": "Schima wallichii",
+    "description": "An evergreen tree in the tea family commonly used in reforestation projects throughout northern Thailand.",
+    "descriptionTh": "ไม้ยืนต้นไม่ผลัดใบในวงศ์ชา ใช้ปลูกเพื่อฟื้นฟูป่าในภาคเหนือของประเทศไทย",
+    "imageUrl": ""
+  },
+  {
+    "name": "Merkus Pine",
+    "nameTh": "สนสองใบ",
+    "sciName": "Pinus merkusii",
+    "description": "A tall coniferous tree with needle-like leaves, found at higher elevations in the park's mixed forest.",
+    "descriptionTh": "ต้นสนสูงมีใบเป็นเข็ม พบในป่าผสมบนที่สูงของอุทยานแห่งชาติ",
+    "imageUrl": ""
+  },
+  {
+    "name": "Yang Na",
+    "nameTh": "ยางนา",
+    "sciName": "Dipterocarpus alatus",
+    "description": "A large tree producing fragrant resin used in traditional medicines, found in dense evergreen forests.",
+    "descriptionTh": "ไม้ขนาดใหญ่ที่ให้ยางหอม ใช้ในการแพทย์แผนโบราณ พบในป่าดิบชื้น",
+    "imageUrl": ""
+  },
+  {
+    "name": "Hopea Odorata",
+    "nameTh": "ตะเคียนทอง",
+    "sciName": "Hopea odorata",
+    "description": "A massive hardwood tree reaching 45 meters tall, producing fragrant timber highly valued for boat building.",
+    "descriptionTh": "ไม้เนื้อแข็งขนาดใหญ่สูงถึง 45 เมตร ให้ไม้หอมมีคุณค่าสูง นิยมใช้ต่อเรือ",
+    "imageUrl": ""
+  }
+]

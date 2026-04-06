@@ -1,0 +1,83 @@
+[
+  {
+    "name": "Wat Phra That Doi Suthep",
+    "nameTh": "วัดพระธาตุดอยสุเทพราชวรวิหาร",
+    "description": "Chiang Mai's most sacred temple, featuring a golden Lanna-style pagoda and panoramic city views. Accessible via a 306-step Naga staircase or a funicular tram.",
+    "descriptionTh": "วัดคู่บ้านคู่เมืองเชียงใหม่ โดดเด่นด้วยเจดีย์สีทองศิลปะล้านนาและจุดชมวิวเมืองเชียงใหม่ เข้าถึงได้ด้วยบันไดนาค 306 ขั้น หรือรถรางไฟฟ้า",
+    "parkName": "Doi Suthep-Pui National Park",
+    "businessHour": "06:00 - 20:00",
+    "transportOptions": [
+      "Red Songthaew (Rot Daeng)",
+      "Private Car",
+      "Motorbike",
+      "Hiking (Monk's Trail)"
+    ],
+    "fee": 0,
+    "feeForeigner": 30,
+    "imageUrl": ""
+  },
+  {
+    "name": "Bhubing Palace",
+    "nameTh": "พระตำหนักภูพิงคราชนิเวศน์",
+    "description": "The royal winter residence famous for its extensive rose gardens and temperate flowers. Closed to the public when the royal family is in residence (usually Jan–Mar).",
+    "descriptionTh": "พระตำหนักที่ประทับแปรพระราชฐานในช่วงฤดูหนาว มีชื่อเสียงด้านสวนกุหลาบและไม้ดอกเมืองหนาว (มักปิดให้บริการช่วงเดือน ม.ค. - มี.ค. เมื่อมีการเสด็จประทับ)",
+    "parkName": "Doi Suthep-Pui National Park",
+    "businessHour": "08:30 - 16:30 (Tickets close 15:30)",
+    "transportOptions": [
+      "Red Songthaew",
+      "Private Car",
+      "Motorbike"
+    ],
+    "fee": 20,
+    "feeForeigner": 50,
+    "imageUrl": ""
+  },
+  {
+    "name": "Doi Pui Hmong Village",
+    "nameTh": "หมู่บ้านม้งดอยปุย",
+    "description": "A traditional hill tribe village offering cultural exhibits, a hilltop garden, and local handicrafts. Famous for cherry blossoms (Sakura) in late January.",
+    "descriptionTh": "หมู่บ้านชาวเขาที่มีการจัดแสดงวัฒนธรรม สวนดอกไม้บนยอดดอย และสินค้าแฮนด์เมดท้องถิ่น เป็นจุดชมดอกนางพญาเสือโคร่งยอดนิยมช่วงปลายเดือนมกราคม",
+    "parkName": "Doi Suthep-Pui National Park",
+    "businessHour": "08:00 - 17:00",
+    "transportOptions": [
+      "Red Songthaew",
+      "Private Car (Experienced driver)",
+      "Motorbike"
+    ],
+    "fee": 10,
+    "feeForeigner": 10,
+    "imageUrl": ""
+  },
+  {
+    "name": "Montha Than Waterfall",
+    "nameTh": "น้ำตกมณฑาธาร",
+    "description": "A multi-tiered waterfall within the national park area, popular for camping and birdwatching. Requires a national park entry ticket.",
+    "descriptionTh": "น้ำตกหลายชั้นภายในเขตอุทยานฯ เป็นจุดยอดนิยมสำหรับการกางเต็นท์และดูนก ต้องเสียค่าธรรมเนียมเข้าเขตอุทยานฯ",
+    "parkName": "Doi Suthep-Pui National Park",
+    "businessHour": "08:00 - 16:30",
+    "transportOptions": [
+      "Private Car",
+      "Motorbike",
+      "Hiking"
+    ],
+    "fee": 20,
+    "feeForeigner": 100,
+    "imageUrl": ""
+  },
+  {
+    "name": "Wat Pha Lat",
+    "nameTh": "วัดผาลาด",
+    "description": "A hidden 'forest temple' located halfway up the mountain on the Monk's Trail. Known for its serene atmosphere, ancient stone carvings, and natural surroundings.",
+    "descriptionTh": "วัดป่าลับแลตั้งอยู่กึ่งกลางดอยบนเส้นทางสายบุญ (Monk's Trail) โดดเด่นด้วยความสงบ งานแกะสลักหินโบราณ และบรรยากาศป่าร่มรื่น",
+    "parkName": "Doi Suthep-Pui National Park",
+    "businessHour": "06:00 - 18:00",
+    "transportOptions": [
+      "Hiking (Monk's Trail)",
+      "Red Songthaew",
+      "Motorbike"
+    ],
+    "fee": 0,
+    "feeForeigner": 0,
+    "imageUrl": ""
+  }
+]

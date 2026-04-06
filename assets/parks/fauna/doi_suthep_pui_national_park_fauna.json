@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Lar Gibbon",
+    "nameTh": "ชะนีมือขาว",
+    "sciName": "Hylobates lar",
+    "description": "A long-armed ape with distinctive white hands and face, producing loud calls through the forest canopy.",
+    "descriptionTh": "ลิงแขนยาวมีมือและหน้าสีขาว ส่งเสียงร้องดังไกลในเรือนยอดป่า",
+    "imageUrl": ""
+  },
+  {
+    "name": "Northern Pig-tailed Macaque",
+    "nameTh": "ลิงกังเหนือ",
+    "sciName": "Macaca leonina",
+    "description": "An intelligent primate with a distinctive pig-like tail, living in social groups in mountain forest canopies.",
+    "descriptionTh": "ลิงฉลาดมีหางสั้นคล้ายหมู อาศัยรวมกันเป็นฝูงในเรือนยอดป่าเขา",
+    "imageUrl": ""
+  },
+  {
+    "name": "Common Muntjac",
+    "nameTh": "เก้ง",
+    "sciName": "Muntiacus muntjak",
+    "description": "A small tusked deer producing distinctive barking vocalizations, found throughout mountain forest habitats.",
+    "descriptionTh": "กวางขนาดเล็กมีเขี้ยว ส่งเสียงร้องคล้ายเห่า พบทั่วไปในป่าเขา",
+    "imageUrl": ""
+  },
+  {
+    "name": "Doi Suthep Bent-toed Gecko",
+    "nameTh": "ตุ๊กแกนิ้วงอดอยสุเทพ",
+    "sciName": "Cyrtodactylus doisuthep",
+    "description": "A small endemic reptile found nowhere else on Earth, discovered only in Doi Suthep-Pui National Park.",
+    "descriptionTh": "สัตว์เลื้อยคลานเฉพาะถิ่นขนาดเล็ก พบได้เฉพาะในอุทยานแห่งชาติดอยสุเทพ-ปุย",
+    "imageUrl": ""
+  },
+  {
+    "name": "Green Peafowl",
+    "nameTh": "นกยูงเขียว",
+    "sciName": "Pavo muticus",
+    "description": "A critically endangered pheasant with striking emerald-green plumage, found in remote forests of the park.",
+    "descriptionTh": "นกยูงใกล้สูญพันธุ์ มีขนสีเขียวมรกตสวยงาม พบในป่าห่างไกลของอุทยาน",
+    "imageUrl": ""
+  }
+]
